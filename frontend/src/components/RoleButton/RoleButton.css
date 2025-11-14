@@ -1,39 +1,63 @@
 .role-btn {
-    width: 360px;
-    height: 64px;
+    width: 315px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: none;
     display: flex;
     align-items: center;
-    border: none;
-    border-radius: 32px;
-    padding-left: 14px;
+    padding: 0px;
+    gap: 34px;
     cursor: pointer;
-    box-shadow: 0px 6px 22px rgba(0,0,0,0.12);
-    transition: 0.2s ease;
+    justify-content: flex-start;
 }
 
 .role-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
 }
 
 .role-icon-circle {
-    width: 56px;
-    height: 56px;
-    background: white;
+    width: 81px;
+    height: 81px;
     border-radius: 50%;
+    background: #ffffff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0px 6px 12px rgba(0,0,0,0.18);
+    justify-content: center;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
 }
 
-.role-icon-circle svg {
-    width: 22px;
-    height: 22px;
-}
+/* .role-icon-circle svg {
+    width: 26px;
+    height: 26px;
+} */
 
+/* Text */
 .role-text {
-    margin-left: 12px;
-    font-size: 17px;
-    font-weight: 600;
-    color: #111;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .role-btn {
+        width: 95%;
+        height: 80px;
+    }
+
+    .role-icon-circle {
+        width: 50px;
+        height: 50px;
+    }
+
+    .role-icon-circle svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .role-text {
+        font-size: 16px;
+    }
 }

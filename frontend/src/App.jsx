@@ -18,39 +18,26 @@ export default function App() {
 
 function MainRoutes() {
     const navigate = useNavigate();
-
-    // Shared states (for email + role during flow)
-    const [selectedRole, setSelectedRole] = useState(null);
     const [resetEmail, setResetEmail] = useState("");
 
     return (
         <Routes>
-            {/* Role Select */}
-            <Route
-                path="/"
-                element={
-                    <RoleSelect
-                        onSelect={(role) => {
-                            setSelectedRole(role);
-                            navigate("/signup");
-                        }}
-                    />
-                }
-            />
 
-            {/* Signup */}
+            {/* -------- ROLE SELECT SCREEN -------- */}
+            <Route
+                path="/" element={ <RoleSelect />}/>
+            {/* -------- SIGNUP -------- */}
             <Route
                 path="/signup"
                 element={
                     <Signup
-                        role={selectedRole}
                         goBack={() => navigate("/")}
                         onSuccess={() => navigate("/login")}
                     />
                 }
             />
 
-            {/* Login */}
+            {/* -------- LOGIN -------- */}
             <Route
                 path="/login"
                 element={
@@ -62,7 +49,7 @@ function MainRoutes() {
                 }
             />
 
-            {/* Forgot Password */}
+            {/* -------- FORGOT PASSWORD -------- */}
             <Route
                 path="/forgot"
                 element={
@@ -75,7 +62,7 @@ function MainRoutes() {
                 }
             />
 
-            {/* Enter Code + Reset Password */}
+            {/* -------- VERIFY + RESET PASSWORD -------- */}
             <Route
                 path="/verify"
                 element={
@@ -86,17 +73,22 @@ function MainRoutes() {
                 }
             />
 
-            {/* Final Success Screen */}
+            {/* -------- SUCCESS -------- */}
             <Route
                 path="/password-success"
-                element={<PasswordSuccess onGoLogin={() => navigate("/login")} />}
+                element={
+                    <PasswordSuccess
+                        onGoLogin={() => navigate("/login")}
+                    />
+                }
             />
 
-            {/* Fallback Route */}
+            {/* -------- 404 -------- */}
             <Route
                 path="*"
                 element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}
             />
+
         </Routes>
     );
 }

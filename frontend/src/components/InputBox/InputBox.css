@@ -1,0 +1,23 @@
+.inputBoxContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.inputBoxContainer label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.inputBoxContainer input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+}
+
+.inputBoxContainer input:focus {
+    border-color: #7f2bff;
+}

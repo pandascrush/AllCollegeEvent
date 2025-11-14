@@ -1,11 +1,9 @@
-import express from "express";
-const app = express();
-app.use(express.json());
+import { connectDB } from "./src/config/db.js";
+import app from "./src/app.js";
+import { ENV } from "./src/config/env.js";
 
-app.get("/", (req, res) => {
-  res.send("Backend server running successfully");
-});
+connectDB();
 
-app.listen(5000, () => {
-  console.log("Server is running at http://localhost:5011");
+app.listen(ENV.PORT, () => {
+    console.log(`🚀 Server running on port ${ENV.PORT}`);
 });

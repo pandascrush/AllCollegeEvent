@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+import "./ForgotPassword.css";
+import InputBox from "../../components/InputBox/InputBox";
+import AuthLayout from "../../components/Layout/AuthLayout";
+import { authService } from "../../services/authService";
+
+export default function ForgotPassword({ onContinueVerify }) {
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+    const [msg, setMsg] = useState("");
+
+    const sendCode = async () => {
+        setError("");
+        try {
+            await authService.forgot({ email });
+            setMsg("Code sent to your mail");
+            onContinueVerify(email);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    return (
+        <AuthLayout image="/images/forgot.png">
+            <h1>Forgot Password</h1>
+            <p>No worries, we’ll send you a code to reset it</p>
+
+            <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your email" />
+
+            {error && <div className="errorText">{error}</div>}
+            {msg && <div className="successText">{msg}</div>}
+
+            <button className="primaryBtn" onClick={sendCode}>Send Code</button>
+        </AuthLayout>
+    );
+}

@@ -1,0 +1,33 @@
+.loginLinks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
+.forgotLink {
+    background: none;
+    border: none;
+    color: #7f2bff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.errorText {
+    color: crimson;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.signupRoute {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.signupLink {
+    background: none;
+    border: none;
+    color: #7f2bff;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,76 @@
+.role-page {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #faf7ff, #ffffff);
+}
+
+/* LEFT IMAGE */
+.role-left {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-character {
+    width: 80%;
+    max-width: 480px;
+}
+
+/* RIGHT SIDE */
+.role-right {
+    flex: 1;
+    padding-top: 80px;
+    padding-left: 40px;
+}
+
+.role-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.role-title span {
+    color: #7B39FF;
+}
+
+.role-subtitle {
+    margin-bottom: 35px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* BUTTON GRID */
+.role-buttons {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* PERFECT ZIG-ZAG ALIGNMENT */
+.row1 { margin-left: 0px; }
+.row2 { margin-left: 130px; }
+.row3 { margin-left: 0px; }
+.row4 { margin-left: 130px; }
+
+/* RESPONSIVE */
+@media(max-width: 1024px) {
+    .role-page {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .role-right {
+        padding: 20px;
+    }
+
+    .role-buttons {
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .row1, .row2, .row3, .row4 {
+        margin-left: 0 !important;
+    }
+}

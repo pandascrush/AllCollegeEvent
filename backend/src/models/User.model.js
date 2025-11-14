@@ -1,26 +1,21 @@
 import mongoose from "mongoose";
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const userSchema = new mongoose.Schema(
-    {
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true,
-        },
-        passwordHash: { type: String, required: true },
+const UserSchema = new mongoose.Schema({
+  name:        { type: String, required: true },
+  email:       { type: String, required: true, unique: true, lowercase: true },
+  password:    { type: String, required: true },
+  phone:       { type: String },
+  city:        { type: String },
+  state:       { type: String },
+  country:     { type: String },
+  profileImg:  { type: String },
+  roleId:      { type: ObjectId, ref: "Role", required: true },
+  savedEvents: [{ type: ObjectId, ref: "Event" }],
+  isDeleted:   { type: Boolean, default: false },
+  passExpiry:  { type: Date }
+}, { timestamps: true });
+UserSchema.index({ email: 1 });
+UserSchema.index({ name: 1 });
 
-        role: {
-            type: String,
-            enum: ["student", "faculty", "professional", "general"],
-            required: true,
-        },
-
-        resetCode: { type: String, default: null },
-        resetCodeExpire: { type: Date, default: null },
-    },
-    { timestamps: true }
-);
-
-export const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", UserSchema);

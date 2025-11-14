@@ -21,8 +21,11 @@ export default function Login({ onLogin, onForgotPassword, onGoSignup }) {
 
     return (
         <AuthLayout image="/images/login.png">
-            <h1>Welcome Back</h1>
-            <p>Please login to your account</p>
+            <div>
+                <div className="login-title">Welcome Back</div>
+                <div className="login-para">Please login to your account</div>
+            </div>
+
 
             <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your email" />
             <InputBox label="Password" type="password" value={password} onChange={setPassword} placeholder="Enter password" />
@@ -35,6 +38,12 @@ export default function Login({ onLogin, onForgotPassword, onGoSignup }) {
             {error && <div className="errorText">{error}</div>}
 
             <button className="primaryBtn" onClick={handleLogin}>Sign In</button>
+
+            <div className="form-line">
+                <div className="line"></div>
+                <p>Or</p>
+                <div className="line"></div>
+            </div>
 
             <div className="signupRoute">
                 Don't have an account? <button className="signupLink" onClick={onGoSignup}>Sign Up</button>

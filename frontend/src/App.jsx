@@ -22,73 +22,13 @@ function MainRoutes() {
 
     return (
         <Routes>
-
-            {/* -------- ROLE SELECT SCREEN -------- */}
-            <Route
-                path="/" element={ <RoleSelect />}/>
-            {/* -------- SIGNUP -------- */}
-            <Route
-                path="/signup"
-                element={
-                    <Signup
-                        goBack={() => navigate("/")}
-                        onSuccess={() => navigate("/login")}
-                    />
-                }
-            />
-
-            {/* -------- LOGIN -------- */}
-            <Route
-                path="/login"
-                element={
-                    <Login
-                        onLogin={() => navigate("/home")}
-                        onForgotPassword={() => navigate("/forgot")}
-                        onGoSignup={() => navigate("/signup")}
-                    />
-                }
-            />
-
-            {/* -------- FORGOT PASSWORD -------- */}
-            <Route
-                path="/forgot"
-                element={
-                    <ForgotPassword
-                        onContinueVerify={(email) => {
-                            setResetEmail(email);
-                            navigate("/verify");
-                        }}
-                    />
-                }
-            />
-
-            {/* -------- VERIFY + RESET PASSWORD -------- */}
-            <Route
-                path="/verify"
-                element={
-                    <ResetPassword
-                        email={resetEmail}
-                        onPasswordReset={() => navigate("/password-success")}
-                    />
-                }
-            />
-
-            {/* -------- SUCCESS -------- */}
-            <Route
-                path="/password-success"
-                element={
-                    <PasswordSuccess
-                        onGoLogin={() => navigate("/login")}
-                    />
-                }
-            />
-
-            {/* -------- 404 -------- */}
-            <Route
-                path="*"
-                element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}
-            />
-
+            <Route path="/" element={ <RoleSelect />}/>
+            <Route path="/signup" element={<Signup goBack={() => navigate("/login")} onSuccess={() => navigate("/login")} />}/>
+            <Route path="/login" element={<Login onLogin={() => navigate("/home")} onForgotPassword={() => navigate("/forgot")} onGoSignup={() => navigate("/signup")} />}/>
+            <Route path="/forgot" element={ <ForgotPassword onContinueVerify={(email) => {setResetEmail(email); navigate("/verify");}}/>}/>
+            <Route path="/verify" element={<ResetPassword email={resetEmail} onPasswordReset={() => navigate("/password-success")}/>}/>
+            <Route path="/password-success" element={<PasswordSuccess onGoLogin={() => navigate("/login")}/>}/>
+            <Route path="*" element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}/>
         </Routes>
     );
 }

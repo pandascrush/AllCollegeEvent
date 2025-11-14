@@ -25,17 +25,26 @@ export default function Signup({ role, goBack, onSuccess }) {
 
     return (
         <AuthLayout image="/images/signup.png">
-            <h1>Join us Now!!</h1>
-            <p>Let’s Create your account</p>
+             <div>
+                <div className="login-title">Join us Now!!</div>
+                <div className="login-para">Let’s Create your account</div>
+            </div>
 
-            <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter mail" />
-            <InputBox label="Password" type="password" value={pass} onChange={setPass} placeholder="Enter password" />
-            <InputBox label="Confirm Password" type="password" value={confirm} onChange={setConfirm} placeholder="Re-enter password" />
+            <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your mail id" />
+            <InputBox label="Password" type="password" value={pass} onChange={setPass} placeholder="Enter your password" />
+            <InputBox label="Confirm Password" type="password" value={confirm} onChange={setConfirm} placeholder="Enter your password" />
 
             {error && <div className="errorMsg">{error}</div>}
 
             <button className="primaryBtn" onClick={handleSignup}>Sign Up</button>
-            <button className="backBtn" onClick={goBack}>Back</button>
+            <div className="form-line">
+                <div className="line"></div>
+                <p>Or</p>
+                <div className="line"></div>
+            </div>
+            <div className="signupRoute">
+                Already have an Account!? <button className="signupLink" onClick={goBack}>Sign In</button>
+            </div>
         </AuthLayout>
     );
 }

@@ -1,13 +1,17 @@
 .inputBoxContainer {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
 }
 
 .inputBoxContainer label {
-    font-size: 14px;
+    color: #1C1C1C;
+    font-family: "BL Melody";
+    font-size: 16px;
+    font-style: normal;
     font-weight: 600;
-    margin-bottom: 6px;
+    line-height: normal;
+    margin-bottom: 9px;
 }
 
 .inputBoxContainer input {

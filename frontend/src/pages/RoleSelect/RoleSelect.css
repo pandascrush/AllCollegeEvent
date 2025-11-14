@@ -1,11 +1,9 @@
 .role-page {
     display: flex;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background: linear-gradient(90deg, #faf7ff, #ffffff);
 }
-
-/* LEFT IMAGE */
 .role-left {
     flex: 1.0;
     display: flex;

@@ -10,7 +10,7 @@ export const AuthController = {
             const data = await AuthService.register(name ,email, password, role);
             res.json(data);
         } catch (err) {
-            res.status(400).json({ message: err.message });
+            res.status(400).json({ message: err });
         }
     },
 

@@ -8,7 +8,11 @@ const AuthLayout = ({ image, children }) => {
                 <img src={image} alt="illustration" />
             </div>
 
-            <div className="authRight">{children}</div>
+            <div className="authRight">
+                <div className="authContent">
+                    {children}
+                </div>
+            </div>
         </div>
     );
 };

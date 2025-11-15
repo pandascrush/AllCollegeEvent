@@ -5,8 +5,9 @@ import { ENV } from "../config/env.js";
 export const AuthController = {
     async register(req, res) {
         try {
-            const { email, password, role } = req.body;
-            const data = await AuthService.register(email, password, role);
+            console.log("====llll",req.body)
+            const { name , email, password, role } = req.body;
+            const data = await AuthService.register(name ,email, password, role);
             res.json(data);
         } catch (err) {
             res.status(400).json({ message: err });

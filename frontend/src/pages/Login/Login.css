@@ -143,6 +143,7 @@
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .login-title {
@@ -178,3 +179,10 @@
         font-size: 14px;
     }
 }
+=======
+.form-line .line {
+    width: 30px;
+    background-color: rgb(66, 65, 65);
+    height: 1px;
+}
+>>>>>>> cd6f2bbe1e8e12287d258e4375dfbb5f36a66ef8

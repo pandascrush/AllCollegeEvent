@@ -6,15 +6,16 @@ import { createToken } from "../utils/token.js";
 import { ENV } from "../config/env.js";
 
 export const AuthService = {
-    async register(email, password, role) {
+    async register(name ,email, password, role) {
         const existing = await User.findOne({ email });
         if (existing) throw new Error("Email already registered");
 
         const hash = await bcrypt.hash(password, 10);
 
         const user = await User.create({
+            name,
             email,
-            passwordHash: hash,
+            password: hash,
             role,
         });
 
@@ -44,10 +45,13 @@ export const AuthService = {
     },
 
     async sendResetCode(email) {
+        console.log("=====check code" , email)
         const user = await User.findOne({ email });
-        if (!user) return true; // soft fail
+        if (!user) return ; 
 
         const code = crypto.randomInt(1000, 9999).toString();
+
+        console.log("=====code ",code)
 
         user.resetCode = code;
         user.resetCodeExpire = Date.now() + 15 * 60 * 1000;

@@ -2,20 +2,16 @@ import nodemailer from "nodemailer";
 import { ENV } from "../config/env.js";
 
 export const sendEmail = async ({ to, subject, html }) => {
+    console.log("======email------", to, subject, html)
     const transporter = nodemailer.createTransport({
-        host: ENV.SMTP_HOST,
-        port: ENV.SMTP_PORT,
-        secure: false,
+        service: "gmail",
         auth: {
-            user: ENV.SMTP_USER,
-            pass: ENV.SMTP_PASS,
+            user: "prabavathi3898@gmail.com",
+            pass: "lhts duio zfjl uwpa",
         },
     });
 
-    if (!ENV.SMTP_HOST) {
-        console.log("📧 MOCK EMAIL:", { to, subject });
-        return;
-    }
+    console.log("email:",transporter)
 
     await transporter.sendMail({
         from: ENV.FROM_EMAIL,

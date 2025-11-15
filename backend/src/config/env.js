@@ -7,7 +7,7 @@ export const ENV = {
     JWT_SECRET: 'allcollegeevent',
     SMTP_HOST: 'prabavathi3898@gmail.com',
     SMTP_USER: 'prabavathi3898@gmail.com',
-    SMTP_PASS: 'prabavathi3898@gmail.com',
+    SMTP_PASS: 'lhts duio zfjl uwpa',
     SMTP_PORT:  587,
     FROM_EMAIL: process.env.FROM_EMAIL,
     CLIENT_URL:  "http://localhost:3000",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
+import Dashboard from "./pages/Dashboard/Dashboard";
 import RoleSelect from "./pages/RoleSelect/RoleSelect";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
@@ -20,11 +21,48 @@ function MainRoutes() {
 
     return (
         <Routes>
-            <Route path="/" element={ <RoleSelect />}/>
-            <Route path="/signup" element={<Signup goBack={() => navigate("/login")} onSuccess={() => navigate("/login")} />}/>
-            <Route path="/login" element={<Login onLogin={() => navigate("/home")} onForgotPassword={() => navigate("/forgot")} onGoSignup={() => navigate("/signup")} />}/>
-            <Route path="/forgot" element={ <ForgotPassword onContinueVerify={(email) => {setResetEmail(email); navigate("/verify");}}/>}/>
-            <Route path="*" element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}/>
+
+            {/* FIRST SCREEN = DASHBOARD */}
+            <Route path="/" element={<Dashboard />} />
+
+            {/* ROLE SELECT (optional if needed later) */}
+            <Route path="/role" element={<RoleSelect />} />
+
+            {/* SIGNUP */}
+            <Route
+                path="/signup"
+                element={
+                    <Signup
+                        goBack={() => navigate("/login")}
+                        onSuccess={() => navigate("/login")}
+                    />
+                }
+            />
+
+            {/* LOGIN */}
+            <Route
+                path="/login"
+                element={
+                    <Login
+                        onLogin={() => navigate("/")}
+                        onForgotPassword={() => navigate("/forgot")}
+                        onGoSignup={() => navigate("/signup")}
+                    />
+                }
+            />
+
+            {/* FORGOT PASSWORD (ONE FILE WITH ALL STEPS INSIDE) */}
+            <Route
+                path="/forgot"
+                element={<ForgotPassword />}
+            />
+
+            {/* 404 PAGE */}
+            <Route
+                path="*"
+                element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}
+            />
+
         </Routes>
     );
 }

@@ -34,11 +34,13 @@ export default function ResetPassword({ email, onPasswordReset }) {
     };
 
     return (
-        <AuthLayout image="/images/reset.png">
+        <AuthLayout image="/images/login.png">
             {step === 1 && (
                 <>
-                    <h1>Enter Code</h1>
-                    <p>Check your email for the 4-digit code</p>
+                    <div>
+                        <div className="login-title">Forgot Password</div>
+                        <div className="login-para" style={{ marginTop: "23px" }}>No worries, we’ll send you a code <br></br>to reset the password</div>
+                    </div>
 
                     <div className="codeBoxes">
                         <div className="codeBox">{code[0] || ""}</div>
@@ -46,8 +48,6 @@ export default function ResetPassword({ email, onPasswordReset }) {
                         <div className="codeBox">{code[2] || ""}</div>
                         <div className="codeBox">{code[3] || ""}</div>
                     </div>
-
-                    <InputBox value={code} onChange={setCode} placeholder="Enter code" />
 
                     {error && <div className="errorText">{error}</div>}
 
@@ -58,7 +58,7 @@ export default function ResetPassword({ email, onPasswordReset }) {
             {step === 2 && (
                 <>
                     <h1>Set New Password</h1>
-                    <p>Must be minimum 6 characters</p>
+                    <p>Must be minimum 8 characters</p>
 
                     <InputBox type="password" label="New password" value={newPassword} onChange={setNewPassword} placeholder="Enter new password" />
                     <InputBox type="password" label="Confirm password" value={confirmPass} onChange={setConfirmPass} placeholder="Re-enter password" />

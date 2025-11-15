@@ -21,11 +21,12 @@ export default function ForgotPassword({ onContinueVerify }) {
     };
 
     return (
-        <AuthLayout image="/images/forgot.png">
-            <h1>Forgot Password</h1>
-            <p>No worries, we’ll send you a code to reset it</p>
-
-            <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your email" />
+        <AuthLayout image="/images/login.png">
+             <div>
+                <div className="login-title">Forgot Password</div>
+                <div className="login-para" style={{marginTop:"23px"}}>No worries, we’ll send you a code <br></br>to reset the password</div>
+            </div>
+            <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your mail id" />
 
             {error && <div className="errorText">{error}</div>}
             {msg && <div className="successText">{msg}</div>}

@@ -31,7 +31,7 @@ export const AuthService = {
         const user = await User.findOne({ email });
         if (!user) throw new Error("Invalid credentials");
 
-        const match = await bcrypt.compare(password, user.passwordHash);
+        const match = await bcrypt.compare(password, user.password);
         if (!match) throw new Error("Invalid credentials");
 
         const token = createToken({

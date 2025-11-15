@@ -1,12 +1,19 @@
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
+import roleRoutes from "./routes/role.routes.js";
+import vibeRoutes from "./routes/vibe.routes.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors("http://localhost:5000"));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/role",roleRoutes)
+app.use("/api/vibe",vibeRoutes)
+
+app.use(errorHandler);
 
 export default app;

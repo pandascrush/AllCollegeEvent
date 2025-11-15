@@ -1,27 +1,46 @@
 .inputBoxContainer {
     display: flex;
     flex-direction: column;
-    margin-bottom: 28px;
+    margin-bottom: clamp(20px, 4vh, 28px);
 }
 
 .inputBoxContainer label {
     color: #1C1C1C;
     font-family: "BL Melody";
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-bottom: 9px;
+    margin-bottom: 8px;
 }
 
 .inputBoxContainer input {
     padding: 12px;
     border-radius: 10px;
     border: 1px solid #ddd;
-    font-size: 14px;
+    font-size: clamp(14px, 3vw, 16px);
     outline: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .inputBoxContainer input:focus {
     border-color: #7f2bff;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .inputBoxContainer {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputBoxContainer {
+        margin-bottom: 16px;
+    }
+    
+    .inputBoxContainer input {
+        padding: 10px;
+    }
 }

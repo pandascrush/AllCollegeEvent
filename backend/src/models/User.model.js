@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
   state:       { type: String },
   country:     { type: String },
   profileImg:  { type: String },
-  roleId:      { type: ObjectId, ref: "Role", required: true },
+  roleId:      { type: ObjectId, ref: "Role"},
   savedEvents: [{ type: ObjectId, ref: "Event" }],
   isDeleted:   { type: Boolean, default: false },
   passExpiry:  { type: Date }

@@ -6,6 +6,7 @@ import { authService } from "../../services/authService";
 
 export default function Signup({ role, goBack, onSuccess }) {
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const [confirm, setConfirm] = useState("");
     const [error, setError] = useState("");
@@ -16,7 +17,7 @@ export default function Signup({ role, goBack, onSuccess }) {
         if (pass !== confirm) return setError("Passwords do not match.");
 
         try {
-            const res = await authService.register({ email, password: pass, role });
+            const res = await authService.register({ name , email, password: pass, role });
             onSuccess(res.user);
         } catch (err) {
             setError(err.message);
@@ -30,6 +31,7 @@ export default function Signup({ role, goBack, onSuccess }) {
                 <div className="login-para">Let’s Create your account</div>
             </div>
 
+            <InputBox label="Name" value={name} onChange={setName} placeholder="Enter your name" />
             <InputBox label="Email" value={email} onChange={setEmail} placeholder="Enter your mail id" />
             <InputBox label="Password" type="password" value={pass} onChange={setPass} placeholder="Enter your password" />
             <InputBox label="Confirm Password" type="password" value={confirm} onChange={setConfirm} placeholder="Enter your password" />

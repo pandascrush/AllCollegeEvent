@@ -10,4 +10,8 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    host: "0.0.0.0",   // allow access using IPv4
+    port: 5173         // your dev port
+  }
 })

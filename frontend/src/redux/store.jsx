@@ -4,6 +4,7 @@ import organizerReducer from "./slices/organizerSlice";
 import eventReducer from "./slices/eventSlice";
 import ticketReducer from "./slices/ticketSlice";
 import vibeReducer from './slices/vibeSlice'
+import authReducer from './slices/authSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     organizer: organizerReducer,
     event: eventReducer,
     ticket: ticketReducer,
-    vibes: vibeReducer
+    vibes: vibeReducer,
+    auth: authReducer
   }
 });

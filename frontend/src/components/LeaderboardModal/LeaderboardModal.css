@@ -1,0 +1,233 @@
+/* ---------- OVERLAY ---------- */
+.lb-overlay {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ---------- MODAL ---------- */
+.lb-modal {
+    width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at 2% 2%, rgba(233, 215, 255, 0.55) 0%, rgba(233, 215, 255, 0.25) 20%, transparent 65%),
+        radial-gradient(circle at 85% 38%, rgba(255, 245, 220, 0.60) 0%, rgba(225, 200, 255, 0.35) 20%, rgba(225, 200, 255, 0.18) 30%, transparent 75%),
+        radial-gradient(circle at 12% 95%, rgba(235, 220, 255, 0.35) 0%, transparent 40%),
+        #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    position: relative;
+    animation: popupScale 0.28s ease;
+}
+
+/* SCROLLBAR HIDE */
+.lb-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lb-modal::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 50px;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.lb-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- TITLES ---------- */
+.lb-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.lb-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* ---------- PODIUM SECTION ---------- */
+.lb-podium {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.lb-pod-card {
+    width: 160px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.lb-pod-card.first {
+    transform: translateY(-18px);
+    background: #4c1aff;
+    color: #fff;
+}
+
+.lb-pod-card.second {
+    background: #0038a8;
+    color: #fff;
+}
+
+.lb-pod-card.third {
+    background: #8b0000;
+    color: #fff;
+}
+
+.medal-icon {
+    width: 55px;
+    margin-bottom: 10px;
+}
+
+.medal-icon.large {
+    width: 75px;
+}
+
+/* ---------- TABLE ---------- */
+.lb-list-title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.lb-list-sub {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.lb-table {
+    width: 100%;
+}
+
+.lb-thead {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.6fr;
+    background: #f8f3ff;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.lb-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.6fr;
+    padding: 12px;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    background: #fff;
+}
+
+.lb-row.odd {
+    background: #fff7f1;
+}
+
+.lb-col.name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lb-col.name img {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+}
+
+.rank {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6a00ff;
+}
+
+/* ========== MODAL SCROLL AREA ========== */
+/* ---------- SCROLL AREA INSIDE MODAL ---------- */
+.leaders-table-wrap {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    padding-left: 5px;
+    scroll-behavior: smooth;
+}
+
+/* Chrome, Edge, Safari */
+.leaders-table-wrap::-webkit-scrollbar {
+    width: 8px;
+}
+
+.leaders-table-wrap::-webkit-scrollbar-track {
+    background: #f3eaff;
+    border-radius: 20px;
+}
+
+.leaders-table-wrap::-webkit-scrollbar-thumb {
+    background: #8c30ff;
+    border-radius: 20px;
+}
+
+.leaders-table-wrap::-webkit-scrollbar-thumb:hover {
+    background: #6a00ff;
+}
+
+/* Firefox */
+.leaders-table-wrap {
+    scrollbar-width: thin;
+    scrollbar-color: #8c30ff #f3eaff;
+}
+
+
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes popupScale {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

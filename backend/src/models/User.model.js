@@ -10,11 +10,7 @@ const UserSchema = new mongoose.Schema({
   state:       { type: String },
   country:     { type: String },
   profileImg:  { type: String },
-<<<<<<< HEAD
   roleId:      { type: ObjectId, ref: "Role" },
-=======
-  roleId:      { type: ObjectId, ref: "Role"},
->>>>>>> cd6f2bbe1e8e12287d258e4375dfbb5f36a66ef8
   savedEvents: [{ type: ObjectId, ref: "Event" }],
   isDeleted:   { type: Boolean, default: false },
   passExpiry:  { type: Date }

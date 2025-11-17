@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import "./Dashboard.css";
 import CardCarousel from "../Dashboard/CardCarousel";
 import Navbar from "../../components/Navbar/Navbar";
+import EventCarousel from "../../components/EventSlider/EventSlider";
+import SpotlightSlider from "../../components/SpotlightSlider/SpotlightSlider";
+import OrganizersSlider from "../../components/OrganizersSlider/OrganizersSlider";
+import LeaderboardModal from "../../components/LeaderboardModal/LeaderboardModal";
+import { BROWSEEVENTS, TRENDINGEVENTS, CATEGORIES, TRENDINGEVENTSTOP, BROWSEEVENTSTOP } from '../../const/const'
 
 // import your posters (place in src/assets/posters)
 import poster1 from "../../../public/images/Firstscreen.png";
@@ -15,48 +20,7 @@ import poster7 from "../../../public/images/signup.png";
 export default function Dashboard() {
     const posters = [poster1, poster2, poster3, poster4, poster5, poster6, poster7];
     const [activeChip, setActiveChip] = useState("Education");
-    const categories = [
-        {
-            name: "Conferences",
-            img: "/images/Conferences.png",
-            class: "conference",
-        },
-        {
-            name: "Hackathon",
-            img: "/images/Hackathon.png",
-            class: "hackathon",
-        },
-        {
-            name: "Webinars",
-            img: "/images/Webinars.png",
-            class: "webinar",
-        },
-        {
-            name: "Athletics",
-            img: "/images/Athletics.png",
-            class: "athletics",
-        },
-        {
-            name: "Concerts",
-            img: "/images/concert.png",
-            class: "concerts",
-        },
-        {
-            name: "Tournaments",
-            img: "/images/Tournaments.png",
-            class: "tournaments",
-        },
-        {
-            name: "Job Fairs",
-            img: "/images/JobFairs.png",
-            class: "jobfairs",
-        },
-        {
-            name: "Explore more",
-            img: "/images/Explore.png",
-            class: "explore",
-        },
-    ];
+    const [openLB, setOpenLB] = useState(false);
 
 
     return (
@@ -73,18 +37,12 @@ export default function Dashboard() {
                     </p>
 
                     <button className="btn-explore">Explore Events</button>
-
-                    {/* carousel */}
                     <div className="hero-carousel-area">
                         <CardCarousel images={posters} />
                     </div>
-
-                    {/* filter/search box */}
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <div className="search-card">
                             <div className="search-top">
-
-                                {/* Education */}
                                 <button
                                     className={`chip ${activeChip === "Education" ? "active" : ""}`}
                                     onClick={() => setActiveChip("Education")}
@@ -96,8 +54,6 @@ export default function Dashboard() {
                                     </span>
                                     Education
                                 </button>
-
-                                {/* Sports */}
                                 <button
                                     className={`chip ${activeChip === "Sports" ? "active" : ""}`}
                                     onClick={() => setActiveChip("Sports")}
@@ -109,8 +65,6 @@ export default function Dashboard() {
                                     </span>
                                     Sports
                                 </button>
-
-                                {/* Entertainment */}
                                 <button
                                     className={`chip ${activeChip === "Entertainment" ? "active" : ""}`}
                                     onClick={() => setActiveChip("Entertainment")}
@@ -122,8 +76,6 @@ export default function Dashboard() {
                                     </span>
                                     Entertainment
                                 </button>
-
-                                {/* Networking */}
                                 <button
                                     className={`chip ${activeChip === "Networking" ? "active" : ""}`}
                                     onClick={() => setActiveChip("Networking")}
@@ -142,7 +94,6 @@ export default function Dashboard() {
                             </div>
 
                             <div className="search-bottom">
-                                {/* Event Type */}
                                 <div className="filter-col">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M23.2666 2.33399C22.0686 2.33395 21.0697 2.33392 20.2766 2.44054C19.4396 2.55308 18.6838 2.80064 18.0765 3.40793C17.4693 4.01522 17.2217 4.77096 17.1092 5.60802C17.0025 6.40105 17.0026 7.4 17.0026 8.59795V8.73665C17.0026 9.9346 17.0025 10.9336 17.1092 11.7266C17.2217 12.5637 17.4693 13.3194 18.0765 13.9267C18.6838 14.534 19.4396 14.7816 20.2766 14.8941C21.0697 15.0007 22.0686 15.0007 23.2666 15.0007H23.4053C24.6032 15.0007 25.6022 15.0007 26.3952 14.8941C27.2323 14.7816 27.988 14.534 28.5953 13.9267C29.2026 13.3194 29.4502 12.5637 29.5627 11.7266C29.6693 10.9336 29.6693 9.93462 29.6693 8.73665V8.598C29.6693 7.40002 29.6693 6.40106 29.5627 5.60802C29.4502 4.77096 29.2026 4.01522 28.5953 3.40793C27.988 2.80064 27.2323 2.55308 26.3952 2.44054C25.6022 2.33392 24.6033 2.33395 23.4053 2.33399H23.2666ZM19.4908 4.82214C19.6645 4.64839 19.9278 4.50542 20.5431 4.4227C21.1872 4.33611 22.0506 4.33399 23.3359 4.33399C24.6213 4.33399 25.4847 4.33611 26.1288 4.4227C26.744 4.50542 27.0074 4.64839 27.1811 4.82214C27.3549 4.9959 27.4978 5.25923 27.5806 5.87451C27.6672 6.51856 27.6693 7.38197 27.6693 8.66732C27.6693 9.95267 27.6672 10.8161 27.5806 11.4601C27.4978 12.0754 27.3549 12.3387 27.1811 12.5125C27.0074 12.6863 26.744 12.8292 26.1288 12.9119C25.4847 12.9985 24.6213 13.0007 23.3359 13.0007C22.0506 13.0007 21.1872 12.9985 20.5431 12.9119C19.9278 12.8292 19.6645 12.6863 19.4908 12.5125C19.317 12.3387 19.174 12.0754 19.0913 11.4601C19.0047 10.8161 19.0026 9.95267 19.0026 8.66732C19.0026 7.38197 19.0047 6.51856 19.0913 5.87451C19.174 5.25923 19.317 4.9959 19.4908 4.82214Z" fill="#646464" />
@@ -155,8 +106,6 @@ export default function Dashboard() {
                                         <div className="filter-sub">Event Type</div>
                                     </div>
                                 </div>
-
-                                {/* Location */}
                                 <div className="filter-col">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.33594 13.5237C4.33594 6.99171 9.54262 1.66602 16.0026 1.66602C22.4626 1.66602 27.6693 6.99171 27.6693 13.5237C27.6693 16.6772 26.7706 20.0632 25.1819 22.9885C23.5951 25.9102 21.2768 28.449 18.3766 29.8045C16.87 30.5087 15.1352 30.5087 13.6286 29.8045C10.7284 28.449 8.41009 25.9102 6.82335 22.9885C5.23464 20.0632 4.33594 16.6772 4.33594 13.5237ZM16.0026 3.66602C10.6805 3.66602 6.33594 8.06266 6.33594 13.5237C6.33594 16.3198 7.13945 19.3799 8.58088 22.034C10.0243 24.6917 12.064 26.8655 14.4755 27.9927C15.4453 28.446 16.5599 28.446 17.5297 27.9927C19.9412 26.8655 21.9809 24.6917 23.4243 22.034C24.8658 19.3799 25.6693 16.3198 25.6693 13.5237C25.6693 8.06266 21.3247 3.66602 16.0026 3.66602ZM16.0026 10.3327C14.3457 10.3327 13.0026 11.6758 13.0026 13.3327C13.0026 14.9895 14.3457 16.3327 16.0026 16.3327C17.6595 16.3327 19.0026 14.9895 19.0026 13.3327C19.0026 11.6758 17.6595 10.3327 16.0026 10.3327ZM11.0026 13.3327C11.0026 10.5713 13.2412 8.33268 16.0026 8.33268C18.764 8.33268 21.0026 10.5713 21.0026 13.3327C21.0026 16.0941 18.764 18.3327 16.0026 18.3327C13.2412 18.3327 11.0026 16.0941 11.0026 13.3327Z" fill="#646464" />
@@ -166,8 +115,6 @@ export default function Dashboard() {
                                         <div className="filter-sub">Location</div>
                                     </div>
                                 </div>
-
-                                {/* Date */}
                                 <div className="filter-col">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                                         <path d="M22.6641 18.6673C23.4004 18.6673 23.9974 18.0704 23.9974 17.334C23.9974 16.5976 23.4004 16.0007 22.6641 16.0007C21.9277 16.0007 21.3307 16.5976 21.3307 17.334C21.3307 18.0704 21.9277 18.6673 22.6641 18.6673Z" fill="#646464" />
@@ -192,11 +139,7 @@ export default function Dashboard() {
                     <h3>Choose Your Category</h3>
                 </div>
                 <div className="category-wrapper">
-
-
-                    {/* CATEGORY GRID UNDER SEARCH BOX */}
-
-                    {categories.map((c) => (
+                    {CATEGORIES.map((c) => (
                         <div key={c.name} className={`category-card ${c.class}`}>
                             <div className="card-left">
                                 <img src={c.img} alt={c.name} />
@@ -206,7 +149,18 @@ export default function Dashboard() {
                     ))}
                 </div>
 
+                <EventCarousel title="Trending Events" data={TRENDINGEVENTS} />
 
+                <EventCarousel title="Browse Events" data={BROWSEEVENTS} />
+                {/* 🌟 Spotlight */}
+                <SpotlightSlider />
+
+                {/* 👥 Organizers Section */}
+                <OrganizersSlider onOpenLeaderboard={() => setOpenLB(true)} />
+
+                {/* 🏆 Leaderboard Popup */}
+                <LeaderboardModal open={openLB} onClose={() => setOpenLB(false)} />
+                <EventCarousel title="Upcoming Events" data={BROWSEEVENTS} />
 
             </div >
         </>

@@ -1,28 +1,33 @@
 import React from "react";
 import "./RoleSelect.css";
 import RoleButton from "../../components/RoleButton/RoleButton";
-import FirstScreenImage from "../../../public/images/Firstscreen.png"
+import FirstScreenImage from "../../../public/images/Firstscreen.png";
 import { useNavigate } from "react-router-dom";
 
-
-export default function RoleSelect() {
-const navigate = useNavigate();
+export default function RoleSelect({ onSelect }) {
+  const navigate = useNavigate();
 
   const handleSelectRole = (role) => {
     localStorage.setItem("userRoleSelect", role);
-    navigate("/login");
+
+    if (onSelect) onSelect(); // close modal
+
+    // navigate("/login"); // optional, depends on you
   };
+
   return (
     <div className="role-page">
-
       {/* LEFT SECTION IMAGE */}
       <div className="role-left">
-        <img src={FirstScreenImage} alt="character" className="role-character" />
+        <img
+          src={FirstScreenImage}
+          alt="character"
+          className="role-character"
+        />
       </div>
 
       {/* RIGHT SECTION */}
       <div className="role-right">
-
         <h1 className="role-title">
           <span>Select your vibe!</span> Start your journey!
         </h1>
@@ -30,7 +35,6 @@ const navigate = useNavigate();
         <p className="role-subtitle">Click & enjoy your events vibe !</p>
 
         <div className="role-buttons">
-
           <div className="btn-row row1">
             <RoleButton
               label="Student"
@@ -66,10 +70,8 @@ const navigate = useNavigate();
               onClick={() => handleSelectRole("general-user")}
             />
           </div>
-
         </div>
       </div>
     </div>
   );
 }
-

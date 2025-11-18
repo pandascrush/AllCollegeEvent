@@ -4,32 +4,41 @@ import { sendEmail } from "../utils/mailer.js";
 import { createToken } from "../utils/token.js";
 import dotenv from "dotenv";
 import { OAuth2Client } from "google-auth-library";
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
+import {Role} from "../models/role.model.js";
 
 dotenv.config();
 
 export const AuthService = {
-  async register({ name, email, password, role }) {
+  async register({ name, email, password }) {
     if (!password) {
       throw new Error("Password is missing");
     }
 
+    // check if email exists
     const existing = await User.findOne({ email });
     if (existing) throw new Error("Email already registered");
 
+    // default role = user
+    const roleDoc = await Role.findOne({ name: "user" });
+    if (!roleDoc) throw new Error("Default role 'user' not found in DB");
+
+    // hash password
     const hash = await bcrypt.hash(password, 10);
 
+    // create user with roleId
     const user = await User.create({
       name,
       email,
       password: hash,
-      role,
+      roleId: roleDoc._id, // assign user role
     });
 
+    // sign token
     const token = createToken({
       id: user._id,
       email: user.email,
-      role: user.role,
+      role: "user", // optional
     });
 
     return { user, token };
@@ -143,7 +152,7 @@ export const AuthService = {
   async googleLogin(googleToken) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     console.log(client);
-    
+
     const ticket = await client.verifyIdToken({
       idToken: googleToken,
       audience: process.env.GOOGLE_CLIENT_ID,

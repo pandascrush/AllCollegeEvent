@@ -1,71 +1,53 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
 
-export const loginUser = createAsyncThunk(
-  "user/login",
-  async (payload, { rejectWithValue }) => {
+// GET SINGLE USER USING ID
+export const fetchSingleUser = createAsyncThunk(
+  "/user/fetchSingleUser",
+  async (uid, { rejectWithValue }) => {
     try {
-      const res = await api.post("/auth/login", payload);
-      return res.data;
+      const res = await api.get(`/user/sin_usr/${uid}`);
+      return res.data;  // adjust to your backend response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response?.data || "Failed to fetch user");
     }
   }
 );
-
-export const fetchUserProfile = createAsyncThunk(
-  "user/profile",
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await api.get("/user/profile");
-      return res.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
-const initialState = {
-  user: null,
-  token: localStorage.getItem("token") || null,
-  isLoggedIn: false,
-  loading: false,
-  error: null
-};
 
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: {
+    user: null,
+    loading: false,
+    error: null
+  },
+
   reducers: {
-    logoutUser: (state) => {
+    clearUser: (state) => {
       state.user = null;
-      state.token = null;
-      state.isLoggedIn = false;
-      localStorage.removeItem("token");
+      state.loading = false;
+      state.error = null;
     }
   },
+
   extraReducers: (builder) => {
     builder
-      // LOGIN
-      .addCase(loginUser.pending, (state) => { state.loading = true; })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-        localStorage.setItem("token", action.payload.token);
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      .addCase(fetchSingleUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
 
-      // PROFILE
-      .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+      .addCase(fetchSingleUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+
+      .addCase(fetchSingleUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   }
 });
 
-export const { logoutUser } = userSlice.actions;
+export const { clearUser } = userSlice.actions;
 export default userSlice.reducer;

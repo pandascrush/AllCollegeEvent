@@ -6,7 +6,7 @@ import EventCarousel from "../../components/EventSlider/EventSlider";
 import SpotlightSlider from "../../components/SpotlightSlider/SpotlightSlider";
 import OrganizersSlider from "../../components/OrganizersSlider/OrganizersSlider";
 import LeaderboardModal from "../../components/LeaderboardModal/LeaderboardModal";
-import { BROWSEEVENTS, TRENDINGEVENTS, CATEGORIES, TRENDINGEVENTSTOP, BROWSEEVENTSTOP } from '../../const/const'
+import { BROWSEEVENTS, TRENDINGEVENTS, CATEGORIES, TRENDINGEVENTSTOP, PHONEICON, EMAILICON, EMAILTEXT, WHATSAPP } from '../../const/const'
 
 // import your posters (place in src/assets/posters)
 import poster1 from "../../../public/images/Firstscreen.png";
@@ -16,11 +16,15 @@ import poster4 from "../../../public/images/forgotpassword.png";
 import poster5 from "../../../public/images/Firstscreen.png";
 import poster6 from "../../../public/images/login.png";
 import poster7 from "../../../public/images/signup.png";
+import WhyChooseACE from "../../components/WhyChooseACE/WhyChooseACE";
+import PopularLocations from "../../components/PopularLocations/PopularLocations";
+import Footer from "../../components/Footer/Footer";
 
 export default function Dashboard() {
     const posters = [poster1, poster2, poster3, poster4, poster5, poster6, poster7];
     const [activeChip, setActiveChip] = useState("Education");
     const [openLB, setOpenLB] = useState(false);
+    const [active, setActive] = useState("whatsapp");
 
 
     return (
@@ -152,16 +156,108 @@ export default function Dashboard() {
                 <EventCarousel title="Trending Events" data={TRENDINGEVENTS} />
 
                 <EventCarousel title="Browse Events" data={BROWSEEVENTS} />
-                {/* 🌟 Spotlight */}
                 <SpotlightSlider />
 
-                {/* 👥 Organizers Section */}
                 <OrganizersSlider onOpenLeaderboard={() => setOpenLB(true)} />
 
-                {/* 🏆 Leaderboard Popup */}
                 <LeaderboardModal open={openLB} onClose={() => setOpenLB(false)} />
                 <EventCarousel title="Upcoming Events" data={BROWSEEVENTS} />
 
+                <div className="college-event-works-section">
+                    <h2 className="college-event-works-section-title">How All College Event Works</h2>
+                    <img src="/images/animationImage.png" className="animation" alt="animation image" />
+                </div>
+                <WhyChooseACE />
+                <PopularLocations />
+                <section className="subscribe-section">
+
+                    {/* ---- WHATSAPP BLOCK ---- */}
+                    {active === "whatsapp" && (
+                        <div className="subscribe-card whatsapp">
+                            <div className="subscribe-left">
+                                <img
+                                    src="/images/whatsapp.png"
+                                    alt="whatsapp"
+                                    className="sub-img"
+                                />
+                            </div>
+
+                            <div className="subscribe-right">
+                                <h4 className="sub-title">
+                                    Subscribe to Our Newsletter for the <br />
+                                    Latest Updates and Insights.
+                                </h4>
+                                <div style={{ display: "flex" }}>
+                                    <div className="sub-input-wrap">
+                                        <div className="sub-input-icon">{PHONEICON}</div>
+                                        <input
+                                            type="tel"
+                                            placeholder="123-456-7890"
+                                            className="sub-input"
+                                        />
+                                        <button className="sub-btn">Subscribe</button>
+
+                                    </div>
+                                    <div>
+                                        <div
+                                            className="switch-icon"
+                                            onClick={() => setActive("email")}
+                                        >
+                                            {EMAILICON}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="sub-desc">
+                                    Stay ahead with the latest updates and events from AllCollegeEvent
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ---- EMAIL BLOCK ---- */}
+                    {active === "email" && (
+                        <div className="subscribe-card email">
+                            <div className="subscribe-left">
+                                <img
+                                    src="/images/email.png"
+                                    alt="mailbox"
+                                    className="sub-img-email"
+                                />
+                            </div>
+
+                            <div className="subscribe-right">
+                                <h4 className="sub-title" style={{paddingTop:"30px"}}>
+                                    Subscribe to Our Newsletter for the <br />
+                                    Latest Updates and Insights.
+                                </h4>
+                                <div style={{display:"flex", marginTop:"30px"}}>
+                                    <div className="sub-input-wrap-email email-style">
+                                        <div className="sub-input-icon">{EMAILTEXT}</div>
+                                        <input
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            className="sub-input"
+                                        />
+                                        <button className="sub-btn">Subscribe</button>
+
+                                    </div>
+                                    <div
+                                        className="switch-icon"
+                                        onClick={() => setActive("whatsapp")}
+                                        style={{background:"#28315D"}}
+                                    >
+                                        {WHATSAPP}
+                                    </div>
+                                </div>
+
+                                <p className="sub-desc">
+                                    Stay ahead with the latest updates and events from AllCollegeEvent
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                </section>
+                <Footer/>
             </div >
         </>
     );

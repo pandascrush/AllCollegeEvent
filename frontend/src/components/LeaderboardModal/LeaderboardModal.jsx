@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import goldMedal from '../../../public/images/FirstOr.png'
 import silverMedal from '../../../public/images/SecondOr.png'
 import bronzeMedal from '../../../public/images/ThreedOr.png'
+import './LeaderboardModal.css'
+
 
 /**
  * Props:

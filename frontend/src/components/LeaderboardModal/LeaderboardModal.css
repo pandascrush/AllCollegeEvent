@@ -1,4 +1,4 @@
-/* ---------- OVERLAY ---------- */
+/* ========== OVERLAY ========== */
 .lb-overlay {
     position: fixed;
     inset: 0;
@@ -7,227 +7,211 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1200;
-    animation: fadeIn 0.3s ease;
+    z-index: 2000;
+    animation: fadeIn .3s ease;
 }
 
-/* ---------- MODAL ---------- */
+.lb-backdrop {
+    position: absolute;
+    inset: 0;
+}
+
+/* ========== MODAL ========== */
 .lb-modal {
     width: 650px;
     max-height: 90vh;
     overflow-y: auto;
     background:
-        radial-gradient(circle at 2% 2%, rgba(233, 215, 255, 0.55) 0%, rgba(233, 215, 255, 0.25) 20%, transparent 65%),
-        radial-gradient(circle at 85% 38%, rgba(255, 245, 220, 0.60) 0%, rgba(225, 200, 255, 0.35) 20%, rgba(225, 200, 255, 0.18) 30%, transparent 75%),
-        radial-gradient(circle at 12% 95%, rgba(235, 220, 255, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 2% 2%, rgba(233, 215, 255, 0.55), transparent 65%),
+        radial-gradient(circle at 85% 38%, rgba(255, 245, 220, 0.6), transparent 75%),
+        radial-gradient(circle at 12% 95%, rgba(235, 220, 255, 0.35), transparent 40%),
         #ffffff;
     border-radius: 22px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
     padding: 35px;
+    animation: modalPop .35s ease;
     position: relative;
-    animation: popupScale 0.28s ease;
 }
 
-/* SCROLLBAR HIDE */
-.lb-modal::-webkit-scrollbar {
-    width: 6px;
-}
+/* Scrollbar */
+.lb-modal::-webkit-scrollbar { width: 6px; }
+.lb-modal::-webkit-scrollbar-thumb { background: #ccc; border-radius: 20px; }
 
-.lb-modal::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 50px;
-}
-
-/* ---------- CLOSE BUTTON ---------- */
+/* Close button */
 .lb-close {
     position: absolute;
     top: 18px;
     right: 18px;
-    background: #fff;
-    border: none;
     width: 32px;
     height: 32px;
+    background: #fff;
     border-radius: 50%;
-    font-size: 15px;
+    border: none;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ---------- TITLES ---------- */
+/* ========== TEXTS ========== */
 .lb-title {
     text-align: center;
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .lb-subtitle {
     text-align: center;
-    font-size: 14px;
     color: #666;
     margin-bottom: 25px;
 }
 
-/* ---------- PODIUM SECTION ---------- */
+/* ========== PODIUM ========== */
 .lb-podium {
     display: flex;
     justify-content: center;
     gap: 18px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .lb-pod-card {
-    width: 160px;
-    background: #fff;
+    width: 165px;
     border-radius: 14px;
-    padding: 18px 10px;
+    padding: 18px;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.lb-pod-card.first {
-    transform: translateY(-18px);
-    background: #4c1aff;
     color: #fff;
+    animation: podiumFloat 3s ease-in-out infinite;
 }
 
-.lb-pod-card.second {
-    background: #0038a8;
-    color: #fff;
+.lb-pod-card.first { background: #4c1aff; transform: translateY(-16px); }
+.lb-pod-card.second { background: #0038a8; }
+.lb-pod-card.third { background: #8b0000; }
+
+.lb-medal {
+    width: 70px;
+    animation: medalBounce .4s ease;
 }
 
-.lb-pod-card.third {
-    background: #8b0000;
-    color: #fff;
+.lb-pod-avatar img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-top: 10px;
 }
 
-.medal-icon {
-    width: 55px;
-    margin-bottom: 10px;
-}
-
-.medal-icon.large {
-    width: 75px;
-}
-
-/* ---------- TABLE ---------- */
-.lb-list-title {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 20px;
+.lb-pod-name {
+    font-size: 16px;
     font-weight: 600;
+    margin-top: 8px;
+}
+
+.stat-box { margin-top: 8px; }
+.stat-label { font-size: 12px; opacity: .8; }
+.stat-value { font-size: 18px; font-weight: 700; }
+
+/* ========== TABLE ========== */
+.lb-list-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .lb-list-sub {
     text-align: center;
-    font-size: 14px;
-    color: #666;
     margin-bottom: 15px;
-}
-
-.lb-table {
-    width: 100%;
-}
-
-.lb-thead {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 0.6fr;
-    background: #f8f3ff;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 600;
     font-size: 14px;
-    margin-bottom: 10px;
 }
 
-.lb-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 0.6fr;
-    padding: 12px;
-    align-items: center;
-    border-radius: 10px;
-    margin-bottom: 6px;
-    background: #fff;
-}
-
-.lb-row.odd {
-    background: #fff7f1;
-}
-
-.lb-col.name {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.lb-col.name img {
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-}
-
-.rank {
-    font-size: 18px;
-    font-weight: 700;
-    color: #6a00ff;
-}
-
-/* ========== MODAL SCROLL AREA ========== */
-/* ---------- SCROLL AREA INSIDE MODAL ---------- */
 .leaders-table-wrap {
     max-height: 300px;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 10px;
-    padding-left: 5px;
-    scroll-behavior: smooth;
+    padding-right: 8px;
 }
 
-/* Chrome, Edge, Safari */
-.leaders-table-wrap::-webkit-scrollbar {
-    width: 8px;
-}
-
-.leaders-table-wrap::-webkit-scrollbar-track {
-    background: #f3eaff;
-    border-radius: 20px;
-}
-
+.leaders-table-wrap::-webkit-scrollbar { width: 8px; }
 .leaders-table-wrap::-webkit-scrollbar-thumb {
     background: #8c30ff;
     border-radius: 20px;
 }
 
-.leaders-table-wrap::-webkit-scrollbar-thumb:hover {
-    background: #6a00ff;
+.leaders-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* Firefox */
-.leaders-table-wrap {
-    scrollbar-width: thin;
-    scrollbar-color: #8c30ff #f3eaff;
+.leaders-table th {
+    padding: 12px;
 }
 
-
-
-/* ---------- ANIMATIONS ---------- */
-@keyframes popupScale {
-    0% {
-        transform: scale(0.6);
-        opacity: 0;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+.lb-row-ui {
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.6fr;
+    align-items: center;
+    margin-bottom: 8px;
+    animation: slideUp .4s ease forwards;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+.lb-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    to {
-        opacity: 1;
+.lb-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.lb-rank {
+    font-size: 22px;
+    font-weight: 700;
+    color: #6a00ff;
+}
+.cell-name{
+    display: flex;
+}
+.highlight{
+    margin-bottom: 10px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes modalPop {
+  0% { transform: scale(0.65); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes podiumFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes medalBounce {
+  0% { transform: scale(0.6); opacity: 0; }
+  80% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .lb-modal { width: 90%; padding: 20px; }
+    .lb-podium { flex-wrap: wrap; }
+    .lb-pod-card { width: 45%; transform: translateY(0) !important; }
+}
+
+@media (max-width: 490px) {
+    .lb-pod-card { width: 100%; }
+    .lb-row-ui {
+        grid-template-columns: 1fr 1fr;
     }
+    .lb-rank { font-size: 18px; }
 }

@@ -1,0 +1,92 @@
+/* ===================== SECTION ROOT ===================== */
+.popular-loc-section {
+    width: 100%;
+    padding: 60px 6%;
+    text-align: center;
+}
+
+/* Titles */
+.loc-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.loc-sub {
+    font-size: 15px;
+    color: #444;
+    margin-top: 5px;
+}
+
+/* Countries title spacing */
+.countries-mt {
+    margin-top: 70px;
+}
+
+/* ===================== GRID ===================== */
+.loc-grid {
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    width: 100%;
+}
+
+/* ===================== CARD ===================== */
+.loc-card {
+    padding: 20px 32px 20px 34px;
+    border-radius: 18px;
+    border: 1.5px solid #867d7d;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 51px;
+    transition: all 0.25s ease;
+}
+
+.loc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Circular Images */
+.loc-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Text */
+.loc-name {
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.loc-events {
+    margin-top: 4px;
+    color: #444;
+    font-size: 15px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1000px) {
+    .loc-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .loc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .loc-card {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .loc-img {
+        margin-bottom: 12px;
+    }
+}

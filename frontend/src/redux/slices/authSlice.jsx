@@ -109,7 +109,10 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        console.log(action.payload);
+        sessionStorage.setItem("UU",action.payload.user._id)
         sessionStorage.setItem("token", action.payload.token);
+        sessionStorage.setItem("ILI",true)
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

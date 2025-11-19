@@ -5,6 +5,8 @@ import AuthLayout from "../../components/Layout/AuthLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/slices/authSlice";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login({ onGoSignup, onForgotPassword }) {
   const dispatch = useDispatch();
@@ -21,12 +23,7 @@ export default function Login({ onGoSignup, onForgotPassword }) {
   // -------------------------
   useEffect(() => {
     const checkGoogleLoaded = () => {
-      console.log("BEfore Enetr");
-      
       if (window.google?.accounts?.id) {
-        // One Tap initialization
-        console.log("After Enter");
-        
         window.google.accounts.id.initialize({
           client_id: GOOGLE_CLIENT_ID,
           callback: async (response) => {
@@ -43,7 +40,7 @@ export default function Login({ onGoSignup, onForgotPassword }) {
         });
 
         window.google.accounts.id.prompt(() => {
-          sessionStorage.setItem("oneTapShown", "true");
+          // sessionStorage.setItem("oneTapShown", "true");
         });
 
         return true;
@@ -62,6 +59,7 @@ export default function Login({ onGoSignup, onForgotPassword }) {
   // -------------------------
   // Manual Email/Password Login
   // -------------------------
+  const navigate = useNavigate();
   const handleLogin = async () => {
     setLocalError("");
 
@@ -73,6 +71,10 @@ export default function Login({ onGoSignup, onForgotPassword }) {
 
     if (result.meta.requestStatus === "fulfilled") {
       // Handle success: navigate or store token
+      toast.success("Successfully Logged In");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
   };
 
@@ -85,12 +87,16 @@ export default function Login({ onGoSignup, onForgotPassword }) {
       loginUser({ google: true, googleToken: idToken })
     );
     if (res.meta.requestStatus === "fulfilled") {
-      console.log("Logged in via Google button");
+      toast.success("Successfully Logged In");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
   };
 
   return (
     <AuthLayout image="/images/login.png">
+      <ToastContainer />
       <div>
         <div className="login-title">Welcome Back</div>
         <div className="login-para">Please login to your account</div>

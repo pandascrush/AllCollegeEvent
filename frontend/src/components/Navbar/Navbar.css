@@ -1,5 +1,5 @@
-:root{
-  --nav-height: 96px;
+:root {
+  --nav-height: 80px;
   --accent: #7f2bff;
 }
 
@@ -8,10 +8,12 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* use space-between for predictable layout */
+  justify-content: space-between;
   gap: 20px;
   height: var(--nav-height);
   padding: 0 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   background: linear-gradient(90deg, #e9dff9 0%, #f8f6fc 30%);
   box-shadow:
     rgba(14, 63, 126, 0.04) 0px 1px 1px -0.5px,
@@ -42,6 +44,8 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 /* search box */
@@ -56,12 +60,14 @@
   align-items: center;
   padding: 0 14px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform .28s ease, opacity .28s ease, max-height .28s ease;
+  transition: transform 0.28s ease, opacity 0.28s ease, max-height 0.28s ease;
   gap: 12px;
   margin: 0 16px;
 }
 
-.search-icon svg { opacity: 0.7; }
+.search-icon svg {
+  opacity: 0.7;
+}
 .search-input {
   flex: 1;
   border: none;
@@ -71,7 +77,23 @@
   font-weight: 400;
   color: #3d3d3d;
 }
-.location-icon svg { opacity: 0.8; cursor: pointer; }
+
+/* NEW: location button outside input */
+.nav-location-btn {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 2px solid #7f00ff;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-location-btn svg {
+  opacity: 0.9;
+}
 
 /* right group */
 .nav-right {
@@ -84,10 +106,10 @@
 .nav-create {
   background: #fff;
   border-radius: 80px;
-  color: #1C1C1C;
+  color: #1c1c1c;
   cursor: pointer;
-  padding: 14px 28px;
-  border: 2px solid #7F00FF;
+  padding: 8px 22px;
+  border: 2px solid #7f00ff;
   font-size: 16px;
   font-weight: 500;
 }
@@ -96,10 +118,50 @@
   background: var(--accent);
   color: #fff;
   border: none;
-  padding: 12px 22px;
+  padding: 10px 20px;
   border-radius: 40px;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
+}
+
+/* AFTER LOGIN: bell + avatar */
+.nav-bell {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+.nav-bell-dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff3b3b;
+  top: 6px;
+  right: 6px;
+}
+
+.nav-avatar-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+}
+.nav-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* HAMBURGER (mobile) */
@@ -120,7 +182,7 @@
   height: 2px;
   background: #1c1c1c;
   margin: 4px 0;
-  transition: transform .25s ease, opacity .2s ease;
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
 .nav-hamburger.is-open .bar:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
@@ -136,14 +198,25 @@
 
 /* <= 900px: reduce search width */
 @media (max-width: 900px) {
-  .nav-search-box { max-width: 420px; flex-basis: 320px; }
-  .nav-create, .nav-login { padding: 10px 16px; font-size: 14px; }
+  .nav-search-box {
+    max-width: 420px;
+    flex-basis: 320px;
+  }
+  .nav-create,
+  .nav-login {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
 }
 
-/* <= 700px: mobile layout: hide search, show hamburger, collapse right buttons into vertical panel */
+/* <= 700px: mobile layout */
 @media (max-width: 700px) {
   .nav-search-box {
     display: none;
+  }
+
+  .nav-location-btn {
+    display: none; /* hide location with search on very small screens */
   }
 
   .nav-hamburger {
@@ -154,7 +227,7 @@
     position: absolute;
     right: 12px;
     top: calc(var(--nav-height) + 8px);
-    background: linear-gradient(180deg, white, #fbf8ff);
+    background: linear-gradient(180deg, #ffffff, #fbf8ff);
     border-radius: 12px;
     padding: 12px;
     box-shadow: 0 10px 30px rgba(50, 30, 60, 0.12);
@@ -166,17 +239,17 @@
     pointer-events: none;
     max-height: 0;
     overflow: hidden;
-    transition: opacity .28s ease, max-height .28s ease, transform .28s ease;
+    transition: opacity 0.28s ease, max-height 0.28s ease, transform 0.28s ease;
   }
 
-  /* when open (class added by component) */
   .nav-right.open {
     opacity: 1;
     pointer-events: auto;
-    max-height: 240px;
+    max-height: 260px;
     transform: translateY(6px);
   }
 
-  /* align left group to left */
-  .nav-left { gap: 12px; }
+  .nav-left {
+    gap: 12px;
+  }
 }

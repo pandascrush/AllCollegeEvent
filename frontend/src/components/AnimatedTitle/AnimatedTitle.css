@@ -1,0 +1,48 @@
+.animated-center {
+  text-align: center;
+  width: 100%;
+}
+
+.dash-title {
+  font-size: 52px;
+  font-weight: 900;
+  margin: 0;
+  padding-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* center words */
+  gap: 10px;
+}
+
+/* Each word */
+.dash-title span {
+  background: linear-gradient(90deg, #7f2bff, #ff3db4);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  opacity: 1;
+  animation: loopGradient 12s ease-in-out infinite;
+}
+
+.dash-sub1 {
+  color: #666;
+  margin-top: 22px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Loop Animation: Black → Gradient → Black */
+@keyframes loopGradient {
+  0% {
+    -webkit-text-fill-color: #000000; /* black */
+  }
+  30% {
+    -webkit-text-fill-color: transparent; /* gradient reveal */
+  }
+  60% {
+    -webkit-text-fill-color: transparent; /* hold gradient */
+  }
+  100% {
+    -webkit-text-fill-color: #000000; /* back to black */
+  }
+}

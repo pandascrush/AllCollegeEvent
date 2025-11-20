@@ -79,14 +79,14 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
       if (data.roleId === "organizer") {
         navigate("/organizer/dashboard");
       } else {
-        navigate("/user/home");
+        navigate("/");
       }
     }
   };
 
   const handleGoogleButtonLogin = async (credentialResponse) => {
     const idToken = credentialResponse.credential;
-    console.log(idToken);
+    // console.log(idToken);
     const res = await dispatch(
       loginUser({ google: true, googleToken: idToken })
     );
@@ -148,12 +148,16 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
       </button>
 
       {/* Manual Google Login */}
-      <div style={{ marginTop: "10px" }}>
-        <GoogleLogin
-          onSuccess={handleGoogleButtonLogin}
-          onError={() => console.log("Manual Google Login Failed")}
-        />
-      </div>
+      {isOrganizer ? (
+        <></>
+      ) : (
+        <div style={{ marginTop: "10px" }}>
+          <GoogleLogin
+            onSuccess={handleGoogleButtonLogin}
+            onError={() => console.log("Manual Google Login Failed")}
+          />
+        </div>
+      )}
 
       <div className="form-line">
         <div className="line"></div>

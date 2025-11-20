@@ -77,11 +77,9 @@ export const AuthController = {
     }
   },
 
-  async googleLoginController(req, res) {
+  async googleLoginController(req, res, next) {
     try {
       const { googleToken } = req.body;
-      console.log(req.body);
-      
 
       if (!googleToken) {
         return res
@@ -102,6 +100,7 @@ export const AuthController = {
         success: false,
         message: err.message || "Google login failed",
       });
+      next(err);
     }
   },
 };

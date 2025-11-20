@@ -32,6 +32,7 @@ import poster7 from "../../../public/images/signup.png";
 import WhyChooseACE from "../../components/WhyChooseACE/WhyChooseACE";
 import PopularLocations from "../../components/PopularLocations/PopularLocations";
 import Footer from "../../components/Footer/Footer";
+import AnimatedTitle from "../../components/AnimatedTitle/AnimatedTitle";
 
 export default function Dashboard() {
   const posters = [
@@ -66,6 +67,8 @@ export default function Dashboard() {
     setShowRoleModal(false);
   };
 
+  const apiText = "What Event would you like to go to?";
+
   return (
     <>
       {showRoleModal && (
@@ -79,10 +82,7 @@ export default function Dashboard() {
 
       <div className="dashboard-root">
         <main className="dash-hero">
-          <h1 className="dash-title">What Event would you like to go to?</h1>
-          <p className="dash-sub">
-            Discover events that match your vibe — anytime, anywhere.
-          </p>
+          <AnimatedTitle text={apiText} />
 
           {/* USER Explore Events */}
           <button className="btn-explore">Explore Events</button>

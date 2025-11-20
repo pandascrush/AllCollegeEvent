@@ -23,8 +23,8 @@ export const loginUser = createAsyncThunk(
         data.google ? "/auth/google-login" : "/auth/login",
         data
       );
-      console.log("000000",res)
-      return res.data; 
+
+      return res.data; // { user, token }
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
@@ -108,8 +108,8 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        console.log(action.payload.account.roleId);
-        sessionStorage.setItem("UU", action.payload.account._id);
+        // console.log(action.payload.account.roleId);
+        sessionStorage.setItem("UU", action.payload._id);
         sessionStorage.setItem("token", action.payload.token);
         sessionStorage.setItem("ILI", true);
       })

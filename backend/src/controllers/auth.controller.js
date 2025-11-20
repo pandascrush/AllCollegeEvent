@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { AuthService } from "../services/auth.service.js";
 import { ENV } from "../config/env.js";
+import { OAuth2Client } from "google-auth-library";
 
 export const AuthController = {
   async register(req, res, next) {
@@ -76,46 +77,31 @@ export const AuthController = {
     }
   },
 
-  async googleLogin(googleToken) {
-    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+  async googleLoginController(req, res) {
+    try {
+      const { googleToken } = req.body;
+      console.log(req.body);
+      
 
-    const ticket = await client.verifyIdToken({
-      idToken: googleToken,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    });
+      if (!googleToken) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Google token missing" });
+      }
 
-    const payload = ticket.getPayload();
-    const { email, name, picture, sub } = payload;
+      const { user, token } = await AuthService.googleLogin(googleToken);
 
-    // 1️⃣ Fetch default user role
-    const roleDoc = await Role.findOne({ name: "user" });
-    if (!roleDoc) {
-      throw new Error("Default role 'user' not found in database");
-    }
-
-    // 2️⃣ Check if user exists
-    let user = await User.findOne({ email });
-
-    // 3️⃣ Create user if not exists
-    if (!user) {
-      user = await User.create({
-        name,
-        email,
-        googleId: sub,
-        isGoogleUser: true,
-        profileImg: picture,
-        password: null,
-        roleId: roleDoc._id, // 👈 Assign USER role
+      return res.status(200).json({
+        success: true,
+        user,
+        token,
+      });
+    } catch (err) {
+      console.error("Google Login Error:", err);
+      return res.status(500).json({
+        success: false,
+        message: err.message || "Google login failed",
       });
     }
-
-    // 4️⃣ Create auth token
-    const token = jwt.sign(
-      { id: user._id, role: roleDoc.name },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
-
-    return { user, token };
   },
 };

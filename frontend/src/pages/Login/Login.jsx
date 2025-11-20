@@ -86,6 +86,7 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
 
   const handleGoogleButtonLogin = async (credentialResponse) => {
     const idToken = credentialResponse.credential;
+    console.log(idToken);
     const res = await dispatch(
       loginUser({ google: true, googleToken: idToken })
     );

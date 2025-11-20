@@ -53,7 +53,7 @@ export default function Dashboard() {
   useEffect(() => {
     const role = localStorage.getItem("userRoleSelect");
 
-    if (role) {
+    if (!role) {
       const timer = setTimeout(() => {
         setShowRoleModal(true);
       }, 2000);

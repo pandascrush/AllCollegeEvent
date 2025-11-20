@@ -211,17 +211,23 @@ export const AuthService = {
   // GOOGLE LOGIN SERVICE
   async googleLogin(googleToken) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-    console.log(client);
 
+    // 1️⃣ Verify token
     const ticket = await client.verifyIdToken({
       idToken: googleToken,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
-    const { email, name, picture, sub } = payload; // get user details here
+    const { email, name, picture, sub } = payload;
 
-    // Check if user exists
+    // 2️⃣ Fetch default USER role
+    const roleDoc = await Role.findOne({ name: "user" });
+    if (!roleDoc) {
+      throw new Error("Default role 'user' not found in database");
+    }
+
+    // 3️⃣ Find or create user
     let user = await User.findOne({ email });
 
     if (!user) {
@@ -232,12 +238,16 @@ export const AuthService = {
         isGoogleUser: true,
         profileImg: picture,
         password: null,
+        roleId: roleDoc._id, // Save role ID
       });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    // 4️⃣ Generate JWT
+    const token = jwt.sign(
+      { id: user._id, role: roleDoc.name },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
 
     return { user, token };
   },

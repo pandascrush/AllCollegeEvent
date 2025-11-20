@@ -118,22 +118,29 @@ export default function Navbar() {
             <button className="nav-bell" aria-label="Notifications">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
+                width="20"
+                height="30"
+                viewBox="0 0 28 32"
+                fill="none"
               >
                 <path
-                  d="M12 3C9.79086 3 8 4.79086 8 7V9.5C8 10.3284..."
-                  stroke="#1C1C1C"
-                  strokeWidth="1.7"
+                  d="M14 0C10.8173 0 7.76497 1.26428 5.51446 3.51472C3.26396 5.76515 1.99963 8.8174 1.99963 12V19.172L0.585592 20.586C0.305964 20.8657 0.115546 21.222 0.0384081 21.6099C-0.0387293 21.9978 0.000877929 22.3999 0.152223 22.7653C0.303567 23.1307 0.559854 23.443 0.888684 23.6628C1.21751 23.8826 1.60412 23.9999 1.99963 24H26.0004C26.3959 23.9999 26.7825 23.8826 27.1113 23.6628C27.4401 23.443 27.6964 23.1307 27.8478 22.7653C27.9991 22.3999 28.0387 21.9978 27.9616 21.6099C27.8845 21.222 27.694 20.8657 27.4144 20.586L26.0004 19.172V12C26.0004 8.8174 24.736 5.76515 22.4855 3.51472C20.235 1.26428 17.1827 0 14 0ZM14 32C12.4087 32 10.8825 31.3679 9.75723 30.2426C8.63198 29.1174 7.99982 27.5913 7.99982 26H20.0002C20.0002 27.5913 19.368 29.1174 18.2428 30.2426C17.1175 31.3679 15.5913 32 14 32Z"
+                  fill="#3D3D3D"
                 />
               </svg>
-              <span className="nav-bell-dot" />
             </button>
 
             {/* USER AVATAR */}
             <button className="nav-avatar-btn" aria-label="User menu">
-              <img src={user?.profileImg} className="nav-avatar-img" />
+              <img
+                src={
+                  user?.profileImg
+                    ? user.profileImg
+                    : "https://www.citypng.com/public/uploads/preview/download-black-male-user-profile-icon-png-701751695035033bwdeymrpov.png?v=2025081910"
+                }
+                alt="User Avatar"
+                className="nav-avatar-img"
+              />
             </button>
           </>
         )}

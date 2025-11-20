@@ -9,8 +9,8 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import Home from "./pages/OrPages/Home";
 import Profile from "./pages/OrPages/Profile";
-import Events from "./pages/OrPages/Events";
 import RepresentPage from "./pages/OrPages/RepresentPage";
+import CreateEvents from "./pages/OrPages/CreateEvents";
 
 export default function App() {
     return (
@@ -58,7 +58,7 @@ function MainRoutes() {
         <Route path="representPage" element={<RepresentPage />} />
         <Route path="home" element={<Home />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="events" element={<Events />} />
+        <Route path="events" element={<CreateEvents />} />
         
 
       </Route>

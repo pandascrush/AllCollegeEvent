@@ -79,7 +79,7 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
       if (data.roleId === "organizer") {
         navigate("/organizer/dashboard");
       } else {
-        navigate("/user/home");
+        navigate("/");
       }
     }
   };

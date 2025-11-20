@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const ENV = {
-    PORT: process.env.PORT || 5000,
+    PORT: 5000 || 5000,
     MONGO_URI: 'mongodb://localhost:27017/allcollegeevent',
     JWT_SECRET: 'allcollegeevent',
     SMTP_HOST: 'prabavathi3898@gmail.com',

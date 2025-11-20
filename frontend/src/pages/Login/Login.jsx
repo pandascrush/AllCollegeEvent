@@ -8,9 +8,17 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Login({ onGoSignup, onForgotPassword }) {
+export default function Login({ role, onGoSignup, onForgotPassword }) {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
+
+  const isOrganizer = role === "organizer";
+
+  const sideImage = isOrganizer ? "/images/or_login.png" : "/images/login.png";
+  const emailLabel = isOrganizer ? "Domain Mail ID" : "Email";
+  const emailPlaceholder = isOrganizer
+    ? "Enter your domain mail"
+    : "Enter your email";
 
   const GOOGLE_CLIENT_ID = import.meta.env.VITE_GL_CL;
 
@@ -18,9 +26,6 @@ export default function Login({ onGoSignup, onForgotPassword }) {
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState("");
 
-  // -------------------------
-  // Google One Tap
-  // -------------------------
   useEffect(() => {
     const checkGoogleLoaded = () => {
       if (window.google?.accounts?.id) {
@@ -39,10 +44,7 @@ export default function Login({ onGoSignup, onForgotPassword }) {
           cancel_on_tap_outside: false,
         });
 
-        window.google.accounts.id.prompt(() => {
-          // sessionStorage.setItem("oneTapShown", "true");
-        });
-
+        window.google.accounts.id.prompt(() => {});
         return true;
       }
       return false;
@@ -51,15 +53,13 @@ export default function Login({ onGoSignup, onForgotPassword }) {
     const interval = setInterval(() => {
       const loaded = checkGoogleLoaded();
       if (loaded) clearInterval(interval);
-    }, 100); // check every 100ms
+    }, 100);
 
     return () => clearInterval(interval);
   }, [dispatch]);
 
-  // -------------------------
-  // Manual Email/Password Login
-  // -------------------------
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     setLocalError("");
 
@@ -67,20 +67,23 @@ export default function Login({ onGoSignup, onForgotPassword }) {
       return setLocalError("All fields are required.");
     }
 
-    const result = await dispatch(loginUser({ email, password }));
+    const result = await dispatch(loginUser({ email: email, password }));
+    console.log("==== Login Result ====", result);
 
     if (result.meta.requestStatus === "fulfilled") {
-      // Handle success: navigate or store token
       toast.success("Successfully Logged In");
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+
+      const data = result.payload.account;
+      console.log("sdfsdf", data);
+
+      if (data.roleId === "organizer") {
+        navigate("/organizer/dashboard");
+      } else {
+        navigate("/user/home");
+      }
     }
   };
 
-  // -------------------------
-  // Manual Google Login Button
-  // -------------------------
   const handleGoogleButtonLogin = async (credentialResponse) => {
     const idToken = credentialResponse.credential;
     const res = await dispatch(
@@ -95,19 +98,28 @@ export default function Login({ onGoSignup, onForgotPassword }) {
   };
 
   return (
-    <AuthLayout image="/images/login.png">
+    <AuthLayout image={sideImage}>
       <ToastContainer />
       <div>
-        <div className="login-title">Welcome Back</div>
-        <div className="login-para">Please login to your account</div>
+        <div className="login-title">
+          {isOrganizer ? "Organizer Login" : "Welcome Back"}
+        </div>
+        <div className="login-para">
+          {isOrganizer
+            ? "Login to manage your events"
+            : "Please login to your account"}
+        </div>
       </div>
 
+      {/* EMAIL / DOMAIN FIELD */}
       <InputBox
-        label="Email"
+        label={emailLabel}
         value={email}
         onChange={setEmail}
-        placeholder="Enter your email"
+        placeholder={emailPlaceholder}
       />
+
+      {/* PASSWORD FIELD */}
       <InputBox
         label="Password"
         type="password"
@@ -127,10 +139,14 @@ export default function Login({ onGoSignup, onForgotPassword }) {
       )}
 
       <button className="primaryBtn" onClick={handleLogin} disabled={loading}>
-        {loading ? "Signing in..." : "Sign In"}
+        {loading
+          ? "Signing in..."
+          : isOrganizer
+          ? "Organizer Sign In"
+          : "Sign In"}
       </button>
 
-      {/* Manual Google Login Button */}
+      {/* Manual Google Login */}
       <div style={{ marginTop: "10px" }}>
         <GoogleLogin
           onSuccess={handleGoogleButtonLogin}
@@ -145,9 +161,11 @@ export default function Login({ onGoSignup, onForgotPassword }) {
       </div>
 
       <div className="signupRoute">
-        Don't have an account?
+        {isOrganizer
+          ? "Don't have an organizer account?"
+          : "Don't have an account?"}
         <button className="signupLink" onClick={onGoSignup}>
-          Sign Up
+          {isOrganizer ? "Organizer Sign Up" : "Sign Up"}
         </button>
       </div>
     </AuthLayout>

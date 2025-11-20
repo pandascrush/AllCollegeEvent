@@ -23,14 +23,13 @@ export const loginUser = createAsyncThunk(
         data.google ? "/auth/google-login" : "/auth/login",
         data
       );
-
-      return res.data; // { user, token }
+      console.log("000000",res)
+      return res.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
 );
-
 
 // SEND OTP
 export const sendForgotCode = createAsyncThunk(
@@ -109,10 +108,10 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        console.log(action.payload);
-        sessionStorage.setItem("UU",action.payload.user._id)
+        console.log(action.payload.account.roleId);
+        sessionStorage.setItem("UU", action.payload.account._id);
         sessionStorage.setItem("token", action.payload.token);
-        sessionStorage.setItem("ILI",true)
+        sessionStorage.setItem("ILI", true);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

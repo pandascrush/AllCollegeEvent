@@ -8,6 +8,17 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Signup({ role, goBack, onSuccess }) {
   const dispatch = useDispatch();
+  const isOrganizer = role === "organizer";
+
+  const sideImage = isOrganizer
+    ? "/images/or_signup.png" 
+    : "/images/signup.png";       
+
+  // Field labels (dynamic)
+  const labelName = isOrganizer ? "Organization Name" : "Name";
+  const labelEmail = isOrganizer ? "Domain Mail ID" : "Email";
+  const placeName = isOrganizer ? "Enter organization name" : "Enter your name";
+  const placeEmail = isOrganizer ? "Enter your domain mail" : "Enter your mail id";
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -18,7 +29,7 @@ export default function Signup({ role, goBack, onSuccess }) {
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // ⭐ Redux auth state
+  // Redux auth state
   const { loading, error } = useSelector((state) => state.auth);
 
   const handleSignup = async () => {
@@ -39,8 +50,12 @@ export default function Signup({ role, goBack, onSuccess }) {
       return setLocalError("Passwords do not match.");
     }
 
-    const userData = { name, email, password: pass, role: 4 };
-    // console.log(userData);
+    const userData = {
+      name,
+      email,
+      password: pass,
+      role: role, 
+    };
 
     const result = await dispatch(registerUser(userData));
 
@@ -54,24 +69,31 @@ export default function Signup({ role, goBack, onSuccess }) {
   };
 
   return (
-    <AuthLayout image="/images/signup.png">
+    <AuthLayout image={sideImage}>
       <div>
-        <div className="login-title">Join us Now!!</div>
-        <div className="login-para">Let’s Create your account</div>
+        <div className="login-title">
+          {isOrganizer ? "Join as Organizer" : "Join us Now!!"}
+        </div>
+
+        <div className="login-para">
+          {isOrganizer ? "Create your organizer account" : "Let’s Create your account"}
+        </div>
       </div>
 
+      {/* NAME FIELD */}
       <InputBox
-        label="Name"
+        label={labelName}
         value={name}
         onChange={setName}
-        placeholder="Enter your name"
+        placeholder={placeName}
       />
 
+      {/* EMAIL or DOMAIN FIELD */}
       <InputBox
-        label="Email"
+        label={labelEmail}
         value={email}
         onChange={setEmail}
-        placeholder="Enter your mail id"
+        placeholder={placeEmail}
       />
 
       {/* PASSWORD FIELD */}
@@ -107,7 +129,7 @@ export default function Signup({ role, goBack, onSuccess }) {
       )}
 
       <button className="primaryBtn" onClick={handleSignup} disabled={loading}>
-        {loading ? "Creating..." : "Sign Up"}
+        {loading ? "Creating..." : isOrganizer ? "Organizer Sign Up" : "Sign Up"}
       </button>
 
       <div className="form-line">

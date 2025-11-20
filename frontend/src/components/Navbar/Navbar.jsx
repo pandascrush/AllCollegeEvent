@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import Logo from "../../../public/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchSingleUser } from "../../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  console.log(user);
-  
 
   const uid = sessionStorage.getItem("UU");
 
@@ -22,11 +20,6 @@ export default function Navbar() {
   }, [uid]);
 
   const isLoggedIn = sessionStorage.getItem("ILI");
-
-  // const user = {
-  //   profilePic:
-  //     "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=300&q=80",
-  // };
 
   return (
     <nav className="nav-container">
@@ -56,7 +49,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* SEARCH BOX (only search icon + input now) */}
+      {/* SEARCH BOX */}
       <div className={`nav-search-box ${open ? "nav-open" : ""}`}>
         <div className="search-icon" aria-hidden>
           <svg
@@ -80,7 +73,7 @@ export default function Navbar() {
         />
       </div>
 
-      {/* LOCATION BUTTON — OUTSIDE SEARCH BOX */}
+      {/* LOCATION BUTTON */}
       <button className="nav-location-btn" aria-label="Select location">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,41 +99,39 @@ export default function Navbar() {
 
       {/* RIGHT BUTTONS */}
       <div className={`nav-right ${open ? "open" : ""}`}>
-        {/* Create Event is always shown */}
-        <button className="nav-create">Create Event +</button>
+        {/* ORGANIZER CREATE EVENT BUTTON */}
+        <button
+          className="nav-create"
+          onClick={() => navigate("/organizer/signup")}
+        >
+          Create Event +
+        </button>
 
         {!isLoggedIn ? (
           // BEFORE LOGIN → Sign In button
-          // <button className="nav-login">Sign In</button>
           <Link className="nav-login" to={"/login"}>
             Sign In
           </Link>
         ) : (
           <>
+            {/* Notifications */}
             <button className="nav-bell" aria-label="Notifications">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
-                fill="none"
               >
                 <path
-                  d="M12 3C9.79086 3 8 4.79086 8 7V9.5C8 10.3284 7.68393 11.1223 7.12132 11.7071L6.2 12.66C5.75532 13.1233 6.08262 13.875 6.72 13.875H17.28C17.9174 13.875 18.2447 13.1233 17.8 12.66L16.8787 11.7071C16.3161 11.1223 16 10.3284 16 9.5V7C16 4.79086 14.2091 3 12 3Z"
+                  d="M12 3C9.79086 3 8 4.79086 8 7V9.5C8 10.3284..."
                   stroke="#1C1C1C"
                   strokeWidth="1.7"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M10 16C10.2761 16.6213 10.736 17 11.5 17H12.5C13.264 17 13.7239 16.6213 14 16"
-                  stroke="#1C1C1C"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
                 />
               </svg>
               <span className="nav-bell-dot" />
             </button>
 
+            {/* USER AVATAR */}
             <button className="nav-avatar-btn" aria-label="User menu">
               <img src={user?.profileImg} className="nav-avatar-img" />
             </button>

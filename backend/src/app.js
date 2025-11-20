@@ -10,13 +10,13 @@ import dotenv from "dotenv";
 const app = express();
 
 dotenv.config();
-app.use(cors("http://localhost:5000"));
+app.use(cors("http://localhost:5000/api"));
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/role", roleRoutes);
-app.use("/api/vibe", vibeRoutes);
-app.use("/api/user", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/role", roleRoutes);
+app.use("/vibe", vibeRoutes);
+app.use("/user", userRoutes);
 
 app.use(errorHandler);
 

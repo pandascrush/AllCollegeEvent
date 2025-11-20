@@ -11,9 +11,24 @@ import {
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ role }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isOrganizer = role === "organizer";
+  const userImage = "/images/forgotpassword.png";
+  const orgStepImages = {
+    1: "/images/or_forgotpassword.png",
+    2: "/images/or_forgotpassword.png",
+    3: "/images/or_forgotpasswordnextimage.png",
+    4: "/images/or_passwordsuccess.png",
+  };
+
+  // LABEL & PLACEHOLDERS BASED ON ROLE
+  const emailLabel = isOrganizer ? "Domain Mail ID" : "Email";
+  const emailPlaceholder = isOrganizer
+    ? "Enter your domain mail"
+    : "Enter your mail id";
 
   const { loading, error } = useSelector((state) => state.auth);
 
@@ -28,27 +43,33 @@ export default function ForgotPassword() {
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
+  const sideImage = isOrganizer ? orgStepImages[page] : userImage;
   // SEND CODE
   const sendCode = async () => {
-    if (!email) return setMsg("Enter email");
+    if (!email)
+      return setMsg(isOrganizer ? "Enter domain mail" : "Enter email");
 
-    const res = await dispatch(sendForgotCode({ email }));
+    const res = await dispatch(
+      sendForgotCode({ email, role: isOrganizer ? 2 : 4 })
+    );
 
     if (res.meta.requestStatus === "fulfilled") {
-      setMsg("Code sent to your email");
+      setMsg("Code sent successfully");
       setPage(2);
     }
   };
 
-  // VERIFY CODE
+  // VERIFY OTP
   const verifyCode = async () => {
-    const code = otp.join(""); // ← use the state variable "otp" safely
+    const code = otp.join("");
 
-    const res = await dispatch(verifyForgotCode({ email, otp: code }));
+    const res = await dispatch(
+      verifyForgotCode({ email, otp: code, role: isOrganizer ? 2 : 4 })
+    );
 
     if (res.meta.requestStatus === "fulfilled") {
       setTempToken(res.payload.tempToken);
-      setMsg("")
+      setMsg("");
       setPage(3);
     }
   };
@@ -60,7 +81,11 @@ export default function ForgotPassword() {
     }
 
     const res = await dispatch(
-      resetForgotPassword({ tempToken, password: newPassword })
+      resetForgotPassword({
+        tempToken,
+        password: newPassword,
+        role: isOrganizer ? 2 : 4,
+      })
     );
 
     if (res.meta.requestStatus === "fulfilled") {
@@ -68,7 +93,7 @@ export default function ForgotPassword() {
     }
   };
 
-  // OTP input
+  // OTP INPUT HANDLING
   const handleOtpInput = (value, index) => {
     if (!/^[0-9]?$/.test(value)) return;
 
@@ -82,20 +107,25 @@ export default function ForgotPassword() {
   };
 
   return (
-    <AuthLayout image="/images/forgotpassword.png">
-      {/* SCREEN 1 */}
+    <AuthLayout image={sideImage}>
+      {/* STEP 1 — ENTER EMAIL/DOMAIN */}
       {page === 1 && (
         <>
-          <div className="fp-title">Forgot Password</div>
+          <div className="fp-title">
+            {isOrganizer ? "Organizer Password Reset" : "Forgot Password"}
+          </div>
+
           <div className="fp-sub">
-            No worries, we’ll send you a code <br /> to reset your password
+            {isOrganizer
+              ? "We’ll send you a verification code"
+              : "We’ll send you a code to reset your password"}
           </div>
 
           <InputBox
-            label="Email"
+            label={emailLabel}
             value={email}
             onChange={setEmail}
-            placeholder="Enter your mail id"
+            placeholder={emailPlaceholder}
           />
 
           {msg && <div className="successText">{msg}</div>}
@@ -107,12 +137,14 @@ export default function ForgotPassword() {
         </>
       )}
 
-      {/* SCREEN 2: OTP */}
+      {/* STEP 2 — ENTER OTP */}
       {page === 2 && (
         <>
           <div className="fp-title">Enter Code</div>
           <div className="fp-sub">
-            Check your email for the verification code
+            {isOrganizer
+              ? "Check your domain mail for the code"
+              : "Check your email for the verification code"}
           </div>
 
           <div className="codeBoxes">
@@ -136,10 +168,12 @@ export default function ForgotPassword() {
         </>
       )}
 
-      {/* SCREEN 3: NEW PASSWORD */}
+      {/* STEP 3 — SET NEW PASSWORD */}
       {page === 3 && (
         <>
-          <div className="fp-title">Set New Password</div>
+          <div className="fp-title">
+            {isOrganizer ? "Set New Organizer Password" : "Set New Password"}
+          </div>
           <div className="fp-sub">Must be at least 8 characters</div>
 
           {/* NEW PASSWORD */}
@@ -187,19 +221,24 @@ export default function ForgotPassword() {
         </>
       )}
 
-      {/* SCREEN 4: SUCCESS */}
+      {/* STEP 4 — SUCCESS */}
       {page === 4 && (
         <div className="successContainer">
           <h1>Password Changed!</h1>
           <p>Your password has been successfully updated</p>
 
-          <button className="primaryBtn" onClick={() => navigate("/login")}>
+          <button
+            className="primaryBtn"
+            onClick={() =>
+              navigate(isOrganizer ? "/organizer/login" : "/login")
+            }
+          >
             Sign In
           </button>
         </div>
       )}
 
-      {/* PAGE STEPS */}
+      {/* STEP INDICATOR */}
       <div className="pageIndicator">
         <span className={page === 1 ? "active" : ""}>1</span>
         <span className={page === 2 ? "active" : ""}>2</span>

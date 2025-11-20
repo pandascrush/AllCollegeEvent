@@ -1,63 +1,123 @@
 import bcrypt from "bcryptjs";
 import { User } from "../models/User.model.js";
+import { Organizer } from "../models/organizer.model.js";
 import { sendEmail } from "../utils/mailer.js";
 import { createToken } from "../utils/token.js";
 import dotenv from "dotenv";
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
-import {Role} from "../models/role.model.js";
+import { Role } from "../models/role.model.js";
 
 dotenv.config();
 
 export const AuthService = {
-  async register({ name, email, password }) {
-    if (!password) {
-      throw new Error("Password is missing");
+  async register({ name, email, password, role, domain }) {
+    if (!name || !email || !password || !role) {
+      throw new Error("All fields are required");
     }
 
-    // check if email exists
-    const existing = await User.findOne({ email });
-    if (existing) throw new Error("Email already registered");
+    const hashedPass = await bcrypt.hash(password, 10);
 
-    // default role = user
-    const roleDoc = await Role.findOne({ name: "user" });
-    if (!roleDoc) throw new Error("Default role 'user' not found in DB");
+    // ********************************
+    // 1️ USER REGISTRATION
+    // ********************************
+    if (role === "user") {
+      const existingUser = await User.findOne({ email });
+      if (existingUser) throw new Error("Email already registered");
 
-    // hash password
-    const hash = await bcrypt.hash(password, 10);
+      const user = await User.create({
+        name,
+        email,
+        password: hashedPass,
+        roleId: role,
+      });
 
-    // create user with roleId
-    const user = await User.create({
-      name,
-      email,
-      password: hash,
-      roleId: roleDoc._id, // assign user role
-    });
+      return {
+        success: true,
+        message: "User registered successfully",
+        user,
+      };
+    }
 
-    // sign token
-    const token = createToken({
-      id: user._id,
-      email: user.email,
-      role: "user", // optional
-    });
+    // ********************************
+    // 2️ ORGANIZER REGISTRATION
+    // ********************************
+    if (role === "organizer") {
+      const existingOrganizer = await Organizer.findOne({ email });
+      if (existingOrganizer)
+        throw new Error("Organizer already registered with this domain");
 
-    return { user, token };
+      if (email.includes("@")) {
+        throw new Error("Invalid domain. Do not include '@' symbol");
+      }
+
+      if (!email.includes(".")) {
+        throw new Error("Invalid domain format");
+      }
+
+      const isEducationalDomain =
+        email.endsWith(".edu") ||
+        email.endsWith(".ac.in") ||
+        email.endsWith(".edu.in");
+
+      if (!isEducationalDomain) {
+        throw new Error(
+          `Only educational institute domains are allowed. Domain '${domain}' is not allowed.`
+        );
+      }
+
+      const organizer = await Organizer.create({
+        name,
+        email: email,
+        domain: email,
+        password: hashedPass,
+        roleId: role,
+      });
+
+      return {
+        success: true,
+        message: "Organizer registered successfully",
+        organizer,
+      };
+    }
+
+    throw new Error("Invalid role provided");
   },
 
-  async login(email, password) {
-    const user = await User.findOne({ email });
-    if (!user) throw new Error("Invalid credentials");
+  async login(identifier, password) {
+    let account = null;
+    if (identifier.includes("@")) {
+      // First check in User collection
+      account = await User.findOne({ email: identifier });
 
-    const match = await bcrypt.compare(password, user.password);
+      if (!account) {
+        account = await Organizer.findOne({ email: identifier });
+      }
+    } else {
+      account = await Organizer.findOne({ domain: identifier });
+    }
+
+    if (!account) {
+      throw new Error("Invalid credentials");
+    }
+
+    const match = await bcrypt.compare(password, account.password);
     if (!match) throw new Error("Invalid credentials");
 
+    const role = account instanceof User ? "user" : "organizer";
+
     const token = createToken({
-      id: user._id,
-      email: user.email,
-      role: user.role,
+      id: account._id,
+      role,
     });
 
-    return { user, token };
+    return {
+      success: true,
+      message: "Login successful",
+      role,
+      token,
+      account,
+    };
   },
 
   async sendResetCode(email) {

@@ -15,6 +15,7 @@ const OrganizerSchema = new mongoose.Schema({
   eventCount:  { type: Number, default: 0 },
   isDeleted:   { type: Boolean, default: false },
   passExpiry:  { type: Date },
+  roleId:      { type: String, ref: "Role" },
 
   paymentAccount: {
     provider: String,

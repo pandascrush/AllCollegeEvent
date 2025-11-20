@@ -1,0 +1,103 @@
+/* Full rounded white container */
+.role-container {
+  width: 100%;
+  background: #F3F3F3;
+  border-radius: 26px;
+  box-sizing: border-box;
+  padding: 4% 2% 7% 2%;
+}
+
+/* Back button */
+.role-back {
+  display: flex;
+  align-items: center;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.arrow {
+  background: #8b00ff;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+/* Title */
+.role-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 30px 0 50px;
+}
+
+/* Cards wrapper */
+.role-cards {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Single card */
+.role-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Circle image */
+.role-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-img img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+}
+
+/* Name text */
+.role-name {
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .role-cards {
+    gap: 30px;
+  }
+
+  .role-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .role-name {
+    font-size: 16px;
+  }
+}

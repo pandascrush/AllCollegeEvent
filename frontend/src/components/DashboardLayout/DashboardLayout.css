@@ -34,6 +34,6 @@
 
 .right-content {
   flex: 1;
-  background: #fafafa;
+  /* background: #fafafa; */
   padding:2% 3% 0% 3%;
 }

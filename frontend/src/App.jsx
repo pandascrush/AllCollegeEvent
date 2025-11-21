@@ -8,7 +8,7 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import Home from "./pages/OrPages/Home";
 import Profile from "./pages/OrPages/Profile";
-import RepresentPage from "./pages/OrPages/RepresentPage";
+// import RepresentPage from "./pages/OrPages/RepresentPage";
 import CreateEvents from "./pages/OrPages/CreateEvents";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
@@ -92,13 +92,12 @@ function MainRoutes() {
       <Route
         path="/organizer/dashboard"
         element={
-          <RoleRoute allowed={["organizer"]}>
+          // <RoleRoute allowed={["organizer"]}>
             <DashboardLayout />
-          </RoleRoute>
+          // </RoleRoute>
         }
       >
         <Route index element={<Home />} />
-        <Route path="representPage" element={<RepresentPage />} />
         <Route path="home" element={<Home />} />
         <Route path="profile" element={<Profile />} />
         <Route path="events" element={<CreateEvents />} />

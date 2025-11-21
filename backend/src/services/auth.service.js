@@ -116,7 +116,7 @@ export const AuthService = {
       message: "Login successful",
       role,
       token,
-      account,
+      user : account,
     };
   },
 

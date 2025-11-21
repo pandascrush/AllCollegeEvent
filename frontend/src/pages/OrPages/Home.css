@@ -109,7 +109,7 @@
   flex-wrap: wrap;
 }
 
-.event-card {
+.event-mode-container .event-card {
   width: 330px;
   padding: 40px 25px;
   background: linear-gradient(135deg, #6b3cf5, #ff4d7a);
@@ -121,17 +121,17 @@
   transition: 0.3s ease;
 }
 
-.event-card h3 {
+.event-mode-container .event-card h3 {
   font-size: 22px;
   margin-bottom: 12px;
 }
 
-.event-card p {
+.event-mode-container .event-card p {
   font-size: 14px;
   opacity: 0.9;
 }
 
-.event-card:hover {
+.event-mode-container .event-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }

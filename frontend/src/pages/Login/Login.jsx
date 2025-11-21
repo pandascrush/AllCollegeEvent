@@ -73,7 +73,7 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
     if (result.meta.requestStatus === "fulfilled") {
       toast.success("Successfully Logged In");
 
-      const data = result.payload.account;
+      const data = result.payload.user;
       console.log("sdfsdf", data);
 
       if (data.roleId === "organizer") {

@@ -1,45 +1,162 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import "./DashboardLayout.css";
-import { FaUser, FaHome, FaCog, FaQrcode } from "react-icons/fa";
+import React, { useState } from "react";
+import { NavLink, Outlet , useLocation } from "react-router-dom";
+import {
+  FaUser,
+  FaHome,
+  FaCog,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
 import { MdEvent } from "react-icons/md";
-import Navbar from "../Navbar/Navbar";
+import "./DashboardLayout.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function DashboardLayout() {
+  const [hover, setHover] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const location = useLocation();
+
+  const isMySpaceActive =
+  location.pathname === "/organizer/dashboard/home" ||
+  location.pathname.startsWith("/organizer/dashboard/events") ||
+  location.pathname.startsWith("/dashboard") ||
+  location.pathname.startsWith("/my-event") || location.pathname.startsWith("/organizer/dashboard") ;
+
+  const isProfileActive =
+  location.pathname.includes("my-profile") ||
+  location.pathname.includes("manage-page") ||
+  location.pathname.includes("manage-team");
+
+  const isActivitiesActive =
+  location.pathname.includes("saved-list") ||
+  location.pathname.includes("bookings");
+
+  const isSettingsActive =
+  location.pathname.includes("notifications") ||
+  location.pathname.includes("email-setting");
+
+
+  const toggleMenu = (menu) => setOpenMenu(openMenu === menu ? null : menu);
+
+  const Arrow = ({ isOpen }) =>
+    isOpen ? (
+      <FaChevronUp className="arrow-icon" />
+    ) : (
+      <FaChevronDown className="arrow-icon" />
+    );
+
   return (
     <>
       <Navbar />
-
       <div className="dash-container">
+        <div
+          className={`sidebar ${hover ? "expanded" : ""}`}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          {/* PROFILE */}
+          <div className={`menu-item ${isProfileActive ? "active-menu" : ""}`} onClick={() => toggleMenu("profile")}>
+            <img
+              src="/images/User.png"
+              alt="no image"
+              className="side_nav_img"
+            />
+            <div className="side_nav_content">
+              {hover && (
+                <>
+                  <span className="title">Profile</span>
+                  <Arrow isOpen={openMenu === "profile"} />
+                </>
+              )}
+            </div>
+          </div>
 
-        {/* Sidebar */}
-        <div className="sidebar">
-          <NavLink to="/organizer/dashboard/profile" className="side-icon">
-            <FaUser />
-          </NavLink>
+          {hover && openMenu === "profile" && (
+            <div className="dropdown">
+              <NavLink to="/my-profile"  className={`sub-link ${location.pathname.includes("/my-profile") ? "sub-active" : ""}`}>My Profile</NavLink>
+              <NavLink to="/manage-page" className={`sub-link ${location.pathname.includes("/manage-page") ? "sub-active" : ""}`}>Manage Page</NavLink>
+              <NavLink to="/manage-team" className={`sub-link ${location.pathname.includes("/manage-team") ? "sub-active" : ""}`}>Manage Team</NavLink>
+              <NavLink to="/delete" className={`sub-link ${location.pathname.includes("/delete") ? "sub-active" : ""}`}>Delete</NavLink>
+            </div>
+          )}
 
-          <NavLink to="/organizer/dashboard/events" className="side-icon">
-            <MdEvent />
-          </NavLink>
+          {/* ACTIVITIES */}
+          <div className={`menu-item ${isActivitiesActive ? "active-menu" : ""}`} onClick={() => toggleMenu("activities")}>
+            <img
+              src="/images/myactivityes.png"
+              alt="no image"
+              className="side_nav_img"
+            />
+            <div className="side_nav_content">
+              {hover && (
+                <>
+                  <span className="title">My Activities</span>
+                  <Arrow isOpen={openMenu === "activities"} />
+                </>
+              )}
+            </div>
+          </div>
 
-          <NavLink to="/organizer/dashboard/home" className="side-icon">
-            <FaHome />
-          </NavLink>
+          {hover && openMenu === "activities" && (
+            <div className="dropdown">
+              <NavLink to="/saved-list" className={`sub-link ${location.pathname.includes("/saved-list") ? "sub-active" : ""}`}>My Saved List</NavLink>
+              <NavLink to="/bookings" className={`sub-link ${location.pathname.includes("/bookings") ? "sub-active" : ""}`}>My Bookings</NavLink>
+            </div>
+          )}
 
-          <NavLink to="/organizer/dashboard/settings" className="side-icon">
-            <FaCog />
-          </NavLink>
+          {/* MY SPACE */}
+          <div className={`menu-item ${isMySpaceActive ? "active-menu" : ""}`} onClick={() => toggleMenu("space")}>
+            <img
+              src="/images/myspace.png"
+              alt="no image"
+              className="side_nav_img"
+            />
+            <div className="side_nav_content">
+              {hover && (
+                <>
+                  <span className="title">My Space</span>
+                  <Arrow isOpen={openMenu === "space"} />
+                </>
+              )}
+            </div>
+          </div>
 
-          <NavLink to="/organizer/dashboard/qr" className="side-icon">
-            <FaQrcode />
-          </NavLink>
+          {hover && openMenu === "space" && (
+            <div className="dropdown">
+              <NavLink to="/organizer/dashboard/events" className={`sub-link ${location.pathname.includes("/organizer/dashboard/events") ? "sub-active" : ""}`}>Create Event</NavLink>
+              <NavLink to="/dashboard" className={`sub-link ${location.pathname.includes("/event-dashboard") ? "sub-active" : ""}`}>Dashboard</NavLink>
+              <NavLink to="/my-event" className={`sub-link ${location.pathname.includes("/my-event") ? "sub-active" : ""}`}>My Event</NavLink>
+            </div>
+          )}
+
+          {/* SETTINGS */}
+          <div className={`menu-item ${isSettingsActive ? "active-menu" : ""}`} onClick={() => toggleMenu("settings")}>
+            <img
+              src="/images/Settings.png"
+              alt="no image"
+              className="side_nav_img"
+            />
+            <div className="side_nav_content">
+              {hover && (
+                <>
+                  <span className="title">Settings</span>
+                  <Arrow isOpen={openMenu === "settings"} />
+                </>
+              )}
+            </div>
+          </div>
+
+          {hover && openMenu === "settings" && (
+            <div className="dropdown">
+              <NavLink to="/notifications" className={`sub-link ${location.pathname.includes("/notifications") ? "sub-active" : ""}`}>Notifications</NavLink>
+              <NavLink to="/email-setting" className={`sub-link ${location.pathname.includes("/email-setting") ? "sub-active" : ""}`}>Email Setting</NavLink>
+            </div>
+          )}
         </div>
 
-        {/* Right Content */}
         <div className="right-content">
-          <Outlet />   {/* ← LOADS CHILD ROUTES HERE */}
+          <Outlet />
         </div>
-
       </div>
     </>
   );

@@ -1,0 +1,591 @@
+import React from "react";
+import styles from "../CreateEvents.module.css";
+
+import {
+  WHATSAPPICON,
+  INSTAGRAMICON,
+  LINKEDINICON,
+  VIDEOICON,
+  WEBSITEICON,
+} from "../../../const/const";
+
+export default function BasicDetails({
+  title,
+  setTitle,
+  eventType,
+  setEventType,
+  category,
+  setCategory,
+  tags,
+  tagInput,
+  setTagInput,
+  addTag,
+  removeTag,
+  about,
+  setAbout,
+
+  calendarRows,
+  updateCalendarRow,
+  multiDates,
+  setMultiDates,
+  addCalendarRow,
+  removeCalendarRow,
+
+  venue,
+  setVenue,
+  city,
+  setCity,
+  mapLink,
+  setMapLink,
+
+  files,
+  setFiles,
+  fileRef,
+  onFilesChange,
+  onDrop,
+
+  whatsapp,
+  setWhatsapp,
+  instagram,
+  setInstagram,
+  linkedin,
+  setLinkedin,
+
+  perks,
+  setPerks,
+  cert,
+  setCert,
+  accommodation,
+  setAccommodation,
+  hybrid,
+  setHybrid,
+
+  onNext,
+}) {
+  return (
+    <>
+      {/* ========================= PRIMARY DETAILS ========================= */}
+      <div className={styles.ceCard}>
+        <h2 className={styles.ceSectionTitle}>Primary Details</h2>
+
+        {/* Title + Type + Category */}
+        <div className={styles.ceGrid3}>
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Event Title <span className={styles.ceReq}>*</span></label>
+            <input
+              className={styles.ceInput}
+              placeholder="Enter event name"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Type of Event</label>
+            <select
+              className={styles.ceInput}
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+            >
+              <option value="">Select type</option>
+              <option value="online">Online</option>
+              <option value="offline">Offline</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+          </div>
+
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Target Category</label>
+            <select
+              className={styles.ceInput}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Select category</option>
+              <option value="tech">Tech</option>
+              <option value="art">Art</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div className={styles.ceGrid2} style={{ marginTop: "25px" }}>
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Tags</label>
+
+            <div className={styles.ceTagRow}>
+              <input
+                className={styles.ceInput}
+                placeholder="Add tag"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addTag()}
+              />
+              <button className={styles.ceBtnSmall} onClick={addTag}>
+                Add
+              </button>
+            </div>
+
+            <div className={styles.ceTagList}>
+              {tags.map((t, i) => (
+                <span key={i} className={styles.ceTag}>
+                  {t}
+                  <button
+                    className={styles.ceTagClose}
+                    onClick={() => removeTag(t)}
+                  >
+                    ✕
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Offer</label>
+            <input
+              className={styles.ceInput}
+              placeholder="Enter offers"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* About */}
+        <div className={styles.ceField}>
+          <label className={styles.ceLabel}>About the event</label>
+          <textarea
+            className={styles.ceTextarea}
+            placeholder="About the event"
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* ========================= CALENDAR ========================= */}
+      <div className={styles.ceCard}>
+        <h3 className={styles.ceSubtitle}>Create Calendar</h3>
+
+        {/* FIRST CALENDAR ROW */}
+        <div
+          className={styles.ceGrid4}
+          style={{
+            opacity: multiDates ? 0.5 : 1,
+            pointerEvents: multiDates ? "none" : "auto",
+            marginTop: "20px",
+          }}
+        >
+          {/* Start Date */}
+          <div className={styles.ceField}>
+            <label className={styles.ceLabelSmall}>Start Date</label>
+            <input
+              type="date"
+              className={styles.ceInput}
+              value={calendarRows[0].startDate}
+              onChange={(e) =>
+                updateCalendarRow(0, "startDate", e.target.value)
+              }
+            />
+          </div>
+
+          {/* Start Time */}
+          <div className={styles.ceField}>
+            <label className={styles.ceLabelSmall}>Start Time</label>
+            <input
+              type="time"
+              className={styles.ceInput}
+              value={calendarRows[0].startTime}
+              onChange={(e) =>
+                updateCalendarRow(0, "startTime", e.target.value)
+              }
+            />
+          </div>
+
+          {/* End Date */}
+          <div className={styles.ceField}>
+            <label className={styles.ceLabelSmall}>End Date</label>
+            <input
+              type="date"
+              className={styles.ceInput}
+              value={calendarRows[0].endDate}
+              onChange={(e) =>
+                updateCalendarRow(0, "endDate", e.target.value)
+              }
+            />
+          </div>
+
+          {/* End Time */}
+          <div className={styles.ceField}>
+            <label className={styles.ceLabelSmall}>End Time</label>
+            <input
+              type="time"
+              className={styles.ceInput}
+              value={calendarRows[0].endTime}
+              onChange={(e) =>
+                updateCalendarRow(0, "endTime", e.target.value)
+              }
+            />
+          </div>
+        </div>
+
+        {/* MULTIPLE DATE TOGGLE */}
+        <label className={styles.ceSwitchContainer} style={{ marginTop: "20px" }}>
+          <input
+            type="checkbox"
+            checked={multiDates}
+            onChange={() => {
+              const v = !multiDates;
+              setMultiDates(v);
+
+              if (v && calendarRows.length === 1) addCalendarRow();
+              if (!v) setCalendarRows([calendarRows[0]]);
+            }}
+          />
+
+          <span className={styles.ceSwitch}></span>
+          <span className={styles.ceSwitchText}>Schedule on Multiple Dates</span>
+        </label>
+
+        {/* MULTIPLE CALENDAR ROWS */}
+        {multiDates &&
+          calendarRows.slice(1).map((row, i) => {
+            const idx = i + 1;
+            return (
+              <div
+                key={idx}
+                className={`${styles.ceGrid5} ${styles.ceCalendarRow}`}
+                style={{ marginTop: "25px" }}
+              >
+                {/* Start Date */}
+                <div className={styles.ceField}>
+                  <label className={styles.ceLabelSmall}>Start Date</label>
+                  <input
+                    type="date"
+                    className={styles.ceInput}
+                    value={row.startDate}
+                    onChange={(e) =>
+                      updateCalendarRow(idx, "startDate", e.target.value)
+                    }
+                  />
+                </div>
+
+                {/* Start Time */}
+                <div className={styles.ceField}>
+                  <label className={styles.ceLabelSmall}>Start Time</label>
+                  <input
+                    type="time"
+                    className={styles.ceInput}
+                    value={row.startTime}
+                    onChange={(e) =>
+                      updateCalendarRow(idx, "startTime", e.target.value)
+                    }
+                  />
+                </div>
+
+                {/* End Date */}
+                <div className={styles.ceField}>
+                  <label className={styles.ceLabelSmall}>End Date</label>
+                  <input
+                    type="date"
+                    className={styles.ceInput}
+                    value={row.endDate}
+                    onChange={(e) =>
+                      updateCalendarRow(idx, "endDate", e.target.value)
+                    }
+                  />
+                </div>
+
+                {/* End Time */}
+                <div className={styles.ceField}>
+                  <label className={styles.ceLabelSmall}>End Time</label>
+                  <input
+                    type="time"
+                    className={styles.ceInput}
+                    value={row.endTime}
+                    onChange={(e) =>
+                      updateCalendarRow(idx, "endTime", e.target.value)
+                    }
+                  />
+                </div>
+
+                {/* DELETE */}
+                <button
+                  className={styles.ceDelete}
+                  onClick={() => removeCalendarRow(idx)}
+                >
+                  🗑️
+                </button>
+              </div>
+            );
+          })}
+      </div>
+
+      {/* ========================= LOCATION ========================= */}
+      <div className={styles.ceCard}>
+        <h3 className={styles.ceSubtitle}>Location</h3>
+
+        <div className={styles.ceGrid2} style={{ marginTop: "20px" }}>
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>Venue</label>
+            <input
+              className={styles.ceInput}
+              placeholder="Enter venue"
+              value={venue}
+              onChange={(e) => setVenue(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.ceField}>
+            <label className={styles.ceLabel}>City</label>
+            <input
+              className={styles.ceInput}
+              placeholder="Location"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className={styles.ceField} style={{ marginTop: "20px" }}>
+          <label className={styles.ceLabel}>Google Map Link</label>
+          <input
+            className={styles.ceInput}
+            placeholder="Map link"
+            value={mapLink}
+            onChange={(e) => setMapLink(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* ========================= FILE UPLOAD + SOCIALS ========================= */}
+      <div className={styles.ceCard}>
+        <div className={styles.ceGrid2} style={{ gap: "35px" }}>
+          {/* FILE UPLOAD */}
+          <div className={styles.ceField} style={{ gap: "40px" }}>
+            <label className={styles.ceLabel}>Files</label>
+
+            {/* FILE DROPZONE */}
+            <div
+              className={styles.ceDropzone}
+              onClick={() => fileRef.current.click()}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={onDrop}
+            >
+              <p className={styles.ceDropHint}>
+                Drag & drop or click to upload files (max 6)
+              </p>
+
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                ref={fileRef}
+                onChange={onFilesChange}
+                style={{ display: "none" }}
+              />
+
+              <div className={styles.cePreviewRow}>
+                {files.length === 0 && (
+                  <div className={styles.cePreviewEmpty}>No files uploaded</div>
+                )}
+
+                {files.map((f, i) => (
+                  <div className={styles.ceFileChip} key={i}>
+                    {f.name}
+                    <button
+                      type="button"
+                      className={styles.ceFileRemove}
+                      onClick={() =>
+                        setFiles(files.filter((_, idx) => idx !== i))
+                      }
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* VIDEO LINK */}
+            <div className={styles.ceInputIconWrapper}>
+              <span className={styles.ceInputIcon}>{VIDEOICON}</span>
+              <input
+                className={styles.ceInputWithIcon}
+                placeholder="Event Video Link"
+                value={mapLink}
+                onChange={(e) => setMapLink(e.target.value)}
+              />
+            </div>
+
+            {/* WEBSITE LINK */}
+            <div className={styles.ceInputIconWrapper}>
+              <span className={styles.ceInputIcon}>{WEBSITEICON}</span>
+              <input
+                className={styles.ceInputWithIcon}
+                placeholder="Website Link"
+                value={mapLink}
+                onChange={(e) => setMapLink(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* SOCIAL LINKS */}
+          <div className={styles.ceField} style={{ paddingTop: "18%", gap: "20px" }}>
+            <label className={styles.ceLabel}>Social Media Links</label>
+
+            {/* WHatsapp */}
+            <div className={styles.ceInputIconWrapper}>
+              <span className={styles.ceInputIcon}>{WHATSAPPICON}</span>
+              <input
+                className={styles.ceInputWithIcon}
+                placeholder="Whatsapp channel link"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+              />
+            </div>
+
+            {/* Instagram */}
+            <div className={styles.ceInputIconWrapper}>
+              <span className={styles.ceInputIcon}>{INSTAGRAMICON}</span>
+              <input
+                className={styles.ceInputWithIcon}
+                placeholder="Instagram link"
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
+              />
+            </div>
+
+            {/* LinkedIn */}
+            <div className={styles.ceInputIconWrapper}>
+              <span className={styles.ceInputIcon}>{LINKEDINICON}</span>
+              <input
+                className={styles.ceInputWithIcon}
+                placeholder="LinkedIn link"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ========================= HYBRID + PERKS + CERTIFICATION ========================= */}
+      <div className={styles.ceCard}>
+        {/* HYBRID EVENT TOGGLE */}
+        <div className={styles.ceField}>
+          <label className={styles.ceLabel}>
+            Would you like to make this a hybrid event?
+          </label>
+
+          <label className={styles.ceSwitchLine}>
+            <input
+              type="checkbox"
+              checked={hybrid}
+              onChange={() => setHybrid(!hybrid)}
+            />
+            <span>No</span>
+          </label>
+        </div>
+
+        {/* PERKS */}
+        <div className={styles.ceField} style={{ marginTop: "20px" }}>
+          <label className={styles.ceLabel}>Perks</label>
+
+          <div className={styles.cePerkBox} style={{ marginTop: "15px" }}>
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={perks.cash}
+                onChange={() => setPerks({ ...perks, cash: !perks.cash })}
+              />
+              Cash
+            </label>
+
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={perks.awards}
+                onChange={() => setPerks({ ...perks, awards: !perks.awards })}
+              />
+              Awards
+            </label>
+
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={perks.medal}
+                onChange={() => setPerks({ ...perks, medal: !perks.medal })}
+              />
+              Medal
+            </label>
+          </div>
+        </div>
+
+        {/* CERTIFICATION */}
+        <div className={styles.ceField} style={{ marginTop: "15px" }}>
+          <label className={styles.ceLabel}>Certification *</label>
+
+          <div className={styles.cePerkBox} style={{ marginTop: "30px" }}>
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={cert.forAll}
+                onChange={() => setCert({ ...cert, forAll: !cert.forAll })}
+              />
+              For all participants
+            </label>
+
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={cert.exclusiveWinners}
+                onChange={() =>
+                  setCert({
+                    ...cert,
+                    exclusiveWinners: !cert.exclusiveWinners,
+                  })
+                }
+              />
+              Exclusive Winners
+            </label>
+
+            <label className={styles.cePerkItem}>
+              <input
+                type="checkbox"
+                checked={cert.notProvided}
+                onChange={() =>
+                  setCert({ ...cert, notProvided: !cert.notProvided })
+                }
+              />
+              Not Provided
+            </label>
+          </div>
+        </div>
+
+        {/* ACCOMMODATION */}
+        <div className={styles.ceField} style={{ marginTop: "25px" }}>
+          <label className={styles.ceLabel}>Accommodations</label>
+          <select
+            className={styles.ceInput}
+            value={accommodation}
+            onChange={(e) => setAccommodation(e.target.value)}
+          >
+            <option value="">Select Option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+
+      {/* NEXT BUTTON */}
+      <div className={styles.ceEndActions}>
+        <button className={styles.ceBtnPrimary} onClick={onNext}>
+          Next
+        </button>
+      </div>
+    </>
+  );
+}

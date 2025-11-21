@@ -221,31 +221,43 @@
   color: #a00;
   font-weight: bold;
 }
-
+.ceReq{
+  color: red;
+}
 
 /* ==========================================================
    BUTTONS
    ========================================================== */
 
 .ceBtnPrimary {
-  background: linear-gradient(90deg, #7b2cff, #e100ff);
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
+     background: #7b2cff;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 26px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.ceCordination{
+  display: flex;
+  justify-content: end;
+}
+.ceCordinationEndAction{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px 0px 30px;
 }
 
 .ceBtnOutline {
-  background: #7F00FF;
-  border: none;
+  background: #fff;
+  border: 2px solid #7F00FF;
   padding: 14px 49px;
-  border-radius: 20px;
+  border-radius: 25px;
+  width: fit-content;
   font-size: 15px;
   cursor: pointer;
-  color: #fff;
+  color: #0f0f0f;
 }
 
 .ceBtnSmall {
@@ -432,8 +444,9 @@
   border: 1px solid #eee;
   background: #fff;
   cursor: pointer;
+  transition: box-shadow .15s ease, transform .12s ease;
 }
-
+.cePill:hover { transform: translateY(-3px); box-shadow: 0 14px 26px rgba(20,20,30,0.06); }
 
 /* ==========================================================
    COORDINATORS
@@ -521,7 +534,7 @@
 
 .ceEndActions {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   margin-top: 30px;
 }
 

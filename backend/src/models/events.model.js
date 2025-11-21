@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const EventSchema = new mongoose.Schema({
   organizerId:       { type: ObjectId, ref: "Organizer", required: true },
 
-  name:              { type: String, required: true },
+  title:              { type: String, required: true },
   shortName:         { type: String },
   slug:              { type: String, unique: true, sparse: true },
 
@@ -37,7 +37,6 @@ const EventSchema = new mongoose.Schema({
   accommodationIds:  [{ type: ObjectId, ref: "Accommodation" }],
 
   educationInfo: {
-    showForEducationCategory: { type: Boolean, default: false },
     institutionId: { type: ObjectId, ref: "Institution" },
     orgName:       String,
     orgEmail:      String,

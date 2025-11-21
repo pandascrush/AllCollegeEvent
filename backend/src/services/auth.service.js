@@ -116,7 +116,7 @@ export const AuthService = {
       message: "Login successful",
       role,
       token,
-      account,
+      user:account,
     };
   },
 
@@ -208,7 +208,6 @@ export const AuthService = {
     return true;
   },
 
-  // GOOGLE LOGIN SERVICE
   async googleLogin(googleToken) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 

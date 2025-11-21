@@ -1,5 +1,4 @@
 import { RoleService } from "../services/role.service.js";
-import { ENV } from "../config/env.js";
 
 export const RoleController = {
 

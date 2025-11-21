@@ -2,8 +2,7 @@ import { VibeService } from "../services/vibe.service.js";
 import { logger } from "../config/logger.js";
 
 export const VibeController = {
-
-  // GET all vibes
+  
   async getVibe(req, res, next) {
     try {
       const data = await VibeService.getVibe();
@@ -13,7 +12,6 @@ export const VibeController = {
     }
   },
 
-  // CREATE vibe
   async createVibe(req, res, next) {
     try {
       const { name, icon, color } = req.body;
@@ -46,7 +44,6 @@ export const VibeController = {
     }
   },
 
-  // UPDATE vibe
   async updateVibe(req, res, next) {
     try {
       const { id } = req.params;

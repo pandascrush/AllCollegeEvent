@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:5000";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: apiUrl,
@@ -8,7 +8,9 @@ const api = axios.create({
 
 // Add token automatically
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
+  console.log(token);
+  
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });

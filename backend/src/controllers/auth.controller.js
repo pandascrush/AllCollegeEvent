@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import { AuthService } from "../services/auth.service.js";
-import { ENV } from "../config/env.js";
 import { OAuth2Client } from "google-auth-library";
 
 export const AuthController = {
@@ -62,7 +61,7 @@ export const AuthController = {
     try {
       const { tempToken, password } = req.body;
 
-      const decoded = jwt.verify(tempToken, ENV.JWT_SECRET);
+      const decoded = jwt.verify(tempToken, process.env.JWT_SECRET);
 
       if (decoded.purpose !== "reset_password") {
         return res.status(400).json({ message: "Invalid token" });

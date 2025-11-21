@@ -1,5 +1,4 @@
 import { Role } from "../models/role.model.js";
-import { ENV } from "../config/env.js";
 
 export const RoleService = {
 

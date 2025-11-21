@@ -1,4 +1,3 @@
-// src/config/logger.js
 import { createLogger, format, transports } from "winston";
 
 const { combine, timestamp, printf, colorize } = format;
@@ -20,10 +19,6 @@ export const logger = createLogger({
         new transports.File({
             filename: "src/logs/error.log",
             level: "error"
-        }),
-
-        new transports.File({
-            filename: "src/logs/combined.log"
-        }),
+        })
     ],
 });

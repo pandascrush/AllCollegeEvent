@@ -7,14 +7,20 @@ import Login from "./pages/Login/Login";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
 import Home from "./pages/OrPages/Home";
-import Profile from "./pages/OrPages/Profile";
+import Profile from "../src/pages/OrPages/MyProfile/Profile";
 // import RepresentPage from "./pages/OrPages/RepresentPage";
-import CreateEvents from "./pages/OrPages/CreateEvents";
+import CreateEvents from "../src/pages/OrPages/CreateEvent/CreateEvents";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Unauthorized from "./pages/UnAuthorized/Unauthorized";
 import RoleRoute from "./utils/RoleRoute";
 import LocationSelect from "./pages/LocationSelect/LocationSelect";
+import ManagePage from "./pages/OrPages/MyProfile/ManagePage";
+import DeleteProfile from "./pages/OrPages/MyProfile/DeleteProfile";
+import SavedEvent from "./pages/OrPages/Activeties/SavedEvent";
+import BookingEvent from "./pages/OrPages/Activeties/BookingEvent";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import OrganizerDashboard from "./pages/OrPages/MySpace/OrganizerDashboard";
 
 export default function App() {
   return (
@@ -99,7 +105,12 @@ function MainRoutes() {
       >
         <Route index element={<Home />} />
         <Route path="home" element={<Home />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="my-profile/profile" element={<Profile />} />
+        <Route path="my-profile/managepage" element={<ManagePage />} />
+        <Route path="my-profile/delete" element={<DeleteProfile />} />
+        <Route path="my-activities/saved-event" element={<SavedEvent />} />
+        <Route path="my-activities/booking-event" element={<BookingEvent />} />
+        <Route path="my-space/organizer-dashboard" element={<OrganizerDashboard />} />
         <Route path="events" element={<CreateEvents />} />
         
 
@@ -108,7 +119,7 @@ function MainRoutes() {
       {/* 404 */}
       <Route
         path="*"
-        element={<h2 style={{ padding: 40 }}>404 - Page Not Found</h2>}
+        element={<PageNotFound/>}
       />
     </Routes>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../CreateEvents.module.css";
+import styles from "./CreateEvents.module.css";
 
 import {
   WHATSAPPICON,

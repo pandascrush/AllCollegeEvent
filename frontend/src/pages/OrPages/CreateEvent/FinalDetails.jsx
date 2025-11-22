@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from ".././CreateEvents.module.css";
+import styles from "./CreateEvents.module.css";
 
 export default function FinalDetails({
   finalPayload,

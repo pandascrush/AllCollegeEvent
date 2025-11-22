@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from ".././CreateEvents.module.css";
+import styles from "./CreateEvents.module.css";
 import { ADDICON, DELETICON } from "../../../const/const"; // optional icons - replace or remove if not available
 
 export default function TicketDetails({

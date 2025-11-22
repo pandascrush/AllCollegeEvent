@@ -1,5 +1,5 @@
 import React from "react";
-import styles from ".././CreateEvents.module.css";
+import styles from "./CreateEvents.module.css";
 import { DELETICON } from "../../../const/const";
 
 export default function OrganizerDetails({ organizer, setOrganizer, setStep }) {

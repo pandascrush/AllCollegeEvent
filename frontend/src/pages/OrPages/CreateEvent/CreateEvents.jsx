@@ -4,13 +4,13 @@
 // ============================================================
 
 import React, { useState, useRef } from "react";
-import styles from "../OrPages/CreateEvents.module.css";
+import styles from "./CreateEvents.module.css";
 
 // Child Components
-import BasicDetails from "./CreateEvent/BasicDetails";
-import OrganizerDetails from "./CreateEvent/OrganizerDetails";
-import TicketDetails from "./CreateEvent/TicketDetails";
-import FinalDetails from "./CreateEvent/FinalDetails";
+import BasicDetails from "./BasicDetails";
+import OrganizerDetails from "./OrganizerDetails";
+import TicketDetails from "./TicketDetails";
+import FinalDetails from "./FinalDetails";
 
 export default function CreateEvents() {
   /* ============================================================

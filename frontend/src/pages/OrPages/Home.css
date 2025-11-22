@@ -1,13 +1,14 @@
 /* Full rounded white container */
 .role-container {
   width: 100%;
-  background: #F3F3F3;
+  background: #f3f3f3;
   border-radius: 26px;
   box-sizing: border-box;
-  padding: 4% 2% 7% 2%;
+  margin-top: 20px;
+  height: fit-content;
+  padding-bottom: 30px;
 }
 
-/* Back button */
 .role-back {
   display: flex;
   align-items: center;
@@ -35,7 +36,6 @@
   font-size: 18px;
 }
 
-/* Title */
 .role-title {
   text-align: center;
   font-size: 26px;
@@ -43,7 +43,6 @@
   margin: 30px 0 50px;
 }
 
-/* Cards wrapper */
 .role-cards {
   display: flex;
   justify-content: center;
@@ -51,7 +50,6 @@
   flex-wrap: wrap;
 }
 
-/* Single card */
 .role-card {
   text-align: center;
   cursor: pointer;
@@ -62,7 +60,6 @@
   transform: translateY(-5px);
 }
 
-/* Circle image */
 .role-img {
   width: 160px;
   height: 160px;
@@ -79,7 +76,6 @@
   object-fit: contain;
 }
 
-/* Name text */
 .role-name {
   margin-top: 14px;
   font-size: 18px;
@@ -90,7 +86,7 @@
   padding: 80px 20px;
 }
 
-.mode-event-title{
+.mode-event-title {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -136,7 +132,6 @@
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
-/* 🔥 Responsive for Mobile */
 @media (max-width: 768px) {
   .event-card-wrapper {
     gap: 20px;
@@ -147,8 +142,6 @@
   }
 }
 
-
-/* Responsive */
 @media (max-width: 768px) {
   .role-cards {
     gap: 30px;

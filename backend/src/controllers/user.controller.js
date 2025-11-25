@@ -4,7 +4,6 @@ export const UserController = {
   async singleUser(req, res, next) {
     try {
       const { uid } = req.params;
-      console.log(uid);
       
       if (!uid) {
         return res.status(400).json({ message: "ID fields is required" });

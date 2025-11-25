@@ -11,16 +11,15 @@ import { Role } from "../models/role.model.js";
 dotenv.config();
 
 export const AuthService = {
+  
   async register({ name, email, password, role, domain }) {
     if (!name || !email || !password || !role) {
       throw new Error("All fields are required");
     }
 
     const hashedPass = await bcrypt.hash(password, 10);
-
-    // ********************************
+    
     // 1️ USER REGISTRATION
-    // ********************************
     if (role === "user") {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error("Email already registered");
@@ -39,9 +38,7 @@ export const AuthService = {
       };
     }
 
-    // ********************************
     // 2️ ORGANIZER REGISTRATION
-    // ********************************
     if (role === "organizer") {
       const existingOrganizer = await Organizer.findOne({ email });
       if (existingOrganizer)
@@ -245,7 +242,7 @@ export const AuthService = {
     const token = jwt.sign(
       { id: user._id, role: roleDoc.name },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "2m" }
     );
 
     return { user, token };

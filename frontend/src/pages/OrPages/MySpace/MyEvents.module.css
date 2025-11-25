@@ -1,0 +1,408 @@
+/* src/OrPages/MyEvents/MyEvents.module.css */
+
+.wrapper {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 0px 0px 20px 20px;
+}
+
+/* Heading */
+.heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* Controls row */
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 10px 20px;
+}
+
+.leftControls {
+  flex: 1;
+  min-width: 220px;
+}
+
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search */
+/* .searchBox {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+} */
+
+.searchBox input {
+  outline: none;
+  width: 70%;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgb(214, 213, 213);
+}
+
+/* Filter select */
+.filterLabel {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 8px;
+  color: #333;
+}
+
+.filterSelect {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  background: #f1f1f1;
+  min-width: 150px;
+}
+
+/* icon buttons */
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 40px;
+  border-radius: 7px;
+  border: 0.5px solid #d6cfcf;
+  background: transparent;
+  cursor: pointer;
+}
+
+.iconActive {
+  background: #dfe9ff;
+}
+
+/* view toggle */
+.viewToggle {
+  display: inline-flex;
+  gap: 8px;
+}
+
+/* content area */
+.contentArea {
+  margin-top: 10px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* card */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible !important;
+}
+
+.cardImageWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
+}
+
+/* status tag on image */
+.statusTag {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  color: #111;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* status color variants */
+.status_published,
+.status_publish {
+  background: #f0e6ff;
+  color: #6a2bd1;
+}
+.status_draft {
+  background: #e8f3ff;
+  color: #2b6aab;
+}
+.status_pending {
+  background: #fff6e5;
+  color: #a67b2b;
+}
+.status_completed {
+  background: #e8f7ee;
+  color: #1f9a4a;
+}
+.status_rejected {
+  background: #fff0f0;
+  color: #c44a4a;
+}
+
+/* card body */
+.cardBody {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cardMeta {
+  color: #666;
+  font-size: 13px;
+}
+
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.ghostBtn {
+  border: 1px solid #7a12ff;
+  padding: 1px 26px;
+  border-radius: 20px;
+  background: white;
+  color: #7a12ff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.kebab {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* LIST */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.listRow {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+}
+
+.listThumb img {
+  width: 180px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.listBody {
+  flex: 1;
+}
+
+.listTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listTop h4 {
+  margin: 0;
+}
+
+.listRightActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.listMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  color: #666;
+}
+
+.smallStatus {
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* small metadata row in list */
+.shortMeta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* no results */
+.noResults {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+}
+
+/* empty box */
+.emptyBox {
+  background: #fff;
+  border-radius: 14px;
+  padding: 44px 28px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+.emptyImg {
+  width: 140px;
+  display: block;
+  margin: 0 auto 14px;
+}
+
+.primaryBtn {
+  background: #7a12ff;
+  color: #fff;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* small loaders / messages */
+.loadingBox,
+.inlineLoader,
+.error {
+  text-align: center;
+  padding: 24px;
+  color: #666;
+}
+/* menu popup (kebab) */
+.kebab {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+}
+
+/* small popup menu */
+.menuPopup {
+  position: absolute;
+  right: 0;
+  top: 21px;
+  width: 150px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(20, 20, 40, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* menu item */
+.menuItem {
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  color: #222;
+}
+
+.menuItem:hover {
+  background: #f5f5ff;
+}
+
+/* ensure menu doesn't overflow on small screens */
+@media (max-width: 600px) {
+  .menuPopup {
+    right: 6px;
+    top: 30px;
+    width: 160px;
+  }
+}
+
+/* responsive */
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .listThumb img {
+    width: 140px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 700px) {
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .rightControls {
+    justify-content: space-between;
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .cardImageWrap {
+    height: 120px;
+  }
+  .listThumb img {
+    width: 110px;
+    height: 60px;
+  }
+}

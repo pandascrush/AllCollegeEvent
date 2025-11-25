@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CreateEvents.module.css";
 
 import {
@@ -8,6 +8,12 @@ import {
   VIDEOICON,
   WEBSITEICON,
 } from "../../../const/const";
+import {
+  getCertification,
+  getEventType,
+  getEventTypeCategorys,
+  getPeak,
+} from "../../../APIs/DefaultValue";
 
 export default function BasicDetails({
   title,
@@ -62,6 +68,59 @@ export default function BasicDetails({
 
   onNext,
 }) {
+  const [perksValue, setPerksValue] = useState([]);
+  const [defaultEventType, setdefaultEventType] = useState([]);
+  const [defaultEventTypeCategory, setdefaultEventTypeCategory] = useState([]);
+  const [defaultCertification, setdefaultCertification] = useState([]);
+  const [selectedPerks, setSelectedPerks] = useState([]);
+  const [selectedCertification, setselectedCertification] = useState([]);
+
+  useEffect(() => {
+    fetchDefaltValue();
+  }, []);
+
+  const fetchDefaltValue = async () => {
+    try {
+      const response = await getPeak();
+      setPerksValue(response.data.perks);
+      const getDefalutEventType = await getEventType();
+      setdefaultEventType(getDefalutEventType.data);
+      const getDefalutEventTypeCategory = await getEventTypeCategorys();
+      setdefaultEventTypeCategory(getDefalutEventTypeCategory.data);
+      const getDefalutCertification = await getCertification();
+      setdefaultCertification(getDefalutCertification.data);
+      console.log("000==============000", getDefalutCertification.data);
+    } catch (error) {
+      console.log("Error fetching profile", error);
+    }
+  };
+
+  const filteredCategories = defaultEventTypeCategory.filter(
+    (cat) => cat.eventTypeId?._id === eventType
+  );
+
+  const togglePerk = (id) => {
+    setSelectedPerks((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+
+    // also update parent
+    setPerks((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+  };
+
+  const toggleCertification = (id) => {
+    setselectedCertification((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+
+    // send to parent
+    setCert((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+  };
+
   return (
     <>
       {/* ========================= PRIMARY DETAILS ========================= */}
@@ -71,7 +130,9 @@ export default function BasicDetails({
         {/* Title + Type + Category */}
         <div className={styles.ceGrid3}>
           <div className={styles.ceField}>
-            <label className={styles.ceLabel}>Event Title <span className={styles.ceReq}>*</span></label>
+            <label className={styles.ceLabel}>
+              Event Title <span className={styles.ceReq}>*</span>
+            </label>
             <input
               className={styles.ceInput}
               placeholder="Enter event name"
@@ -82,29 +143,37 @@ export default function BasicDetails({
 
           <div className={styles.ceField}>
             <label className={styles.ceLabel}>Type of Event</label>
+            {console.log("=====>11111111", defaultEventType)}
             <select
               className={styles.ceInput}
               value={eventType}
               onChange={(e) => setEventType(e.target.value)}
             >
               <option value="">Select type</option>
-              <option value="online">Online</option>
-              <option value="offline">Offline</option>
-              <option value="hybrid">Hybrid</option>
+
+              {defaultEventType.map((item) => (
+                <option key={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className={styles.ceField}>
             <label className={styles.ceLabel}>Target Category</label>
+
             <select
               className={styles.ceInput}
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
               <option value="">Select category</option>
-              <option value="tech">Tech</option>
-              <option value="art">Art</option>
-              <option value="business">Business</option>
+
+              {filteredCategories.map((item) => (
+                <option key={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -211,9 +280,7 @@ export default function BasicDetails({
               type="date"
               className={styles.ceInput}
               value={calendarRows[0].endDate}
-              onChange={(e) =>
-                updateCalendarRow(0, "endDate", e.target.value)
-              }
+              onChange={(e) => updateCalendarRow(0, "endDate", e.target.value)}
             />
           </div>
 
@@ -224,15 +291,16 @@ export default function BasicDetails({
               type="time"
               className={styles.ceInput}
               value={calendarRows[0].endTime}
-              onChange={(e) =>
-                updateCalendarRow(0, "endTime", e.target.value)
-              }
+              onChange={(e) => updateCalendarRow(0, "endTime", e.target.value)}
             />
           </div>
         </div>
 
         {/* MULTIPLE DATE TOGGLE */}
-        <label className={styles.ceSwitchContainer} style={{ marginTop: "20px" }}>
+        <label
+          className={styles.ceSwitchContainer}
+          style={{ marginTop: "20px" }}
+        >
           <input
             type="checkbox"
             checked={multiDates}
@@ -246,7 +314,9 @@ export default function BasicDetails({
           />
 
           <span className={styles.ceSwitch}></span>
-          <span className={styles.ceSwitchText}>Schedule on Multiple Dates</span>
+          <span className={styles.ceSwitchText}>
+            Schedule on Multiple Dates
+          </span>
         </label>
 
         {/* MULTIPLE CALENDAR ROWS */}
@@ -433,7 +503,10 @@ export default function BasicDetails({
           </div>
 
           {/* SOCIAL LINKS */}
-          <div className={styles.ceField} style={{ paddingTop: "18%", gap: "20px" }}>
+          <div
+            className={styles.ceField}
+            style={{ paddingTop: "18%", gap: "20px" }}
+          >
             <label className={styles.ceLabel}>Social Media Links</label>
 
             {/* WHatsapp */}
@@ -495,32 +568,18 @@ export default function BasicDetails({
           <label className={styles.ceLabel}>Perks</label>
 
           <div className={styles.cePerkBox} style={{ marginTop: "15px" }}>
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={perks.cash}
-                onChange={() => setPerks({ ...perks, cash: !perks.cash })}
-              />
-              Cash
-            </label>
-
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={perks.awards}
-                onChange={() => setPerks({ ...perks, awards: !perks.awards })}
-              />
-              Awards
-            </label>
-
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={perks.medal}
-                onChange={() => setPerks({ ...perks, medal: !perks.medal })}
-              />
-              Medal
-            </label>
+            {console.log("nnnnnnnnn", perksValue)}
+            {perksValue.map((item) => (
+              <label key={item._id} className={styles.cePerkItem}>
+                <input
+                  type="checkbox"
+                  checked={selectedPerks?.includes(item._id)}
+                  onChange={() => togglePerk(item._id)}
+                  style={{ cursor: "pointer" }}
+                />
+                {item.name}
+              </label>
+            ))}
           </div>
         </div>
 
@@ -529,39 +588,17 @@ export default function BasicDetails({
           <label className={styles.ceLabel}>Certification *</label>
 
           <div className={styles.cePerkBox} style={{ marginTop: "30px" }}>
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={cert.forAll}
-                onChange={() => setCert({ ...cert, forAll: !cert.forAll })}
-              />
-              For all participants
-            </label>
-
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={cert.exclusiveWinners}
-                onChange={() =>
-                  setCert({
-                    ...cert,
-                    exclusiveWinners: !cert.exclusiveWinners,
-                  })
-                }
-              />
-              Exclusive Winners
-            </label>
-
-            <label className={styles.cePerkItem}>
-              <input
-                type="checkbox"
-                checked={cert.notProvided}
-                onChange={() =>
-                  setCert({ ...cert, notProvided: !cert.notProvided })
-                }
-              />
-              Not Provided
-            </label>
+            {defaultCertification.map((item) => (
+              <label key={item._id} className={styles.cePerkItem}>
+                <input
+                  type="checkbox"
+                  checked={selectedCertification?.includes(item._id)}
+                  onChange={() => toggleCertification(item._id)}
+                  style={{ cursor: "pointer" }}
+                />
+                {item.name}
+              </label>
+            ))}
           </div>
         </div>
 

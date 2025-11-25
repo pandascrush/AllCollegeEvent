@@ -5,7 +5,7 @@ import { authMiddleware } from "../middleware/authMiddleware.js";
 const router = Router();
 
 router.post("/cre", authMiddleware, EventTypeCategoryController.create);
-router.get("/", authMiddleware, EventTypeCategoryController.getAll);
+router.get("/get", EventTypeCategoryController.getAll);
 
 // Get categories by eventTypeId
 router.get(

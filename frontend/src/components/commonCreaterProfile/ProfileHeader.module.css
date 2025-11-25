@@ -1,6 +1,5 @@
 .header_wrapper {
   width: 100%;
-  border-radius: 20px;
   overflow: hidden;
   background: #f9f9f9;
 }
@@ -100,4 +99,12 @@
 
 .edit_icon img {
   width: 22px;
+}
+.clickable {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clickable:hover {
+  color: #8a00ff;
 }

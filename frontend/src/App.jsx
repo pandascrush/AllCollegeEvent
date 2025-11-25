@@ -21,6 +21,11 @@ import SavedEvent from "./pages/OrPages/Activeties/SavedEvent";
 import BookingEvent from "./pages/OrPages/Activeties/BookingEvent";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import OrganizerDashboard from "./pages/OrPages/MySpace/OrganizerDashboard";
+import MyEvents from "./pages/OrPages/MySpace/MyEvents";
+import Notification from "./pages/OrPages/Settings/Notification";
+import EmailSettings from "./pages/OrPages/Settings/EmailSettings";
+import YourNetwork from "./pages/OrPages/MyProfile/YourNetwork";
+import RatingsAndReviews from "./pages/OrPages/MyProfile/RatingsAndReviews";
 
 export default function App() {
   return (
@@ -99,7 +104,7 @@ function MainRoutes() {
         path="/organizer/dashboard"
         element={
           // <RoleRoute allowed={["organizer"]}>
-            <DashboardLayout />
+          <DashboardLayout />
           // </RoleRoute>
         }
       >
@@ -110,17 +115,30 @@ function MainRoutes() {
         <Route path="my-profile/delete" element={<DeleteProfile />} />
         <Route path="my-activities/saved-event" element={<SavedEvent />} />
         <Route path="my-activities/booking-event" element={<BookingEvent />} />
-        <Route path="my-space/organizer-dashboard" element={<OrganizerDashboard />} />
-        <Route path="events" element={<CreateEvents />} />
-        
-
+        <Route
+          path="my-space/organizer-dashboard"
+          element={<OrganizerDashboard />}
+        />
+        <Route path="my-space/organizer-my-event" element={<MyEvents />} />
+        <Route
+          path="my-space/organizer-create-events"
+          element={<CreateEvents />}
+        />
+        <Route path="setting/notification" element={<Notification />} />
+        <Route path="setting/email-setting" element={<EmailSettings />} />
+        <Route
+          path="my-profile/followers"
+          element={<YourNetwork tab="followers" />}
+        />
+        <Route
+          path="my-profile/following"
+          element={<YourNetwork tab="following" />}
+        />
+        <Route path="my-profile/reviews" element={<RatingsAndReviews />} />
       </Route>
 
       {/* 404 */}
-      <Route
-        path="*"
-        element={<PageNotFound/>}
-      />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }

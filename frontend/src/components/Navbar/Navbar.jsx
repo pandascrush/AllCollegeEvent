@@ -25,12 +25,16 @@ export default function Navbar() {
     { title: "New event from top organizer", time: "5h ago" },
   ];
 
-  const uid = sessionStorage.getItem("UU");
-  const isLoggedIn = sessionStorage.getItem("ILI");
+  const uid = localStorage.getItem("UU");
+  const isLoggedIn = localStorage.getItem("ILI");
 
   useEffect(() => {
     if (uid) dispatch(fetchSingleUser(uid));
   }, [uid]);
+
+  const handleProfileSection = () =>{
+    navigate('http://localhost:5173/user/dashboard/my-profile/profile')
+  }
 
   return (
     <>
@@ -143,24 +147,27 @@ export default function Navbar() {
                   )}
                 </div>
               )}
-
-              <button className="nav-avatar-btn">
-                <img
-                  src={user?.profileImg ? user.profileImg : Logo}
-                  className="nav-avatar-img"
-                />
+              <button
+                className="nav-avatar-btn"
+                onClick={() => {
+                  setOpenProfile(!openProfile);
+                  setOpenNotify(false);
+                  setOpenExplore(false);
+                }}
+              >
+                <img src={user?.profileImg || Logo} className="nav-avatar-img" />
               </button>
 
               {/* PROFILE DROPDOWN */}
               {openProfile && (
                 <div className="profile-dropdown">
                   <p className="profile-name">{user?.name}</p>
+                  <p className="profile-name" onClick={handleProfileSection} style={{cursor:"pointer"}}>Profile</p>
 
                   <button
                     className="logout-btn"
                     onClick={() => {
-                      sessionStorage.removeItem("ILI");
-                      sessionStorage.removeItem("UU");
+                      localStorage.clear()
                       navigate("/login");
                     }}
                   >
@@ -190,7 +197,7 @@ export default function Navbar() {
         >
           <div
             className="location-modal"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onClick={(e) => e.stopPropagation()} 
           >
             <LocationSelect closeModal={() => setShowLocation(false)} />
           </div>

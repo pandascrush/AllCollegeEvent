@@ -20,7 +20,7 @@ export default function HomeRoleSelect() {
   };
 
   return (
-    <div className="role-container">
+    <div className="wrapper">
 
       {pages === 0 && (
         <>

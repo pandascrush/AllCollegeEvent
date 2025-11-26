@@ -7,6 +7,11 @@
   height: fit-content;
   padding-bottom: 30px;
 }
+.wrapper {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 0px 0px 20px 20px;
+}
 
 .role-back {
   display: flex;

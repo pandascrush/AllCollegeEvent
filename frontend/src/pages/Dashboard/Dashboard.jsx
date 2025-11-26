@@ -31,6 +31,7 @@ import WhyChooseACE from "../../components/WhyChooseACE/WhyChooseACE";
 import PopularLocations from "../../components/PopularLocations/PopularLocations";
 import Footer from "../../components/Footer/Footer";
 import AnimatedTitle from "../../components/AnimatedTitle/AnimatedTitle";
+import SubscribeBox from "../SubscribePage/SubscribeBox";
 
 export default function Dashboard() {
   const posters = [
@@ -237,84 +238,7 @@ export default function Dashboard() {
         <PopularLocations />
 
         {/* SUBSCRIBE SECTION */}
-        <section className="subscribe-section">
-          {/* WHATSAPP BLOCK */}
-          {active === "whatsapp" && (
-            <div className="subscribe-card whatsapp">
-              <div className="subscribe-left">
-                <img src="/images/whatsapp.png" className="sub-img" />
-              </div>
-
-              <div className="subscribe-right">
-                <h4 className="sub-title">
-                  Subscribe to Our Newsletter for the Latest Updates.
-                </h4>
-
-                <div style={{ display: "flex" }}>
-                  <div className="sub-input-wrap">
-                    <div className="sub-input-icon">{PHONEICON}</div>
-                    <input
-                      type="tel"
-                      placeholder="123-456-7890"
-                      className="sub-input"
-                    />
-                    <button className="sub-btn">Subscribe</button>
-                  </div>
-
-                  <div
-                    className="switch-icon"
-                    onClick={() => setActive("email")}
-                  >
-                    {EMAILICON}
-                  </div>
-                </div>
-
-                <p className="sub-desc">
-                  Stay ahead with the latest updates from AllCollegeEvent.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* EMAIL BLOCK */}
-          {active === "email" && (
-            <div className="subscribe-card email">
-              <div className="subscribe-left">
-                <img src="/images/email.png" className="sub-img-email" />
-              </div>
-
-              <div className="subscribe-right">
-                <h4 className="sub-title" style={{ paddingTop: "30px" }}>
-                  Subscribe to Our Newsletter for the Latest Updates.
-                </h4>
-
-                <div style={{ display: "flex", marginTop: "30px" }}>
-                  <div className="sub-input-wrap-email email-style">
-                    <div className="sub-input-icon">{EMAILTEXT}</div>
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="sub-input"
-                    />
-                    <button className="sub-btn">Subscribe</button>
-                  </div>
-
-                  <div
-                    className="switch-icon"
-                    onClick={() => setActive("whatsapp")}
-                    style={{ background: "#28315D" }}
-                  >
-                    {WHATSAPP}
-                  </div>
-                </div>
-
-                <p className="sub-desc">
-                  Stay ahead with the latest updates and events.
-                </p>
-              </div>
-            </div>
-          )}
-        </section>
+        <SubscribeBox />
 
         <Footer />
       </div>

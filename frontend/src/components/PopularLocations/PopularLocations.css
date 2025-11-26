@@ -61,9 +61,82 @@
     font-size: 15px;
 }
 
+@media (max-width: 1400px) {
+    .popular-loc-section {
+        padding: 60px 5%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .loc-card {
+        gap: 40px;
+        padding: 18px 28px;
+    }
+
+    .loc-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .loc-name {
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 1000px) {
+    .popular-loc-section {
+        padding: 50px 5%;
+    }
+
     .loc-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+    .loc-title {
+        font-size: 28px;
+    }
+
+    .loc-sub {
+        font-size: 14px;
+    }
+
+    .loc-card {
+        padding: 18px 24px;
+        gap: 32px;
+    }
+
+    .loc-img {
+        width: 95px;
+        height: 95px;
+    }
+}
+
+@media (max-width: 768px) {
+    .popular-loc-section {
+        padding: 45px 4%;
+    }
+
+    .loc-title {
+        font-size: 26px;
+    }
+
+    .loc-grid {
+        gap: 28px;
+    }
+
+    .loc-card {
+        gap: 24px;
+        padding: 16px 20px;
+    }
+
+    .loc-img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .loc-name {
+        font-size: 19px;
     }
 }
 
@@ -76,9 +149,72 @@
         justify-content: center;
         text-align: center;
         flex-direction: column;
+        padding: 22px 24px;
+        gap: 14px;
     }
 
     .loc-img {
+        width: 90px;
+        height: 90px;
         margin-bottom: 12px;
+    }
+
+    .loc-title {
+        font-size: 24px;
+    }
+
+    .loc-name {
+        font-size: 18px;
+    }
+
+    .loc-events {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popular-loc-section {
+        padding: 35px 3%;
+    }
+
+    .loc-card {
+        padding: 20px 18px;
+        gap: 10px;
+    }
+
+    .loc-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .loc-title {
+        font-size: 22px;
+    }
+
+    .loc-name {
+        font-size: 17px;
+    }
+
+    .loc-events {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .loc-card {
+        padding: 16px 14px;
+    }
+
+    .loc-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .loc-title {
+        font-size: 20px;
+    }
+
+    .loc-name {
+        font-size: 16px;
     }
 }

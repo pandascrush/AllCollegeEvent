@@ -143,12 +143,15 @@ export default function Navbar() {
                   )}
                 </div>
               )}
-
-              <button className="nav-avatar-btn">
-                <img
-                  src={user?.profileImg ? user.profileImg : Logo}
-                  className="nav-avatar-img"
-                />
+              <button
+                className="nav-avatar-btn"
+                onClick={() => {
+                  setOpenProfile(!openProfile);
+                  setOpenNotify(false);
+                  setOpenExplore(false);
+                }}
+              >
+                <img src={user?.profileImg} className="nav-avatar-img" />
               </button>
 
               {/* PROFILE DROPDOWN */}
@@ -183,6 +186,7 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* ⭐ LOCATION MODAL ⭐ */}
       {showLocation && (
         <div
           className="location-modal-overlay"

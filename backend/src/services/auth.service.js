@@ -11,14 +11,13 @@ import { Role } from "../models/role.model.js";
 dotenv.config();
 
 export const AuthService = {
-  
   async register({ name, email, password, role, domain }) {
     if (!name || !email || !password || !role) {
       throw new Error("All fields are required");
     }
 
     const hashedPass = await bcrypt.hash(password, 10);
-    
+
     // 1️ USER REGISTRATION
     if (role === "user") {
       const existingUser = await User.findOne({ email });
@@ -113,7 +112,7 @@ export const AuthService = {
       message: "Login successful",
       role,
       token,
-      user : account,
+      user: account,
     };
   },
 
@@ -242,9 +241,9 @@ export const AuthService = {
     const token = jwt.sign(
       { id: user._id, role: roleDoc.name },
       process.env.JWT_SECRET,
-      { expiresIn: "2m" }
+      { expiresIn: "1d" }
     );
 
     return { user, token };
-  },
+  }
 };

@@ -27,10 +27,18 @@ export const AuthController = {
     try {
       const { email, password } = req.body;
       const data = await AuthService.login(email, password);
+
+      res.cookie("token", data.token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        path: "/",
+      });
+
       res.json(data);
     } catch (err) {
       res.status(401).json({ message: err.message });
-      next(err); // <-- ADDED
+      next(err);
     }
   },
 
@@ -42,7 +50,7 @@ export const AuthController = {
       res.json(result);
     } catch (err) {
       res.status(err.status || 500).json({ message: err.message });
-      next(err); // <-- ADDED
+      next(err);
     }
   },
 
@@ -53,7 +61,7 @@ export const AuthController = {
       res.json({ tempToken });
     } catch (err) {
       res.status(err.status || 400).json({ message: err.message });
-      next(err); // <-- ADDED
+      next(err);
     }
   },
 
@@ -72,7 +80,7 @@ export const AuthController = {
       res.json({ message: "Password changed successfully" });
     } catch (err) {
       res.status(err.status || 400).json({ message: err.message });
-      next(err); // <-- ADDED
+      next(err);
     }
   },
 
@@ -88,6 +96,13 @@ export const AuthController = {
 
       const { user, token } = await AuthService.googleLogin(googleToken);
 
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        path: "/",
+      });
+
       return res.status(200).json({
         success: true,
         user,
@@ -99,6 +114,25 @@ export const AuthController = {
         success: false,
         message: err.message || "Google login failed",
       });
+      next(err);
+    }
+  },
+
+  async logout(req, res, next) {
+    try {
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        path: "/",
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: "Logout successful",
+      });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
       next(err);
     }
   },

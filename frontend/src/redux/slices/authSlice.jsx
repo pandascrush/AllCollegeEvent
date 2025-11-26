@@ -116,9 +116,9 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         console.log(action.payload.token);
-        sessionStorage.setItem("UU", action.payload.user._id);
-        sessionStorage.setItem("token", action.payload.token);
-        sessionStorage.setItem("ILI", true);
+        localStorage.setItem("UU", action.payload.user._id);
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("ILI", true);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -181,8 +181,8 @@ const authSlice = createSlice({
         state.role = null;
         state.isLoggedIn = false;
 
-        sessionStorage.removeItem("ILI");
-        sessionStorage.removeItem("UU");
+        localStorage.removeItem("ILI");
+        localStorage.removeItem("UU");
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;

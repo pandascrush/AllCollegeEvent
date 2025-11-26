@@ -25,8 +25,8 @@ export default function Navbar() {
     { title: "New event from top organizer", time: "5h ago" },
   ];
 
-  const uid = sessionStorage.getItem("UU");
-  const isLoggedIn = sessionStorage.getItem("ILI");
+  const uid = localStorage.getItem("UU");
+  const isLoggedIn = localStorage.getItem("ILI");
 
   useEffect(() => {
     if (uid) dispatch(fetchSingleUser(uid));
@@ -162,8 +162,7 @@ export default function Navbar() {
                   <button
                     className="logout-btn"
                     onClick={() => {
-                      sessionStorage.removeItem("ILI");
-                      sessionStorage.removeItem("UU");
+                      localStorage.clear();
                       navigate("/login");
                     }}
                   >

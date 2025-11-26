@@ -167,7 +167,11 @@ export default function Navbar() {
                   <button
                     className="logout-btn"
                     onClick={() => {
+<<<<<<< HEAD
                       localStorage.clear()
+=======
+                      localStorage.clear();
+>>>>>>> 0c30ea4369463446fc90bcb023af68f46b0d54c9
                       navigate("/login");
                     }}
                   >
@@ -190,6 +194,7 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* ⭐ LOCATION MODAL ⭐ */}
       {showLocation && (
         <div
           className="location-modal-overlay"

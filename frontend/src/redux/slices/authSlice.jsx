@@ -65,6 +65,18 @@ export const resetForgotPassword = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk(
+  "/auth/logout",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await api.post("/auth/logout",{},{withCredentials:true});
+      return res.data; // message
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.message || err.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -153,6 +165,28 @@ const authSlice = createSlice({
       .addCase(resetForgotPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      });
+
+    // LOGOUT
+    builder
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+
+        state.user = null;
+        state.role = null;
+        state.isLoggedIn = false;
+
+        sessionStorage.removeItem("ILI");
+        sessionStorage.removeItem("UU");
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Logout failed";
       });
   },
 });

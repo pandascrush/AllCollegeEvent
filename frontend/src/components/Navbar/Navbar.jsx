@@ -14,6 +14,7 @@ export default function Navbar() {
   const [openExplore, setOpenExplore] = useState(false);
   const [openNotify, setOpenNotify] = useState(false);
   const [showLocation, setShowLocation] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -149,6 +150,24 @@ export default function Navbar() {
                   className="nav-avatar-img"
                 />
               </button>
+
+              {/* PROFILE DROPDOWN */}
+              {openProfile && (
+                <div className="profile-dropdown">
+                  <p className="profile-name">{user?.name}</p>
+
+                  <button
+                    className="logout-btn"
+                    onClick={() => {
+                      sessionStorage.removeItem("ILI");
+                      sessionStorage.removeItem("UU");
+                      navigate("/login");
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>

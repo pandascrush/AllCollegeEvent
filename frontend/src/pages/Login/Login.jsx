@@ -7,6 +7,7 @@ import { loginUser } from "../../redux/slices/authSlice";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export default function Login({ role, onGoSignup, onForgotPassword }) {
   const dispatch = useDispatch();
@@ -68,7 +69,6 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
     }
 
     const result = await dispatch(loginUser({ email: email, password }));
-    console.log("==== Login Result ====", result);
 
     if (result.meta.requestStatus === "fulfilled") {
       toast.success("Successfully Logged In");

@@ -25,13 +25,6 @@ export default function HomeRoleSelect() {
       {/* ===================== PAGE 0 ===================== */}
       {pages === 0 && (
         <>
-          {/* Back Button */}
-          <div className="role-back">
-            <button className="back-btn">
-              <span className="arrow">←</span> Back
-            </button>
-          </div>
-
           <h2 className="role-title">Select who you represent</h2>
 
           <div className="role-cards">
@@ -64,7 +57,7 @@ export default function HomeRoleSelect() {
             {/* Virtual Event */}
             <div
               className="event-card"
-              onClick={() => navigate("/organizer/dashboard/events")}
+              onClick={() => navigate("/organizer/dashboard/my-space/organizer-create-events")}
               style={{ cursor: "pointer" }}
             >
               <h3>Virtual Event</h3>
@@ -77,7 +70,7 @@ export default function HomeRoleSelect() {
             {/* Physical/Hybrid Event */}
             <div
               className="event-card"
-              onClick={() => navigate("/organizer/dashboard/events")}
+              onClick={() => navigate("/organizer/dashboard/my-space/organizer-create-events")}
               style={{ cursor: "pointer" }}
             >
               <h3>Physical/Hybrid event</h3>

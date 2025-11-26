@@ -55,18 +55,9 @@ export default function CreateEvents() {
   const [accommodation, setAccommodation] = useState("");
 
   // Perks
-  const [perks, setPerks] = useState({
-    cash: false,
-    awards: false,
-    medal: false,
-  });
+ const [perks, setPerks] = useState([]);  // array of perk IDs
+const [cert, setCert] = useState([]);    // array of certification IDs
 
-  // Certification
-  const [cert, setCert] = useState({
-    forAll: false,
-    exclusiveWinners: false,
-    notProvided: false,
-  });
 
   // Organizer
   const [organizer, setOrganizer] = useState({

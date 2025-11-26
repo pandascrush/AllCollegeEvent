@@ -18,12 +18,8 @@ export default function DashboardLayout() {
   const location = useLocation();
 
   const hideHeaderPaths = [
-    "/organizer/dashboard/events",
-    "organizer/dashboard/home",
-    "/organizer/dashboard/create-event",
-    "/organizer/dashboard/event-dashboard",
-    "/organizer/dashboard/event-edit",
-    "/organizer/dashboard/event-view",
+    "/organizer/dashboard/my-space/organizer-create-events",
+    "/organizer/dashboard/home",
   ];
 
   const hideHeader = hideHeaderPaths.some((path) =>
@@ -181,7 +177,7 @@ export default function DashboardLayout() {
           {hover && openMenu === "space" && (
             <div className="dropdown">
               <NavLink
-                to="/organizer/dashboard/events"
+                to="/organizer/dashboard/my-space/organizer-create-events"
                 className={`sub-link ${
                   location.pathname.includes("/organizer/dashboard/events")
                     ? "sub-active"
@@ -201,9 +197,9 @@ export default function DashboardLayout() {
                 Dashboard
               </NavLink>
               <NavLink
-                to="/organizer/dashboard/my-space/my-event"
+                to="/organizer/dashboard/my-space/organizer-my-event"
                 className={`sub-link ${
-                  location.pathname.includes("/my-space/my-event") ? "sub-active" : ""
+                  location.pathname.includes("my-space/organizer-my-event") ? "sub-active" : ""
                 }`}
               >
                 My Event
@@ -234,9 +230,9 @@ export default function DashboardLayout() {
           {hover && openMenu === "settings" && (
             <div className="dropdown">
               <NavLink
-                to="/notifications"
+                to="/organizer/dashboard/setting/notification"
                 className={`sub-link ${
-                  location.pathname.includes("/notifications")
+                  location.pathname.includes("setting/notification")
                     ? "sub-active"
                     : ""
                 }`}
@@ -244,9 +240,9 @@ export default function DashboardLayout() {
                 Notifications
               </NavLink>
               <NavLink
-                to="/email-setting"
+                to="/organizer/dashboard/setting/email-setting"
                 className={`sub-link ${
-                  location.pathname.includes("/email-setting")
+                  location.pathname.includes("setting/email-setting")
                     ? "sub-active"
                     : ""
                 }`}
@@ -255,9 +251,18 @@ export default function DashboardLayout() {
               </NavLink>
             </div>
           )}
+
+          <div className='menu-item' style={{paddingTop:"20%"}}>
+             <img
+              src="/images/myactivityes.png"
+              alt="no image"
+              className="side_nav_img"
+            />
+          </div>
         </div>
 
         <div className="right-content role-container">
+          {console.log("======hide",hideHeader)}
           {!hideHeader && (
             <ProfileHeader
               profileImage="/images/user.jpg"

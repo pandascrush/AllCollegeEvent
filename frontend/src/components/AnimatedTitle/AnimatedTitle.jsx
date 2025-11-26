@@ -10,7 +10,7 @@ export default function AnimatedTitle({ text }) {
         {words.map((word, i) => (
           <span
             key={i}
-            style={{ animationDelay: `${0.3 * i}s` }} // delay word-by-word
+            style={{ animationDelay: `${0.3 * i}s` }} 
           >
             {word}
           </span>

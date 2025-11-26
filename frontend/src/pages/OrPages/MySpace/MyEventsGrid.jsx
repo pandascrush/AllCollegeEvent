@@ -1,4 +1,3 @@
-// src/OrPages/MyEvents/MyEventsGrid.jsx
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./MyEvents.module.css";
 import { FaEllipsisV } from "react-icons/fa";
@@ -6,11 +5,9 @@ import { FaEllipsisV } from "react-icons/fa";
 export default function MyEventsGrid({ events = [], handlers = {}, placeholderImage }) {
   const [openMenuFor, setOpenMenuFor] = useState(null);
 
-  // close menu on outside click
   useEffect(() => {
     const onDoc = (e) => {
       if (!e.target.closest || !document) return;
-      // if clicked outside any .menuPopup elements, close
       if (!e.target.closest(`.${styles.menuPopup}`) && !e.target.closest(`.${styles.kebab}`)) {
         setOpenMenuFor(null);
       }

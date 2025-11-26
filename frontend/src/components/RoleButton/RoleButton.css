@@ -28,19 +28,12 @@
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
 }
 
-/* .role-icon-circle svg {
-    width: 26px;
-    height: 26px;
-} */
-
-/* Text */
 .role-text {
     font-size: 18px;
     font-weight: 700;
     color: #000;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .role-btn {
         width: 95%;

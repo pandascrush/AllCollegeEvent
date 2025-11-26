@@ -10,11 +10,10 @@ const __dirname = path.resolve();
 const runSeeders = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("🌱 MongoDB connected for seeding");
+    console.log("MongoDB connected for seeding");
 
     const seedersDir = path.join(__dirname, "src/seeders");
 
-    // Get all *.seed.js files except index.js
     const files = fs.readdirSync(seedersDir).filter(
       (file) =>
         file.endsWith(".seed.js") &&
@@ -22,7 +21,7 @@ const runSeeders = async () => {
     );
 
     for (const file of files) {
-      console.log(`➡ Running seeder: ${file}`);
+      console.log(`Running seeder: ${file}`);
 
       const seederFn = (await import(`./${file}`)).default;
 
@@ -30,14 +29,14 @@ const runSeeders = async () => {
         await seederFn();
         console.log(`✔ Completed: ${file}`);
       } else {
-        console.warn(`⚠ Skipped (no function exported): ${file}`);
+        console.warn(`Skipped (no function exported): ${file}`);
       }
     }
 
-    console.log("🎉 All seeders executed successfully!");
+    console.log("All seeders executed successfully!");
     process.exit(0);
   } catch (err) {
-    console.error("❌ Seeder Error:", err);
+    console.error("Seeder Error:", err);
     process.exit(1);
   }
 };

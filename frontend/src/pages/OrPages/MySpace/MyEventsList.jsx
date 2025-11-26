@@ -1,4 +1,3 @@
-// src/OrPages/MyEvents/MyEventsList.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./MyEvents.module.css";
 import { FaEllipsisV } from "react-icons/fa";

@@ -29,7 +29,6 @@
   border-bottom: none;
 }
 
-/* LEFT SIDE */
 .left {
   display: flex;
   align-items: center;
@@ -48,7 +47,6 @@
   font-weight: 600;
 }
 
-/* RIGHT SIDE */
 .right {
   flex: 1;
 }
@@ -66,7 +64,6 @@
   line-height: 1.5;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .row {
     flex-direction: column;

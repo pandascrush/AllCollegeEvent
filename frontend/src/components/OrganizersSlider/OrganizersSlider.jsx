@@ -1,4 +1,3 @@
-// src/components/Organizers/OrganizersSection.jsx
 import React from "react";
 import { ORGANIZERSS } from "../../const/const";
 import "./OrganizersSlider.css";

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const EMPTY_ILLU = "https://img.freepik.com/free-photo/professional-equipment-camera-tripod-stand-field-front-prepared-table-evening-time_146671-14420.jpg?semt=ais_hybrid&w=740&q=80";
 
-// STATIC SAMPLE EVENTS (Later replace with API)
 const STATIC_EVENTS = [
   {
     id: 1,
@@ -70,7 +69,6 @@ export default function MyEvents() {
 
   const onCreate = () => navigate("/organizer/dashboard/my-space/organizer-create-events");
 
-  // EMPTY STATE
   if (events.length === 0) {
     return (
       <div className={styles.wrapper}>
@@ -91,7 +89,6 @@ export default function MyEvents() {
     <div className={styles.wrapper}>
       <h2>My Events</h2>
 
-      {/* Search + Filter + Toggle Row */}
       <div className={styles.controlsRow}>
         <div className={styles.leftControls}>
           <div className={styles.searchBox}>
@@ -121,7 +118,6 @@ export default function MyEvents() {
             <IoCalendarOutline />
           </button>
 
-          {/* 🔥 NEW VIEW TOGGLE — ONLY ONE ICON SHOWS */}
           <div className={styles.viewToggle}>
             {view === "grid" ? (
               <button

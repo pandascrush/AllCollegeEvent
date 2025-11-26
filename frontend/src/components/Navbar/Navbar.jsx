@@ -144,7 +144,10 @@ export default function Navbar() {
               )}
 
               <button className="nav-avatar-btn">
-                <img src={user?.profileImg} className="nav-avatar-img" />
+                <img
+                  src={user?.profileImg ? user.profileImg : Logo}
+                  className="nav-avatar-img"
+                />
               </button>
             </>
           )}
@@ -161,7 +164,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* ⭐ LOCATION MODAL ⭐ */}
       {showLocation && (
         <div
           className="location-modal-overlay"

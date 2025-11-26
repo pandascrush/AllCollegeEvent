@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./BookingEvent.module.css";
-import { FaMapMarkerAlt, FaBookmark } from "react-icons/fa";
-import { BsCalendarDate } from "react-icons/bs";
 import { DATEICON, LOCATION_ICON, SAVEDICON } from "../../../const/const";
 
 export default function BookingEvent() {

@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import styles from "./ManagePage.module.css";
 import {
-  FaLinkedin,
-  FaInstagram,
-  FaFacebook,
-  FaTwitter,
-  FaYoutube,
-  FaTelegram,
-} from "react-icons/fa";
-import {
   FACEBOOKICON,
   IMAGEICON,
   INSTAGRAMICON,
@@ -22,7 +14,6 @@ export default function ManagePage() {
   const [mode, setMode] = useState("view");
   const [coverImage, setCoverImage] = useState(null);
 
-  // modes → view | edit | success
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -96,7 +87,6 @@ export default function ManagePage() {
             className={styles.uploadBox}
             onClick={() => document.getElementById("coverUpload").click()}
           >
-            {/* If image not uploaded — show icon */}
             {!coverImage && (
               <>
                 <div style={{ paddingBottom: "10px" }}>{IMAGEICON}</div>
@@ -104,7 +94,6 @@ export default function ManagePage() {
               </>
             )}
 
-            {/* If image uploaded — show preview */}
             {coverImage && (
               <img src={coverImage} alt="cover" className={styles.previewImg} />
             )}
@@ -168,7 +157,6 @@ export default function ManagePage() {
         </div>
       )}
 
-      {/* ----------------- SUCCESS ----------------- */}
       {mode === "success" && (
         <div className={styles.successBox}>Successfully Updated!!</div>
       )}

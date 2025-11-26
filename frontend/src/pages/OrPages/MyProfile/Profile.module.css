@@ -2,7 +2,6 @@
   width: 100%;
 }
 
-/* VIEW MODE -------------------------- */
 .viewBox {
   background: #f9f9f9;
   padding: 25px;
@@ -27,7 +26,6 @@
   cursor: pointer;
 }
 
-/* EDIT MODE -------------------------- */
 .editBox {
   background: #f9f9f9;
   padding: 25px;
@@ -62,7 +60,6 @@
   text-align: center;
 }
 
-/* BUTTON ROW -------------------------- */
 .btnRow {
   display: flex;
   gap: 50px;
@@ -86,7 +83,6 @@
   font-weight: 600;
 }
 
-/* OTP MODE -------------------------- */
 .otpBox {
   background: #f9f9f9;
   padding: 25px;
@@ -115,7 +111,6 @@
   cursor: pointer;
 }
 
-/* NEW PASSWORD ----------------------- */
 .passwordBox {
   background: #f9f9f9;
   padding-top: 20px;
@@ -132,7 +127,6 @@ width: 40%;
     border-radius: 10px;
 }
 
-/* SUCCESS ---------------------------- */
 .successBox {
   background: #f9f9f9;
   padding: 40px;

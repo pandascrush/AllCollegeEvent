@@ -9,11 +9,9 @@ export default function Profile() {
   const [showPass1, setShowPass1] = useState(false);
   const [showPass2, setShowPass2] = useState(false);
 
-  // modes → view | edit | otp | newpassword | success
 
   return (
     <div className={styles.profileWrapper}>
-      {/* ⭐ SWITCH UI BASED ON MODE */}
       {mode === "view" && (
         <div className={styles.viewBox}>
           <div>

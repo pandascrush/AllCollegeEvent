@@ -10,7 +10,6 @@
   margin-bottom: 10px;
 }
 
-/* Tabs */
 .tabs {
   display: flex;
   gap: 25px;
@@ -42,7 +41,6 @@
   border-radius: 3px;
 }
 
-/* List Box */
 .box {
   background: #ffffff;
   border: 1px solid #e5e5e5;
@@ -50,7 +48,6 @@
   padding: 10px 0;
 }
 
-/* Each row */
 .row {
   display: flex;
   align-items: center;
@@ -64,7 +61,6 @@
   border-bottom: none;
 }
 
-/* User Section */
 .userInfo {
   display: flex;
   align-items: center;
@@ -83,7 +79,6 @@
   font-weight: 500;
 }
 
-/* Unfollow button */
 .unfollowBtn {
   background: #8a00ff;
   color: white;
@@ -94,7 +89,6 @@
   font-weight: 600;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .row {
     flex-direction: column;

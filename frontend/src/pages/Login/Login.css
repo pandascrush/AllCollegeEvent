@@ -66,7 +66,6 @@
     background: #6a1fd9;
 }
 
-/* Google Login Button */
 .googleBtn {
     width: 100%;
     padding: 12px;
@@ -143,7 +142,6 @@
     text-decoration: underline;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
     .login-title {
         font-size: 28px;

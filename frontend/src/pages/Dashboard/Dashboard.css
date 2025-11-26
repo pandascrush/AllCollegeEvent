@@ -392,7 +392,6 @@
   margin: 60px 0;
 }
 
-/* CARD MAIN */
 .subscribe-card {
   width: 75%;
   border-radius: 35px;
@@ -402,20 +401,17 @@
   animation: fadeIn 0.4s ease;
 }
 
-/* WHATSAPP STYLE */
 .subscribe-card.whatsapp {
   background: #1f5d27;
   color: white;
 }
 
-/* EMAIL STYLE */
 .subscribe-card.email {
   background: #23336b;
   color: white;
   padding-bottom: 50px;
 }
 
-/* LEFT IMAGE */
 .subscribe-left {
   width: 40%;
   display: flex;
@@ -434,7 +430,6 @@
   margin-top: -83px;
 }
 
-/* RIGHT CONTENT */
 .subscribe-right {
   width: 55%;
 }
@@ -446,7 +441,6 @@
   margin-bottom: 22px;
 }
 
-/* INPUT BOX */
 .sub-input-wrap {
   display: flex;
   align-items: center;
@@ -505,14 +499,12 @@
   transform: scale(1.1);
 }
 
-/* FOOTER TEXT */
 .sub-desc {
   margin-top: 18px;
   font-size: 12px;
   opacity: 0.9;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .subscribe-card {
     flex-direction: column;
@@ -664,10 +656,6 @@
   }
 }
 
-/* --------------------------------------- */
-/* FIX FOR 1420px → 900px RESPONSIVENESS   */
-/* --------------------------------------- */
-
 @media (max-width: 1400px) and (min-width: 901px) {
 
   :root {
@@ -678,10 +666,8 @@
   .cards-stage {
     height: 360px;
     transform: scale(0.98);
-    /* reduce size slightly */
   }
 
-  /* Left positions */
   .pos-left-xfar {
     transform: translateX(-480px) scale(0.70) rotate(-12deg);
   }
@@ -694,7 +680,6 @@
     transform: translateX(-170px) scale(0.95) rotate(-6deg);
   }
 
-  /* Right side fix — card should be fully visible */
   .pos-right {
     transform: translateX(170px) scale(0.95) rotate(6deg);
   }
@@ -707,21 +692,16 @@
     transform: translateX(480px) scale(0.70) rotate(12deg);
   }
 
-  /* center look */
   .pos-center {
     transform: translateX(0px) scale(1.08);
   }
 
-  /* Image inside card */
   .card-item img {
     object-fit: contain;
     padding: 10px;
   }
 }
 
-/* ---------------------------------------- */
-/* FIX FOR 1151px → 900px RESPONSIVENESS    */
-/* ---------------------------------------- */
 @media (max-width: 1151px) and (min-width: 901px) {
 
   :root {
@@ -734,7 +714,6 @@
     transform: scale(0.96);
   }
 
-  /* LEFT POSITIONS */
   .pos-left-xfar {
     transform: translateX(-380px) scale(0.68) rotate(-12deg);
   }
@@ -747,12 +726,10 @@
     transform: translateX(-135px) scale(0.92) rotate(-6deg);
   }
 
-  /* CENTER */
   .pos-center {
     transform: translateX(0) scale(1.06);
   }
 
-  /* RIGHT POSITIONS — FIX CARD CUTTING */
   .pos-right {
     transform: translateX(135px) scale(0.92) rotate(6deg);
   }
@@ -765,7 +742,6 @@
     transform: translateX(380px) scale(0.68) rotate(12deg);
   }
 
-  /* Image scaling fix */
   .card-item img {
     width: 100%;
     height: 100%;
@@ -775,7 +751,6 @@
 
 .category-card:hover { box-shadow: 0 18px 50px rgba(15,15,15,0.12); transform: translateY(-4px); transition: transform .35s ease, box-shadow .35s ease; }
 
-/* OVERLAY FADE-IN */
 .role-modal-overlay {
   position: fixed;
   top: 0;
@@ -793,7 +768,6 @@
   animation: overlayFade 0.5s ease forwards;
 }
 
-/* MODAL ENTER ANIMATION */
 .role-modal-overlay > div {
   opacity: 0;
   transform: translateY(-40px) scale(0.95);
@@ -801,7 +775,6 @@
   animation-delay: 0.1s;
 }
 
-/* Overlay animation */
 @keyframes overlayFade {
   0% {
     opacity: 0;
@@ -813,7 +786,6 @@
   }
 }
 
-/* Modal animation (smooth + elastic style) */
 @keyframes modalSlideDown {
   0% {
     opacity: 0;
@@ -821,7 +793,7 @@
   }
   60% {
     opacity: 1;
-    transform: translateY(5px) scale(1.02); /* slight bounce */
+    transform: translateY(5px) scale(1.02); 
   }
   100% {
     opacity: 1;

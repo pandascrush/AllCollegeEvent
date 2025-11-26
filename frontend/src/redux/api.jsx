@@ -6,7 +6,6 @@ const api = axios.create({
   baseURL: apiUrl,
 });
 
-// Add token automatically
 api.interceptors.request.use((config) => {
   const token = sessionStorage.getItem("token");
   console.log(token);

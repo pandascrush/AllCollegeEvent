@@ -1,15 +1,9 @@
-/* ============================
-   ORGANIZERS SECTION ROOT
- ============================ */
 .organizers-root {
   width: 100%;
   padding: 6% 6% 0 6%;
   box-sizing: border-box;
 }
 
-/* ============================
-   HEADER
- ============================ */
 .organizers-header {
   display: flex;
   justify-content: space-between;
@@ -50,17 +44,12 @@
   transform: translateY(-2px);
 }
 
-/* ============================
-   ORGANIZER LIST RESPONSIVE
- ============================ */
-
 .organizers-row {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* FIXED RESPONSIVE ORGANIZER LIST */
 .organizers-list {
   display: flex;
   flex-wrap: wrap;
@@ -70,14 +59,12 @@
   width: 100%;
 }
 
-/* Each organizer card responsive */
 .org-card {
   width: clamp(90px, 20vw, 130px);
   text-align: center;
   flex: 1 1 120px;
 }
 
-/* AVATAR WRAPPER */
 .org-avatar-wrap {
   width: clamp(65px, 12vw, 85px);
   height: clamp(65px, 12vw, 85px);
@@ -107,11 +94,7 @@
   font-size: clamp(10px, 1.3vw, 12px);
 }
 
-/* ============================
-   RESPONSIVE BREAKPOINTS
- ============================ */
 
-/* Tablet */
 @media (max-width: 980px) {
   .organizers-list {
     justify-content: space-between;
@@ -119,7 +102,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .organizers-list {
     justify-content: center;
@@ -132,7 +114,6 @@
   }
 }
 
-/* Extra-small screens */
 @media (max-width: 420px) {
   .org-card {
     flex: 1 1 45%;

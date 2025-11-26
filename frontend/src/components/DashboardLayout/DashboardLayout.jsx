@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import {
-  FaUser,
-  FaHome,
-  FaCog,
-  FaChevronDown,
-  FaChevronUp,
-} from "react-icons/fa";
-import { MdEvent } from "react-icons/md";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import "./DashboardLayout.css";
 import Navbar from "../../components/Navbar/Navbar";
 import ProfileHeader from "../commonCreaterProfile/ProfileHeader";
@@ -89,7 +82,9 @@ export default function DashboardLayout() {
               <NavLink
                 to="/organizer/dashboard/my-profile/profile"
                 className={`sub-link ${
-                  location.pathname.includes("/my-profile/profile") ? "sub-active" : ""
+                  location.pathname.includes("/my-profile/profile")
+                    ? "sub-active"
+                    : ""
                 }`}
               >
                 My Profile
@@ -97,7 +92,9 @@ export default function DashboardLayout() {
               <NavLink
                 to="/organizer/dashboard/my-profile/managepage"
                 className={`sub-link ${
-                  location.pathname.includes("/my-profile/managepage") ? "sub-active" : ""
+                  location.pathname.includes("/my-profile/managepage")
+                    ? "sub-active"
+                    : ""
                 }`}
               >
                 Manage Page
@@ -138,7 +135,9 @@ export default function DashboardLayout() {
               <NavLink
                 to="/organizer/dashboard/my-activities/saved-event"
                 className={`sub-link ${
-                  location.pathname.includes("my-activities/saved-event") ? "sub-active" : ""
+                  location.pathname.includes("my-activities/saved-event")
+                    ? "sub-active"
+                    : ""
                 }`}
               >
                 My Saved List
@@ -146,7 +145,9 @@ export default function DashboardLayout() {
               <NavLink
                 to="/organizer/dashboard/my-activities/booking-event"
                 className={`sub-link ${
-                  location.pathname.includes("my-activities/booking-event") ? "sub-active" : ""
+                  location.pathname.includes("my-activities/booking-event")
+                    ? "sub-active"
+                    : ""
                 }`}
               >
                 My Bookings
@@ -199,7 +200,9 @@ export default function DashboardLayout() {
               <NavLink
                 to="/organizer/dashboard/my-space/organizer-my-event"
                 className={`sub-link ${
-                  location.pathname.includes("my-space/organizer-my-event") ? "sub-active" : ""
+                  location.pathname.includes("my-space/organizer-my-event")
+                    ? "sub-active"
+                    : ""
                 }`}
               >
                 My Event
@@ -251,18 +254,9 @@ export default function DashboardLayout() {
               </NavLink>
             </div>
           )}
-
-          <div className='menu-item' style={{paddingTop:"20%"}}>
-             <img
-              src="/images/myactivityes.png"
-              alt="no image"
-              className="side_nav_img"
-            />
-          </div>
         </div>
 
         <div className="right-content role-container">
-          {console.log("======hide",hideHeader)}
           {!hideHeader && (
             <ProfileHeader
               profileImage="/images/user.jpg"

@@ -74,7 +74,6 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
       toast.success("Successfully Logged In");
 
       const data = result.payload.user;
-      console.log("sdfsdf", data);
 
       if (data.roleId === "organizer") {
         navigate("/organizer/dashboard");
@@ -86,7 +85,6 @@ export default function Login({ role, onGoSignup, onForgotPassword }) {
 
   const handleGoogleButtonLogin = async (credentialResponse) => {
     const idToken = credentialResponse.credential;
-    // console.log(idToken);
     const res = await dispatch(
       loginUser({ google: true, googleToken: idToken })
     );

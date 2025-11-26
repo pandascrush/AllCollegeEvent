@@ -42,6 +42,10 @@ export default function BasicDetails({
   city,
   setCity,
   mapLink,
+  webSiteLink,
+  videoLink,
+  setWebsiteLink,
+  setVideoLink,
   setMapLink,
 
   files,
@@ -57,9 +61,7 @@ export default function BasicDetails({
   linkedin,
   setLinkedin,
 
-  perks,
   setPerks,
-  cert,
   setCert,
   accommodation,
   setAccommodation,
@@ -89,7 +91,6 @@ export default function BasicDetails({
       setdefaultEventTypeCategory(getDefalutEventTypeCategory.data);
       const getDefalutCertification = await getCertification();
       setdefaultCertification(getDefalutCertification.data);
-      console.log("000==============000", getDefalutCertification.data);
     } catch (error) {
       console.log("Error fetching profile", error);
     }
@@ -104,7 +105,6 @@ export default function BasicDetails({
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
     );
 
-    // also update parent
     setPerks((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
     );
@@ -115,7 +115,6 @@ export default function BasicDetails({
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
     );
 
-    // send to parent
     setCert((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
     );
@@ -143,7 +142,6 @@ export default function BasicDetails({
 
           <div className={styles.ceField}>
             <label className={styles.ceLabel}>Type of Event</label>
-            {console.log("=====>11111111", defaultEventType)}
             <select
               className={styles.ceInput}
               value={eventType}
@@ -485,8 +483,8 @@ export default function BasicDetails({
               <input
                 className={styles.ceInputWithIcon}
                 placeholder="Event Video Link"
-                value={mapLink}
-                onChange={(e) => setMapLink(e.target.value)}
+                value={videoLink}
+                onChange={(e) => setVideoLink(e.target.value)}
               />
             </div>
 
@@ -496,8 +494,8 @@ export default function BasicDetails({
               <input
                 className={styles.ceInputWithIcon}
                 placeholder="Website Link"
-                value={mapLink}
-                onChange={(e) => setMapLink(e.target.value)}
+                value={webSiteLink}
+                onChange={(e) => setWebsiteLink(e.target.value)}
               />
             </div>
           </div>
@@ -568,7 +566,6 @@ export default function BasicDetails({
           <label className={styles.ceLabel}>Perks</label>
 
           <div className={styles.cePerkBox} style={{ marginTop: "15px" }}>
-            {console.log("nnnnnnnnn", perksValue)}
             {perksValue.map((item) => (
               <label key={item._id} className={styles.cePerkItem}>
                 <input

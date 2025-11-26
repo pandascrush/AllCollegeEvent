@@ -5,7 +5,6 @@
     padding: 0 6%;
 }
 
-/* HEADER */
 .event-header {
     display: flex;
     justify-content: space-between;
@@ -30,7 +29,6 @@
     background: transparent;
 }
 
-/* FILTER CHIPS */
 .filter-section {
     display: flex;
     justify-content: space-between;
@@ -61,7 +59,6 @@
     border-color: #8c30ff;
 }
 
-/* ARROW BUTTONS */
 .slider-btns {
     display: flex;
     gap: 10px;
@@ -82,7 +79,6 @@
     background: #bfe4ff;
 }
 
-/* CARD CONTAINER */
 .event-cards {
     display: flex;
     gap: 24px;
@@ -91,7 +87,6 @@
     padding: 5% 0;
 }
 
-/* CARD */
 .event-card {
     min-width: 315px;
     height: auto;
@@ -147,14 +142,12 @@
 /* RESPONSIVE FIX STARTS HERE   */
 /* ----------------------------- */
 
-/* 1421 → 1151 FIX */
 @media (max-width: 1421px) {
     .event-card {
         min-width: 280px;
     }
 }
 
-/* 1150 → 900 FIX */
 @media (max-width: 1150px) {
     .filter-section {
         flex-direction: column;
@@ -175,7 +168,6 @@
     }
 }
 
-/* 900 → 600 FIX */
 @media (max-width: 900px) {
     .event-section {
         padding: 0 4%;
@@ -194,7 +186,6 @@
     }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
     .event-card {
         min-width: 200px;

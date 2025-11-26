@@ -66,7 +66,6 @@ export default function SpotlightSlider({ slides = slidesData }) {
     const [current, setCurrent] = useState(0);
     const total = slides.length;
 
-    // Auto slide every 8 seconds
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrent((prev) => (prev + 1) % total);

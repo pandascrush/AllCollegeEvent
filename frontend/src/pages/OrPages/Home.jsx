@@ -22,7 +22,6 @@ export default function HomeRoleSelect() {
   return (
     <div className="role-container">
 
-      {/* ===================== PAGE 0 ===================== */}
       {pages === 0 && (
         <>
           <h2 className="role-title">Select who you represent</h2>
@@ -45,7 +44,6 @@ export default function HomeRoleSelect() {
         </>
       )}
 
-      {/* ===================== PAGE 1 ===================== */}
       {pages === 1 && (
         <div className="event-mode-container">
           <h2 className="mode-event-title">Select Your Mode of Event</h2>
@@ -54,7 +52,6 @@ export default function HomeRoleSelect() {
           </p>
 
           <div className="event-card-wrapper">
-            {/* Virtual Event */}
             <div
               className="event-card"
               onClick={() => navigate("/organizer/dashboard/my-space/organizer-create-events")}
@@ -67,7 +64,6 @@ export default function HomeRoleSelect() {
               </p>
             </div>
 
-            {/* Physical/Hybrid Event */}
             <div
               className="event-card"
               onClick={() => navigate("/organizer/dashboard/my-space/organizer-create-events")}

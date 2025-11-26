@@ -4,7 +4,6 @@ import styles from "./YourNetwork.module.css";
 export default function YourNetwork() {
   const [tab, setTab] = useState("followers");
 
-  // STATIC DATA (you can replace with API)
   const followers = [
     { id: 1, name: "Nandhini Jaganathan", img: "/images/user.png" },
     { id: 2, name: "Sharmila Vijayan", img: "/images/user.png" },
@@ -55,7 +54,6 @@ export default function YourNetwork() {
               <span className={styles.name}>{user.name}</span>
             </div>
 
-            {/* Only show Unfollow button in Following tab */}
             {tab === "following" && (
               <button className={styles.unfollowBtn}>Unfollow</button>
             )}

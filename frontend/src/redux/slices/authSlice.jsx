@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../api"; // ⬅ using your Axios instance
+import api from "../api"; 
 
-// REGISTER USER
 export const registerUser = createAsyncThunk(
   "/auth/registerUser",
   async (data, { rejectWithValue }) => {
@@ -14,7 +13,6 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-// LOGIN USER
 export const loginUser = createAsyncThunk(
   "/auth/loginUser",
   async (data, { rejectWithValue }) => {
@@ -24,40 +22,37 @@ export const loginUser = createAsyncThunk(
         data
       );
 
-      return res.data; // { user, token }
+      return res.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
 );
 
-// SEND OTP
 export const sendForgotCode = createAsyncThunk(
   "/auth/sendForgotCode",
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.post("/auth/forgot", data);
-      return res.data; // message
+      return res.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
 );
 
-// VERIFY OTP
 export const verifyForgotCode = createAsyncThunk(
   "/auth/verifyForgotCode",
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.post("/auth/verify-code", data);
-      return res.data; // message
+      return res.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
 );
 
-// RESET PASSWORD
 export const resetForgotPassword = createAsyncThunk(
   "/auth/resetForgotPassword",
   async (data, { rejectWithValue }) => {

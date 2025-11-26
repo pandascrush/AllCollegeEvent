@@ -2,20 +2,19 @@
     display: flex;
     width: 100%;
     height: 100vh;
-    overflow: hidden; /* keep layout stable */
+    overflow: hidden; 
     background: linear-gradient(90deg, #fbfaff, #f9f6ff);
 }
 
-/* LEFT SIDE – ALWAYS CENTERED */
 .authLeft {
     flex: 1.5;
     display: flex;
-    align-items: center;      /* vertical center */
-    justify-content: center;  /* horizontal center */
+    align-items: center;     
+    justify-content: center;  
     padding: 40px;
-    position: sticky;         /* <-- key point */
-    top: 0;                   /* center stays even when right scrolls */
-    height: 100vh;            /* full height */
+    position: sticky;     
+    top: 0;                 
+    height: 100vh;        
 }
 
 .authLeft img {
@@ -29,7 +28,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* TOP alignment */
+    justify-content: flex-start; 
     padding: 40px;
     max-height: 100vh;
     overflow-y: auto;
@@ -38,23 +37,22 @@
 
 .authContent {
     width: 100%;
-    max-width: 420px; /* Slightly wider */
+    max-width: 420px;
     margin: 0 auto;
-    padding-bottom: 40px; /* Prevent pushing up */
+    padding-bottom: 40px; 
 }
 
 /* ---------- Tablet: stack vertically, image above form ---------- */
 @media (max-width: 1024px) {
   .authContainer {
     flex-direction: column;
-    height: auto;            /* allow page to grow */
+    height: auto;            
     min-height: 100vh;
     overflow: visible;
   }
 
   .authLeft {
-    /* make image behave like a normal block on top */
-    position: static;        /* remove sticky on tablet */
+    position: static;       
     top: auto;
     height: auto;
     flex: 0 0 auto;
@@ -62,7 +60,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    order: 0;                /* image first */
+    order: 0;               
   }
 
   .authLeft img {
@@ -78,8 +76,8 @@
     max-height: none;
     overflow: visible;
     padding: 24px;
-    justify-content: flex-start; /* keep form at top */
-    order: 1;                     /* form below image */
+    justify-content: flex-start; 
+    order: 1;                     
   }
 
   .authContent {
@@ -88,7 +86,6 @@
   }
 }
 
-/* ---------- Mobile: stack, image smaller and centered ---------- */
 @media (max-width: 768px) {
   .authContainer {
     padding: 10px 12px;
@@ -115,7 +112,6 @@
   }
 }
 
-/* ---------- Small mobile tweak ---------- */
 @media (max-width: 480px) {
   .authLeft img {
     max-width: 260px;

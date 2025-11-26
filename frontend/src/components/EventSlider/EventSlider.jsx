@@ -38,7 +38,6 @@ export default function EventCarousel({ title, data }) {
                 </div>
             </div>
 
-            {/* Slider Buttons */}
 
 
             {/* Card Slider */}

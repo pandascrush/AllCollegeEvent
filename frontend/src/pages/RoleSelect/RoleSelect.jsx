@@ -7,15 +7,12 @@ export default function RoleSelect({ onSelect }) {
 
   const handleSelectRole = (role) => {
     localStorage.setItem("userRoleSelect", role);
+    if (onSelect) onSelect(); 
 
-    if (onSelect) onSelect(); // close modal
-
-    // navigate("/login"); // optional, depends on you
   };
 
   return (
     <div className="role-page">
-      {/* LEFT SECTION IMAGE */}
       <div className="role-left">
         <img
           src={FirstScreenImage}
@@ -24,7 +21,6 @@ export default function RoleSelect({ onSelect }) {
         />
       </div>
 
-      {/* RIGHT SECTION */}
       <div className="role-right">
         <h1 className="role-title1">
           <span>Select your vibe!</span> Start your journey!

@@ -234,7 +234,7 @@ export const AuthService = {
         isGoogleUser: true,
         profileImg: picture,
         password: null,
-        roleId: roleDoc._id, // Save role ID
+        roleId: roleDoc._id,
       });
     }
 
@@ -242,7 +242,7 @@ export const AuthService = {
     const token = jwt.sign(
       { id: user._id, role: roleDoc.name },
       process.env.JWT_SECRET,
-      { expiresIn: "2m" }
+      { expiresIn: "2d" }
     );
 
     return { user, token };

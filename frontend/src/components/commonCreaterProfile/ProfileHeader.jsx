@@ -60,7 +60,6 @@ export default function ProfileHeader({
             Prabavathi M <span className={styles.role_small}>({role})</span>
           </h2>
 
-          {/* CLICKABLE FOLLOWER & FOLLOWING */}
           <div className={styles.follow_info}>
             <span className={styles.clickable} onClick={goFollowers}>
               123 Followers

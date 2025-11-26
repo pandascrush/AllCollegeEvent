@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
 
-// GET SINGLE USER USING ID
 export const fetchSingleUser = createAsyncThunk(
   "/user/fetchSingleUser",
   async (uid, { rejectWithValue }) => {
     try {
       const res = await api.get(`/user/sin_usr/${uid}`);
-      return res.data;  // adjust to your backend response
+      return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || "Failed to fetch user");
     }

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./OrganizerDashboard.module.css";
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -135,7 +133,6 @@ export default function OrganizerDashboard() {
               <YAxis tick={{ fontSize: 14 }} domain={["auto", "auto"]} />
               <Tooltip />
 
-              {/* 🔥 This is the EXACT same effect as your screenshot */}
               <Area
                 type="basis"
                 dataKey="value"

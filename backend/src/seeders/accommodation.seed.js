@@ -1,7 +1,6 @@
 import { Accommodation } from "../models/accommadation.model.js";
 
 export default async function seedAccommodations() {
-//   console.log("➡ Seeding Accommodations...");
 
   await Accommodation.deleteMany();
 

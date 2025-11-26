@@ -1,19 +1,15 @@
-/* src/OrPages/MyEvents/MyEvents.module.css */
-
 .wrapper {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 0px 0px 20px 20px;
 }
 
-/* Heading */
 .heading {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 18px;
 }
 
-/* Controls row */
 .controlsRow {
   display: flex;
   justify-content: space-between;
@@ -34,16 +30,6 @@
   gap: 10px;
 }
 
-/* Search */
-/* .searchBox {
-  width: 100%;
-  max-width: 520px;
-  background: #fff;
-  border-radius: 14px;
-  padding: 10px 14px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-} */
-
 .searchBox input {
   outline: none;
   width: 70%;
@@ -53,7 +39,6 @@
   border: 1px solid rgb(214, 213, 213);
 }
 
-/* Filter select */
 .filterLabel {
   font-size: 18px;
   font-weight: 600;
@@ -69,7 +54,6 @@
   min-width: 150px;
 }
 
-/* icon buttons */
 .iconBtn {
   display: flex;
   align-items: center;
@@ -86,25 +70,21 @@
   background: #dfe9ff;
 }
 
-/* view toggle */
 .viewToggle {
   display: inline-flex;
   gap: 8px;
 }
 
-/* content area */
 .contentArea {
   margin-top: 10px;
 }
 
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 18px;
 }
 
-/* card */
 .card {
   background: #fff;
   border-radius: 14px;
@@ -133,7 +113,6 @@
   border-radius: 5px;
 }
 
-/* status tag on image */
 .statusTag {
   position: absolute;
   top: 18px;
@@ -147,7 +126,6 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-/* status color variants */
 .status_published,
 .status_publish {
   background: #f0e6ff;
@@ -170,7 +148,6 @@
   color: #c44a4a;
 }
 
-/* card body */
 .cardBody {
   padding: 12px 14px;
   display: flex;
@@ -215,7 +192,6 @@
   font-size: 14px;
 }
 
-/* LIST */
 .list {
   display: flex;
   flex-direction: column;
@@ -275,21 +251,18 @@
   background: rgba(0, 0, 0, 0.03);
 }
 
-/* small metadata row in list */
 .shortMeta {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-/* no results */
 .noResults {
   padding: 24px;
   text-align: center;
   color: #666;
 }
 
-/* empty box */
 .emptyBox {
   background: #fff;
   border-radius: 14px;
@@ -314,7 +287,6 @@
   cursor: pointer;
 }
 
-/* small loaders / messages */
 .loadingBox,
 .inlineLoader,
 .error {
@@ -322,7 +294,7 @@
   padding: 24px;
   color: #666;
 }
-/* menu popup (kebab) */
+
 .kebab {
   border: none;
   background: transparent;
@@ -335,7 +307,6 @@
   color: #444;
 }
 
-/* small popup menu */
 .menuPopup {
   position: absolute;
   right: 0;
@@ -351,7 +322,6 @@
   overflow: hidden;
 }
 
-/* menu item */
 .menuItem {
   padding: 10px 12px;
   background: transparent;
@@ -366,7 +336,6 @@
   background: #f5f5ff;
 }
 
-/* ensure menu doesn't overflow on small screens */
 @media (max-width: 600px) {
   .menuPopup {
     right: 6px;
@@ -375,7 +344,6 @@
   }
 }
 
-/* responsive */
 @media (max-width: 1000px) {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

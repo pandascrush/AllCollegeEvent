@@ -1,4 +1,3 @@
-// src/components/Organizers/LeaderboardModal.jsx
 import React, { useEffect } from "react";
 import goldMedal from '../../../public/images/FirstOr.png'
 import silverMedal from '../../../public/images/SecondOr.png'
@@ -6,15 +5,8 @@ import bronzeMedal from '../../../public/images/ThreedOr.png'
 import './LeaderboardModal.css'
 
 
-/**
- * Props:
- * - open: boolean
- * - onClose: () => void
- * - data: array of organizer objects
- */
 export default function LeaderboardModal({ open, onClose, data = [] }) {
     useEffect(() => {
-        // lock scroll when modal open
         if (open) {
             document.body.style.overflow = "hidden";
         } else {
@@ -25,7 +17,6 @@ export default function LeaderboardModal({ open, onClose, data = [] }) {
 
     if (!open) return null;
 
-    // top 3 for podium cards
     const top3 = data.slice(0, 3);
 
     return (

@@ -7,7 +7,6 @@ export default function FinalDetails({
   setFinal,
   setStep,
 }) {
-  // Auto-show modal when arriving Step 4
   useEffect(() => {
     console.log("FINAL PAYLOAD:", finalPayload);
     setFinal({ showModal: true });

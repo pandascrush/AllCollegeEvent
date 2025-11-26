@@ -7,7 +7,6 @@ export default function TicketDetails({
   setTickets,
   setStep,
 
-  // ADD ALL THESE PROPS ↓↓↓
   title,
   eventType,
   category,
@@ -17,6 +16,8 @@ export default function TicketDetails({
   venue,
   city,
   mapLink,
+  webSiteLink,
+  videoLink,
   files,
   whatsapp,
   instagram,
@@ -31,8 +32,6 @@ export default function TicketDetails({
 }) {
   // modal open
   const [showForm, setShowForm] = useState(false);
-
-  // form state
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [sellingFrom, setSellingFrom] = useState("");
@@ -43,8 +42,6 @@ export default function TicketDetails({
   const [totalCount, setTotalCount] = useState("1000");
   const [minCount, setMinCount] = useState("01");
   const [maxCount, setMaxCount] = useState("1000");
-
-  // helper lists for dropdowns (example values — adapt to your app)
   const totalOptions = ["1000", "2000", "5000"];
   const minOptions = ["01", "02", "05", "10"];
   const maxOptions = ["100", "500", "1000", "5000"];
@@ -232,7 +229,6 @@ export default function TicketDetails({
       )}
 
       {/* Bottom actions */}
-      {/* Bottom actions */}
       <div className={styles.ceEndActions} style={{ marginTop: 22 }}>
         <button className={styles.ceBtnOutline} onClick={() => setStep(2)}>
           Back
@@ -254,6 +250,8 @@ export default function TicketDetails({
                   venue,
                   city,
                   mapLink,
+                  webSiteLink,
+                  videoLink,
                   files,
                   whatsapp,
                   instagram,
@@ -267,7 +265,7 @@ export default function TicketDetails({
                 tickets,
               };
 
-              console.log("FINAL PAYLOAD:", payload); // debug
+              console.log("FINAL PAYLOAD:", payload);
               setFinalPayload(payload);
               setStep(4);
             }}
@@ -277,9 +275,6 @@ export default function TicketDetails({
         )}
       </div>
 
-      {/* ---------------------------
-          ADD / EDIT TICKET MODAL
-         --------------------------- */}
       {showForm && (
         <div className={styles.ceModalBackdrop}>
           <div className={styles.ceModal} style={{ maxWidth: 980 }}>

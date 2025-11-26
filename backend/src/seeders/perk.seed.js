@@ -1,9 +1,6 @@
 import { Perk } from "../models/perks.model.js";
 
 export default async function seedPerks() {
-//   console.log("➡ Seeding Perks...");
-
-  // OPTIONAL: clear old data
   await Perk.deleteMany();
 
   const perks = [

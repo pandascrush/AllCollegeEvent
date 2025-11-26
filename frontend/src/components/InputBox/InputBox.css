@@ -28,7 +28,6 @@
     border-color: #7f2bff;
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
     .inputBoxContainer {
         margin-bottom: 20px;

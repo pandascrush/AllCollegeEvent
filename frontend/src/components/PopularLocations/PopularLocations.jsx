@@ -1,4 +1,3 @@
-// src/components/PopularLocations/PopularLocations.jsx
 
 import React from "react";
 import "./PopularLocations.css";

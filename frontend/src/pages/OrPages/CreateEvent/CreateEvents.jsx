@@ -1,7 +1,3 @@
-// ============================================================
-// CREATE EVENTS — MAIN MULTI-STEP WRAPPER
-// Uses 4 child components to render each section
-// ============================================================
 
 import React, { useState, useRef } from "react";
 import styles from "./CreateEvents.module.css";
@@ -13,53 +9,31 @@ import TicketDetails from "./TicketDetails";
 import FinalDetails from "./FinalDetails";
 
 export default function CreateEvents() {
-  /* ============================================================
-     PAGE FLOW CONTROL (VERY IMPORTANT)
-  ============================================================ */
   const [step, setStep] = useState(1);
-
-  /* ============================================================
-     ALL FORM STATES
-  ============================================================ */
-
-  // Basic Details
   const [title, setTitle] = useState("");
   const [eventType, setEventType] = useState("");
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
   const [about, setAbout] = useState("");
-
-  // Calendar
   const [calendarRows, setCalendarRows] = useState([
     { startDate: "", startTime: "", endDate: "", endTime: "" },
   ]);
   const [multiDates, setMultiDates] = useState(false);
-
-  // Location
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
   const [mapLink, setMapLink] = useState("");
-
-  // Files
+  const [videoLink, setVideoLink] = useState("");
+  const [websiteLink, setWebsiteLink] = useState("");
   const [files, setFiles] = useState([]);
   const fileRef = useRef(null);
-
-  // Socials
   const [whatsapp, setWhatsapp] = useState("");
   const [instagram, setInstagram] = useState("");
   const [linkedin, setLinkedin] = useState("");
-
-  // Misc
   const [hybrid, setHybrid] = useState(false);
   const [accommodation, setAccommodation] = useState("");
-
-  // Perks
- const [perks, setPerks] = useState([]);  // array of perk IDs
-const [cert, setCert] = useState([]);    // array of certification IDs
-
-
-  // Organizer
+  const [perks, setPerks] = useState([]); 
+  const [cert, setCert] = useState([]); 
   const [organizer, setOrganizer] = useState({
     orgType: "",
     name: "",
@@ -68,21 +42,13 @@ const [cert, setCert] = useState([]);    // array of certification IDs
     altMobile: "",
     coordinators: [],
   });
-
-  // Tickets
   const [tickets, setTickets] = useState({
     external: false,
     externalUrl: "",
     list: [],
   });
   const [finalPayload, setFinalPayload] = useState(null);
-
-  // Final Modal
   const [final, setFinal] = useState({ showModal: false });
-
-  /* ============================================================
-     TAG HANDLING
-  ============================================================ */
   const addTag = () => {
     const t = tagInput.trim();
     if (t && !tags.includes(t)) {
@@ -95,9 +61,6 @@ const [cert, setCert] = useState([]);    // array of certification IDs
     setTags(tags.filter((x) => x !== t));
   };
 
-  /* ============================================================
-     FILE UPLOAD
-  ============================================================ */
   const onFilesChange = (e) => {
     const selected = Array.from(e.target.files).slice(0, 6);
     setFiles(selected);
@@ -109,9 +72,6 @@ const [cert, setCert] = useState([]);    // array of certification IDs
     setFiles(dropped);
   };
 
-  /* ============================================================
-     CALENDAR HANDLING
-  ============================================================ */
   const updateCalendarRow = (index, key, value) => {
     const updated = [...calendarRows];
     updated[index][key] = value;
@@ -129,9 +89,6 @@ const [cert, setCert] = useState([]);    // array of certification IDs
     setCalendarRows(calendarRows.filter((_, i) => i !== index));
   };
 
-  /* ============================================================
-     RENDER UI BASED ON STEP
-  ============================================================ */
   return (
     <div className={styles.ceWrapper}>
       {/* ===================== TOP STEPPER ===================== */}
@@ -210,6 +167,10 @@ const [cert, setCert] = useState([]);    // array of certification IDs
           city={city}
           setCity={setCity}
           mapLink={mapLink}
+          videoLink={videoLink}
+          setVideoLink={setVideoLink}
+          websiteLink={websiteLink}
+          setWebsiteLink={setWebsiteLink}
           setMapLink={setMapLink}
           files={files}
           setFiles={setFiles}
@@ -247,6 +208,8 @@ const [cert, setCert] = useState([]);    // array of certification IDs
               venue,
               city,
               mapLink,
+              websiteLink,
+              videoLink,
               files,
               whatsapp,
               instagram,
@@ -277,7 +240,6 @@ const [cert, setCert] = useState([]);    // array of certification IDs
           tickets={tickets}
           setTickets={setTickets}
           setStep={setStep}
-          // new props needed for payload
           title={title}
           eventType={eventType}
           category={category}
@@ -287,6 +249,8 @@ const [cert, setCert] = useState([]);    // array of certification IDs
           venue={venue}
           city={city}
           mapLink={mapLink}
+          webSiteLink={websiteLink}
+          videoLink={videoLink}
           files={files}
           whatsapp={whatsapp}
           instagram={instagram}

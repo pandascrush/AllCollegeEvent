@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api  from "../api";   // your axios instance
+import api  from "../api";  
 
-//-----------------------------------------------------
-// FETCH ALL VIBES
-//-----------------------------------------------------
 export const fetchVibes = createAsyncThunk(
   "vibe/fetchVibes",
   async (_, { rejectWithValue }) => {
@@ -16,24 +13,18 @@ export const fetchVibes = createAsyncThunk(
   }
 );
 
-//-----------------------------------------------------
-// CREATE VIBE
-//-----------------------------------------------------
 export const createVibe = createAsyncThunk(
   "vibe/createVibe",
   async (formData, { rejectWithValue }) => {
     try {
       const res = await api.post("/vibe/create_vibe", formData);
-      return res.data.data; // only created data
+      return res.data.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to create vibe");
     }
   }
 );
 
-//-----------------------------------------------------
-// UPDATE VIBE
-//-----------------------------------------------------
 export const updateVibe = createAsyncThunk(
   "vibe/updateVibe",
   async ({ id, formData }, { rejectWithValue }) => {
@@ -46,9 +37,6 @@ export const updateVibe = createAsyncThunk(
   }
 );
 
-//-----------------------------------------------------
-// SLICE
-//-----------------------------------------------------
 const vibeSlice = createSlice({
   name: "vibe",
   initialState: {

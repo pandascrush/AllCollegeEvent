@@ -81,7 +81,6 @@
   transition: 0.3s;
 }
 
-/* ACTIVE */
 input:checked + .slider {
   background: #8a00ff;
 }
@@ -90,7 +89,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .left {
     gap: 12px;

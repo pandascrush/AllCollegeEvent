@@ -25,27 +25,21 @@ export default function Signup({ role, goBack, onSuccess }) {
   const [pass, setPass] = useState("");
   const [confirm, setConfirm] = useState("");
   const [localError, setLocalError] = useState("");
-
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
-  // Redux auth state
   const { loading, error } = useSelector((state) => state.auth);
 
   const handleSignup = async () => {
     setLocalError("");
 
-    // Required validation
     if (!name || !email || !pass || !confirm) {
       return setLocalError("All fields are required.");
     }
 
-    // Password length
     if (pass.length < 8) {
       return setLocalError("Password must be at least 8 characters.");
     }
 
-    // Confirm password
     if (pass !== confirm) {
       return setLocalError("Passwords do not match.");
     }
@@ -80,7 +74,6 @@ export default function Signup({ role, goBack, onSuccess }) {
         </div>
       </div>
 
-      {/* NAME FIELD */}
       <InputBox
         label={labelName}
         value={name}
@@ -88,7 +81,6 @@ export default function Signup({ role, goBack, onSuccess }) {
         placeholder={placeName}
       />
 
-      {/* EMAIL or DOMAIN FIELD */}
       <InputBox
         label={labelEmail}
         value={email}
@@ -96,7 +88,6 @@ export default function Signup({ role, goBack, onSuccess }) {
         placeholder={placeEmail}
       />
 
-      {/* PASSWORD FIELD */}
       <div className="password-wrapper">
         <InputBox
           label="Password"
@@ -110,7 +101,6 @@ export default function Signup({ role, goBack, onSuccess }) {
         </span>
       </div>
 
-      {/* CONFIRM PASSWORD FIELD */}
       <div className="password-wrapper">
         <InputBox
           label="Confirm Password"

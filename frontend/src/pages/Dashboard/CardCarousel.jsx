@@ -1,19 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 
-/**
- * CardCarousel
- * - images: array of imported image modules
- * - Implements the same effect as your original HTML/JS:
- *   center big card, blurred left/right, auto-advance, clickable.
- */
-
 export default function CardCarousel({ images = [], interval = 4500 }) {
   const n = images.length;
   const [centerIdx, setCenterIdx] = useState(0);
   const timerRef = useRef(null);
 
   useEffect(() => {
-    // Auto rotate
     timerRef.current = setInterval(() => {
       setCenterIdx((s) => (s + 1) % n);
     }, interval);
@@ -23,19 +15,14 @@ export default function CardCarousel({ images = [], interval = 4500 }) {
     };
   }, [n, interval]);
 
-  // Clicking a side card makes it center immediately
   const handleClick = (idx) => {
     setCenterIdx(idx);
-    // reset interval so change doesn't immediately switch
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setCenterIdx((s) => (s + 1) % n);
     }, interval);
   };
 
-  // Build a mapping of each image -> position class
-  // We want pos assignments for 5 visible slots as in original: far-left, left, center, right, far-right
-  // For N images we still calculate relative positions mod N.
   const getPosClass = (imgIdx) => {
     if (n === 1) return "pos-center";
     const diff = (imgIdx - centerIdx + n) % n;

@@ -10,14 +10,12 @@
   margin-bottom: 20px;
 }
 
-/* Grid Layout */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
 }
 
-/* Event Card */
 .card {
   background: #fff;
   border-radius: 16px;
@@ -26,7 +24,6 @@
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Offer Badge */
 .offer {
   position: absolute;
   top: 10px;
@@ -38,7 +35,6 @@
   font-weight: 600;
 }
 
-/* Event Image */
 .eventImg {
   width: 100%;
   height: 160px;
@@ -47,7 +43,6 @@
   margin-bottom: 10px;
 }
 
-/* Content */
 .content {
   padding: 10px 0;
 }
@@ -58,7 +53,6 @@
   margin-bottom: 8px;
 }
 
-/* Rows */
 .row {
   display: flex;
   align-items: center;
@@ -71,7 +65,6 @@
   font-size: 15px;
 }
 
-/* Bookmark Icon */
 .bookmarkBox {
   position: absolute;
   width: 35px;
@@ -82,8 +75,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  /* background: #fff; */
-  /* padding: 4px; */
   border-radius: 50%;
 }
 
@@ -92,7 +83,6 @@
   color: #7a12ff;
 }
 
-/* Paid Badge */
 .paidBtn {
   background: #f4e7ff;
   color: #7a12ff;
@@ -106,7 +96,6 @@
   bottom: 12px;
 }
 
-/* ------------ RESPONSIVE -------------- */
 
 @media (max-width: 1200px) {
   .grid {
